@@ -228,7 +228,7 @@
                   <img src="{% static 'content/img/listing-1.png' %}" alt="Listing">
 
                   <div class="price">
-                    Kshs. {{entry.property_entry.price}}
+                    Kshs. {{entry.price}}
                   </div>
 
                   <div class="quickView" data-toggle="modal" data-target="#basicExampleModal">
@@ -237,20 +237,20 @@
                 </div>
 
                 <div class="itemDesc">
-                  <p class="itemName">{% if entry.property_entry.is_available %}{{entry.property_entry.property_number}}{% else %}Not Available{% endif %}
-                    <br><span>{{entry.property_entry.location}}</span>
+                  <p class="itemName">{% if entry.is_available %}{{entry.property_number}}{% else %}Not Available{% endif %}
+                    <br><span>{{entry.location}}</span>
                   
                   </p>
 
                   <div class="e-i">
                     <p class="extraItem">
                       <span>Room</span> <br>
-                      {{entry.property_entry.no_of_bedrooms}}
+                      {{entry.no_of_bedrooms}}
                     </p>
 
                     <p class="extraItem">
                       <span>Bathoom</span> <br>
-                      {{entry.property_entry.no_of_bathrooms}}
+                      {{entry.no_of_bathrooms}}
                     </p>
                   </div>
 
