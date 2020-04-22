@@ -1,0 +1,37 @@
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'includes/head-element.html' %}
+
+<body aria-busy="true">
+
+    <!-- Preloader+Navbar+Mobile-menu start -->
+    {% include 'includes/navbar.html' %}
+    <!-- Preloader+Navbar+Mobile-menu start -->
+
+    <!-- innerBody section start -->
+    {% block content %}
+
+    {% endblock content %}
+    <!-- innerBody section end -->
+
+
+
+    <!-- Footer section start -->
+    {% include 'includes/big-footer.html'  %}
+    <!-- Footer section end -->
+    
+    
+<!--     <a a href="{% url 'mainapp:add-listing' %}" class="d-none btn-action waves waves-effect"><i class="fas fa-plus"></i></a>
+ -->
+
+    <!-- Javascript section start -->
+    {% include 'includes/javascript.html' %}
+    <!-- Javascript section end -->
+
+</body>
+
+</html>

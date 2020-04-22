@@ -1,0 +1,35 @@
+{% load staticfiles %}
+
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+       <script src="{% static 'js/slider.conf.js' %}"></script>
+    <script src="{% static 'js/mdb.min.js' %}"></script>
+    <div class="hiddendiv common"></div>
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			$('.sign').on('click', function(){
+
+				var rid = $(this).attr('data-id');
+				document.getElementById('request_id').value = rid;
+				document.getElementById('delete-btn').value = "Remove Request ## " + rid;
+
+				$('#delete-form').attr('action', '/all-requests/remove/'+rid+'/');
+				console.log("rid" + rid);
+			});
+
+
+			$('.sign2').on('click', function(){
+
+				var rid = $(this).attr('data-id');
+				document.getElementById('request_id').value = rid;
+				document.getElementById('activate-btn').value = "Activate Request ## " + rid;
+
+				$('#activate-form').attr('action', '/all-requests/activate/'+rid+'/');
+				console.log("rid" + rid);
+			});
+		});
+	</script>

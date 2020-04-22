@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+{% include "includes/activate-request-modal.html" %}
+
+
+{% include "includes/remove-request-modal.html" %}
+
+
+	
+	<div style="padding:1rem;">
+	{% if request.user.userprofile.user_type == "Buyer" %}
+
+	<h2>All Requests</h2>
+		<h4>User: {{request.user}}</h4>
+		<h4>Type: {{request.user.userprofile.user_type}}</h4>
+		<p>Here you can track all your active and inactive requests</p>
+<table class="table">
+		<tr>
+			<th>Request Id</th>
+			<th>Property Type</th>
+			<th>Location</th>
+			<th>Matches</th>
+
+
+			
+		</tr>
+
+		
+			{% for r in all_requests %}
+			
+			<br>
+					
+			<tr>
+				<td>
+				##{{r.id}}
+				</td>
+				<td>
+				{{r.property_type}}
+				</td>
+				<td>
+				{{r.location}}
+				</td>
+				<td>
+					{% if r.is_active %}
+						{{r.valid_match_count}}
+					{% else %}
+					N/A
+					{% endif %}
+				</td>
+				<td>
+					{% if r.is_active %}
+					<a class="btn sign" data-id="{{r.id}}" data-toggle="modal" href="#myDeleteModal">Remove Request</a>
+					{% else %}
+					<a class="btn sign2" data-id="{{r.id}}" data-toggle="modal" href="#myActivateModal">Activate Request</a>
+					{% endif %}
+				</td>
+			</tr>
+		
+		
+				
+			
+			
+		{% endfor %}
+	</table>
+
+
+	{% endif %}
+	</div>
+	
+	
+{% endblock content %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+
+{% include "includes/activate-request-modal.html" %}
+
+
+{% include "includes/remove-request-modal.html" %}
+	
+	<div style="padding:1rem;">
+	{% if request.user.userprofile.user_type == "Buyer" %}
+
+	<h2>Your Unmatched Requests</h2>
+		<h4>User: {{request.user}}</h4>
+		<h4>Type: {{request.user.userprofile.user_type}}</h4>
+		<p>These are your umatched requests.</p>
+		<p>once a match is found, the request will be removed from this list and put in the explore page</p>
+	<table class="table">
+		<tr>
+			<th>Request Id</th>
+			<th>Property Type</th>
+			<th>Location</th>
+			
+		</tr>
+
+		
+			{% for r in unmatched_requests %}
+			
+			<br>
+			
+				
+					
+			<tr>
+				<td>
+				##{{r.id}}
+				</td>
+				<td>
+				{{r.property_type}}
+				</td>
+				<td>
+				{{r.location}}
+				</td>
+				<td>
+					{% if r.is_active %}
+					<a class="btn sign" data-id="{{r.id}}" data-toggle="modal" href="#myDeleteModal">Remove Request</a>
+					{% else %}
+					<a class="btn sign2" data-id="{{r.id}}" data-toggle="modal" href="#myActivateModal">Activate Request</a>
+					{% endif %}
+				</td>
+			</tr>
+		
+		
+				
+			
+			
+		{% endfor %}
+	</table>
+
+
+	{% elif request.user.userprofile.user_type == "Seller" %}
+		<h4>User: {{request.user}}</h4>
+		<h4>Type: {{request.user.userprofile.user_type}}</h4>
+		<h2>Your Unmatched Requests</h2>
+		<p>These are buyer requests that aren't matched to any of your properties</p>
+		<p>Take this opportunity to suggest new property to match with the below requests</p>
+	<table class="table">
+		<tr>
+			<th>Buyer</th>
+			<th>Property Type</th>
+			<th>Location</th>
+			<th>Suggest Property</th>
+		</tr>
+
+		
+			{% for r in unmatched_requests %}
+			
+			<br>
+			
+				
+					
+			<tr>
+				<td>
+				{{r.buyer}}
+				</td>
+				<td>
+				{{r.property_type}}
+				</td>
+				<td>
+				{{r.location}}
+				</td>
+				<td>
+					<a class="btn sign" href="{% url 'mainapp:add-listing' %}">Suggest New Property</a>
+				</td>
+			</tr>
+		
+		
+				
+			
+			
+		{% endfor %}
+	</table>
+	{% endif %}
+	</div>
+	
+	
+{% endblock content %}

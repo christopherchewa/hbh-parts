@@ -1,0 +1,339 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+
+<!-- Explore page start -->
+<div class="explore">
+  <div class="exploreWrapper">
+    <div class="container py-1">
+      
+       {% if request.user.userprofile.user_type == "Buyer" %}
+       <div class="sectionTitle text-center">
+                <h1>My Matches</h1>
+            </div>
+      <div class="headerBar">
+         <p class="resultText">We found <span>{{entries.count}}</span> results that might be your next home.</p>
+        {% elif request.user.userprofile.user_type == "Seller" %}
+        <div class="sectionTitle text-center">
+                <h1>My Properties</h1>
+            </div>
+      <div class="headerBar">
+        <p class="resultText">These are your properties. <span>({{entries.count}})</span> </p>
+
+       {% endif %}
+
+        <div class="d-none d-sm-flex select-wrapper">
+          <select class=" mdb-select md-form initialized">
+            <option selected="" value="1">Latest</option>
+            <option value="2">Best selling</option>
+            <option value="3">Top rated</option>
+            <option value="3">Top relevant</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="explore">
+        <div class="exploreSearch">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item waves-effect waves-light">
+              <a class="nav-link " id="filter-tab" data-toggle="tab" href="#filter" aria-controls="filter" aria-selected="true"><i class="fa fa-search"></i> My Buy Requirements</a>
+            </li>
+          </ul>
+          <div class=" tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="filter" role="tabpanel" aria-labelledby="filter-tab">
+              <div class="inputGroup">
+
+                <div class="inputGroup">
+                  <div class="md-form">
+                    <select class="mdb-select initialized">
+                      <option value="" disabled="" selected="">Property Type</option>
+                      <option value="Apartment">Apartment</option>
+                      <option value="Mansionette">Mansionette</option>
+                      <option value="Bungalow">Bungalow</option>
+                      <option value="Bungalow">Studio</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="inputGroup">
+                  <div class="d-flex md-form">
+                    <div class="col-7 px-1">
+                      <select class="mdb-select initialized">
+                        <option value="" disabled="" selected="">City</option>
+                        <option value="Apartment">Nairobi</option>
+                        <option value="Mansionette">Mombasa</option>
+                        <option value="Bungalow">Kisumu</option>
+                        <option value="Bungalow">Nakuru</option>
+                      </select>
+                    </div>
+
+                    <div class="col-5 px-1">
+                      <select class="mdb-select initialized">
+                        <option value="" disabled="" selected="">Price</option>
+                        <option value="1">$1 - $150</option>
+                        <option value="2">$150 - $300</option>
+                        <option value="3">$300 - $600</option>
+                        <option value="4">$600 - above</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="inputGroup">
+                  <div class="d-flex md-form">
+                    <div class="col-7 px-1">
+                      <select class="mdb-select initialized">
+                        <option value="" disabled="" selected="">Areas</option>
+                        <option value="Jamuhuri">Jamuhuri</option>
+                        <option value="Kileleshwa">Kileleshwa</option>
+                        <option value="Kilimani">Kilimani</option>
+                        <option value="Lavington">Lavington</option>
+                      </select>
+                    </div>
+
+                    <div class="col-5 px-1">
+                      <select class="mdb-select initialized">
+                        <option value="" disabled="" selected="">Bedrooms</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="inputGroup">
+                <label>Additional Features</label>
+                <div class="checkList">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="materialChecked1">
+                    <label class="form-check-label" for="materialChecked1">Air Canditioning</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="materialChecked2">
+                    <label class="form-check-label" for="materialChecked2">Balcoony</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="materialChecked3">
+                    <label class="form-check-label" for="materialChecked3">Windows each room</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="materialChecked4">
+                    <label class="form-check-label" for="materialChecked4">Pantry</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="materialChecked5">
+                    <label class="form-check-label" for="materialChecked5">Toilet each room</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="materialChecked6">
+                    <label class="form-check-label" for="materialChecked6">Mini bar</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="materialChecked7">
+                    <label class="form-check-label" for="materialChecked7">Keeping room</label>
+                  </div>
+
+                </div>
+              </div>
+
+              <button class="btn btnExploreSearch waves-effect waves-light">Search</button>
+              <a class="btnReset" href="#"><i class="fas fa-redo-alt"></i> Reset filters</a>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="exploreResult">
+          <div class="listings">
+
+            {% if request.user.userprofile.user_type == "Buyer" %}
+             {% for entry in entries %}
+             
+                <a href="{{entry.property_entry.get_absolute_url }}">
+              <div class="listingItem">
+                <div class="itemCover">
+
+                  <div class="like">
+                    <i class="fas fa-heart"></i>
+                  </div>
+
+                  <img src="{% static 'content/img/listing-1.png' %}" alt="Listing">
+
+                  <div class="price">
+                    Kshs. {{entry.property_entry.price}}
+                  </div>
+
+                  <div class="quickView" data-toggle="modal" data-target="#basicExampleModal">
+                    <i class="fas fa-search-plus"></i>
+                  </div>
+                </div>
+
+                <div class="itemDesc">
+                  <p class="itemName">{{entry.property_entry.property_number}}
+                    <br><span>{{entry.property_entry.location}}</span>
+                  </p>
+
+                  <div class="e-i">
+                    <p class="extraItem">
+                      <span>Room</span> <br>
+                      {{entry.property_entry.no_of_bedrooms}}
+                    </p>
+
+                    <p class="extraItem">
+                      <span>Bathoom</span> <br>
+                      {{entry.property_entry.no_of_bathrooms}}
+                    </p>
+                  </div>
+
+                  <div class="e-i">
+                    <p class="extraItem">
+                      <span>Bed</span> <br>
+                      3500cm <sup>3</sup>
+                    </p>
+
+                    <p class="extraItem">
+                      <span>Floor space</span> <br>
+                      780 sq ft
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+              {% endfor %} 
+            
+            {% elif request.user.userprofile.user_type == "Seller" %}
+
+            {% for entry in entries %}
+              <a href="#">
+              <div class="listingItem">
+                <div class="itemCover">
+
+                  <div class="like">
+                    <i class="fas fa-heart"></i>
+                  </div>
+
+                  <img src="{% static 'content/img/listing-1.png' %}" alt="Listing">
+
+                  <div class="price">
+                    Kshs. {{entry.property_entry.price}}
+                  </div>
+
+                  <div class="quickView" data-toggle="modal" data-target="#basicExampleModal">
+                    <i class="fas fa-search-plus"></i>
+                  </div>
+                </div>
+
+                <div class="itemDesc">
+                  <p class="itemName">{% if entry.property_entry.is_available %}{{entry.property_entry.property_number}}{% else %}Not Available{% endif %}
+                    <br><span>{{entry.property_entry.location}}</span>
+                  
+                  </p>
+
+                  <div class="e-i">
+                    <p class="extraItem">
+                      <span>Room</span> <br>
+                      {{entry.property_entry.no_of_bedrooms}}
+                    </p>
+
+                    <p class="extraItem">
+                      <span>Bathoom</span> <br>
+                      {{entry.property_entry.no_of_bathrooms}}
+                    </p>
+                  </div>
+
+                  <div class="e-i">
+                    <p class="extraItem">
+                      <span>Bed</span> <br>
+                      3500cm <sup>3</sup>
+                    </p>
+
+                    <p class="extraItem">
+                      <span>Floor space</span> <br>
+                      780 sq ft
+                    </p>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+
+
+            {% endif %}
+                
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div class="pageNumbers">
+          <a class="active" href="#">01</a>
+          <a href="#">02</a>
+          <a href="#">03</a>
+          <a href="#">...</a>
+          <a href="#">15</a>
+
+          <a class="pageNext" href="#"><i class="fas fa-long-arrow-alt-right"></i></a>
+        </div>
+
+        <p>1-9</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Explore page end -->
+
+<!-- Footer section start -->
+
+
+<!-- Modal start -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fluid" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hilton Nairobi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="itemSlider owl-carousel owl-theme owl-loaded owl-drag">
+          <div class="owl-stage-outer">
+            <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s;">
+              <div class="owl-item">
+                <div class="item">
+                  <img class="owl-lazy" data-src="{% static 'content/img/sliderModal.png' %}" alt="Image" src="{% static 'content/img/sliderModal.png' %}" style="opacity: 1;">
+                </div>
+              </div>
+              <div class="owl-item">
+                <div class="item">
+                  <img class="owl-lazy" data-src="{% static 'content/img/sliderModal.png' %}" alt="Image" src="{% static 'content/img/sliderModal.png' %}" style="opacity: 1;">
+                </div>
+              </div>
+              <div class="owl-item">
+                <div class="item">
+                  <img class="owl-lazy" data-src="{% static 'content/img/sliderModal.png' %}" alt="Image">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div>
+          <div class="owl-dots disabled"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal end -->
+{% endblock content %}
