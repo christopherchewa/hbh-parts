@@ -5,7 +5,7 @@ from django.contrib.auth import (
 	logout)
 
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_text
@@ -23,6 +23,8 @@ from .forms import UserLoginForm, UserSignUpForm, PropertyEntryForm, UserAccount
 
 from comments.forms import CommentForm
 from comments.models import Comment
+
+from django import forms
 # Create your views here.
 
 
@@ -35,6 +37,9 @@ from comments.models import Comment
 # Decorators
 # login required 
 
+
+class EngageForm(forms.Form):
+	match_id = forms.IntegerField()
 
 
 def get_manual_field_add_listing(context, form, form_type):
@@ -235,7 +240,6 @@ def register(request, template_name="registration.html"):
 def account(request, template_name="account.html"):
 	context = dict()
 	account_owner = request.user
-
 	
 	user_obj = User.objects.get(email=account_owner.email)
 	form = UserAccountForm(request.POST or None, instance=user_obj)
@@ -243,14 +247,30 @@ def account(request, template_name="account.html"):
 	context = get_manual_field_add_listing(context, form, form_type)
 
 	if request.user.userprofile.user_type == "Seller":
-		context["entries"] = PropertyEntry.objects.filter(seller=request.user)
-		context["entries_count"] = PropertyEntry.objects.filter(seller=request.user).count()
-	elif request.user.userprofile.user_type == "Buyer":
-		context["entries"] = Request.objects.filter(buyer=request.user)
-		context["entries_count"] = Request.objects.filter(buyer=request.user)
-		context["matches"] = Match.objects.filter(buyer_request__buyer=request.user)
-		context["matches_count"] = Match.objects.filter(buyer_request__buyer=request.user).count
+		properties = PropertyEntry.objects.filter(seller=request.user)
+		context["properties"] = properties
+		context["properties_count"] = properties.count()
 
+		unmatched_requests_1 = Request.objects.exclude(match__property_entry__seller=request.user).filter(is_active=True, match__isnull=False, request_status="Matched")
+		unmatched_requests_2 = Request.objects.filter(is_active=True, request_status="Pending").filter(match__isnull=True)
+		unmatched_requests = (unmatched_requests_1 | unmatched_requests_2).distinct()
+
+		context["unmatched_requests"] = unmatched_requests
+		context["unmatched_requests_count"] = unmatched_requests.count()
+
+	elif request.user.userprofile.user_type == "Buyer":
+		requests = Request.objects.filter(buyer=request.user)
+		context["requests"] = requests
+		context["requests_count"] = requests.count()
+
+		matched_requests = Request.objects.filter(buyer=request.user, is_active=True, request_status="Matched").filter(match__isnull=False)
+		
+		context["matched_requests"] = matched_requests
+		context["matched_requests_count"] = matched_requests.count()
+
+		unmatched_requests = Request.objects.filter(buyer=request.user, is_active=True, request_status="Pending").filter(match__isnull=True)
+		context["unmatched_requests"] = unmatched_requests
+		context["unmatched_requests_count"] = unmatched_requests.count()
 	
 	if request.method == "POST":
 		if form.is_valid():
@@ -332,7 +352,7 @@ def all_requests(request, template_name="all-requests.html"):
 
 
 	elif request.user.userprofile.user_type == "Seller":
-		return redirect('mainapp:requests')
+		return redirect('mainapp:unmatched-requests')
 
 @login_must
 def remove_request(request, id=None):
@@ -377,7 +397,6 @@ def list_inside(request, id=None, template_name="list-inside.html"):
 
 	context = dict()
 	property_entry = get_object_or_404(PropertyEntry, id=id)
-
 	context["property"] = property_entry
 
 
@@ -397,9 +416,23 @@ def list_inside(request, id=None, template_name="list-inside.html"):
 			print(created)
 			return HttpResponseRedirect(new_comment.property_entry.get_absolute_url()) 
 	context["comments"] = property_entry.comments
+	request.session["match_id"] = 
 
 	return render(request, template_name, context)
 
+
+def engage(request, id=None):
+	
+	form = EngageForm(request.GET or None)
+	print(form)
+
+
+
+	if form.is_valid
+
+	
+
+	return HttpResponseRedirect(new_comment.property_entry.get_absolute_url())
 
 def faqs(request, template_name="faq.html"):
 

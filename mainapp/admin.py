@@ -4,14 +4,13 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from .models import (User, 
-    UserProfile, 
-    PropertyEntry, 
+from .models import (Favourite,
+    Match,
+    PropertyEntry,
     PropertyEntryImage, 
-    Request, 
-    Response, 
-    Favourite,
-    Match)
+    Request,
+    User,
+    UserProfile)
 
 @admin.register(User)
 class UserAdmin(DjangoUserAdmin):
@@ -56,7 +55,7 @@ class FavouriteAdmin(admin.ModelAdmin):
 
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
-    list_display = ('buyer_request', 'is_valid')
+    list_display = ('buyer_request', 'property_entry', 'is_valid', 'engagement_status')
 
 
 @admin.register(Request)
@@ -65,5 +64,5 @@ class RequestAdmin(admin.ModelAdmin):
 
 
 
-admin.site.register(Response)
+
 

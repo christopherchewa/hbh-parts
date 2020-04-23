@@ -34,20 +34,23 @@
                                 </p>
 
                                 <p class="pendingListingCount">
-                                    You have {% if request.user.userprofile.user_type == "Buyer" %} {{matches_count}} Matches{% elif request.user.userprofile.user_type == "Seller" %}{{entries_count}} Properties{% endif %}
+                                    You have {% if request.user.userprofile.user_type == "Buyer" %} {{matched_requests_count}} Matches{% elif request.user.userprofile.user_type == "Seller" %}{{properties_count}} Properties{% endif %}
                                     <a href="{% url 'mainapp:explore' %}">View all <img src="{% static 'content/img/global/rightArrow.svg' %}" alt="Arrow"></a>
                                     
                                 </p>
 
                                 <div class="accountCards">
                                     <div class="cardItem">
-                                        <p class="cardTitle">My listing</p>
+                                        <p class="cardTitle">
+                                        All Unmatched Requests
+                                        </p>
                                         <div class="cardBottomLine">
-                                            <h1>30</h1>
-                                            <a href="{% url 'mainapp:explore' %}">View all <img src="{% static 'content/img/global/rightArrowWhite.svg' %}" alt="Arrow"></a>
+                                            <h1>{{unmatched_requests_count}}</h1>
+                                            <a href="{% url 'mainapp:unmatched-requests' %}">View all <img src="{% static 'content/img/global/rightArrowWhite.svg' %}" alt="Arrow"></a>
                                         </div>
                                     </div>
 
+                                   
                                     <div class="cardItem">
                                         <p class="cardTitle">notifications</p>
                                         <div class="cardBottomLine">
@@ -55,6 +58,7 @@
                                             <a href="#">View all <img src="{% static 'content/img/global/rightArrowWhite.svg' %}" alt="Arrow"></a>
                                         </div>
                                     </div>
+                                    
 
                                     <div class="cardItem">
                                         <p class="cardTitle">Total Visits</p>

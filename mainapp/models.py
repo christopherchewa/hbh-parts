@@ -29,7 +29,7 @@ class HouseRequestStatus(Choices):
 	PENDING = ('Pending', 'Pending')
 	MATCHED = ('Matched', 'Matched')
 
-class HouseResponseStatus(Choices):
+class EngagementStatus(Choices):
 	PENDING = ('Pending', 'Pending')
 	ACCEPTED = ('Accepted', 'Accepted')
 	DECLINED = ('Declined', 'Declined')
@@ -158,7 +158,7 @@ class PropertyEntry(BasePropertyDetailModel):
 		return qs
 
 	def __str__(self):
-		retstr = str(self.pk) + "-" + str(self.seller) + "-" + str(self.seller.userprofile.user_type) + "-" + str(self.location)
+		retstr = str(self.pk) + "-" + str(self.seller) + "-" + str(self.location)
 		return retstr
 
 	def save(self, *args, **kwargs):
@@ -198,18 +198,17 @@ class RequestManager(models.Manager):
 		return super(RequestManager, self).filter(is_active=True)
 
 
-
-
 class Request(BasePropertyDetailModel):
 	buyer = models.ForeignKey(User, on_delete=models.CASCADE)
 	is_active = models.BooleanField(default=True)
+	#match status
 	request_status = models.CharField(max_length=20, choices=HouseRequestStatus.CHOICES, default=HouseRequestStatus.PENDING)
 	
 
 	objects = RequestManager()
 
 	def __str__(self):
-		retstr = str(self.pk) + "-" + str(self.buyer) + "-" + str(self.buyer.userprofile.user_type) + "-" + str(self.location)
+		retstr = str(self.pk) + "-" + str(self.buyer) + "-" + str(self.location)
 		return retstr
 
 	@property
@@ -218,26 +217,6 @@ class Request(BasePropertyDetailModel):
 		return match_count
 
 
-# @receiver(post_save, sender=Request)
-
-class Response(BaseDateModel):
-	request = models.ForeignKey(Request, on_delete=models.CASCADE)
-	seller_property_entry = models.ForeignKey(PropertyEntry, on_delete=models.CASCADE, null=True)
-	response_status = models.CharField(max_length=20, choices=HouseResponseStatus.CHOICES)
-
-	def __str__(self):
-		retstr = "response to " + str(self.request)
-		return retstr
-
-class Favourite(BaseDateModel):
-	buyer = models.OneToOneField(User, on_delete=models.CASCADE)
-	property_entries = models.ManyToManyField(PropertyEntry)
-
-	def get_favourites(self):
-		return "\n".join([str(p) for p in self.property_entry.all()])
-
-	def __str__(self):
-		return str(self.buyer)
 
 class MatchManager(models.Manager):
 	def valid_matches(self, *args, **kwargs):
@@ -251,6 +230,10 @@ class Match(BaseDateModel):
 	buyer_request = models.ForeignKey(Request, on_delete=models.CASCADE, null=True)
 	property_entry = models.ForeignKey(PropertyEntry, on_delete=models.CASCADE, null=True)
 	is_valid = models.BooleanField(default=True)
+	engagement_status = models.CharField(max_length=20, choices=EngagementStatus.CHOICES, default=EngagementStatus.PENDING)
+	is_paid = models.BooleanField(default=False)
+
+
 	objects = MatchManager()
 
 	def __str__(self):
@@ -320,3 +303,14 @@ def update_matches_buyer(sender, instance, created, **kwargs):
 
 post_save.connect(update_matches_buyer, sender=Request)
 
+
+
+class Favourite(BaseDateModel):
+	buyer = models.OneToOneField(User, on_delete=models.CASCADE)
+	property_entries = models.ManyToManyField(PropertyEntry)
+
+	def get_favourites(self):
+		return "\n".join([str(p) for p in self.property_entry.all()])
+
+	def __str__(self):
+		return str(self.buyer)
