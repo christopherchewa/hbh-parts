@@ -5,6 +5,7 @@
 {% block content %}
 
 
+
 <!-- Explore page start -->
 <div class="explore">
   <div class="exploreWrapper">
@@ -117,7 +118,7 @@
 
                   <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="materialChecked2">
-                    <label class="form-check-label" for="materialChecked2">Balcoony</label>
+                    <label class="form-check-label" for="materialChecked2">Balcony</label>
                   </div>
 
                   <div class="form-check">
@@ -152,7 +153,6 @@
               <a class="btnReset" href="#"><i class="fas fa-redo-alt"></i> Reset filters</a>
 
             </div>
-
           </div>
         </div>
 
@@ -162,7 +162,7 @@
             {% if request.user.userprofile.user_type == "Buyer" %}
              {% for entry in entries %}
              
-                <a href="{{entry.property_entry.get_absolute_url }}">
+                <a href="{{entry.property_entry.get_absolute_url }}" data-id={{entry.id}} class="match-link">
               <div class="listingItem">
                 <div class="itemCover">
 

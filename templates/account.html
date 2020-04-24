@@ -13,7 +13,7 @@
                 <div class="col-lg col-xl-3">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active" id="acccount-tab" data-toggle="pill" href="#acccount-app" role="tab" aria-controls="acccount-app" aria-selected="true"><i class="fas fa-user"></i> <span>My account</span></a>
-                        <a class="nav-link" id="listing-tab" data-toggle="pill" href="#listing-app" role="tab" aria-controls="listing-app" aria-selected="false"><i class="fas fa-th-list"></i> <span>My {% if request.user.userprofile.user_type == "Buyer" %}Requests{% elif request.user.userprofile.user_type == "Seller" %}Properties{% endif %}</span></a>
+                        <a class="nav-link" id="listing-tab" data-toggle="pill" href="#listing-app" role="tab" aria-controls="listing-app" aria-selected="false"><i class="fas fa-th-list"></i> <span>My {% if request.user.userprofile.user_type == "Buyer" %}Matches{% elif request.user.userprofile.user_type == "Seller" %}Properties{% endif %}</span></a>
                         <a class="nav-link" id="notifications-tab" data-toggle="pill" href="#notifications-app" role="tab" aria-controls="notifications-app" aria-selected="false"><i class="fas fa-inbox"></i> <span>Notifications </span> <span class="badge badge-light"> 9</span><span class="sr-only">unread messages</span></a>
                         
                         {% if request.user.userprofile.user_type == "Buyer" %}
@@ -33,11 +33,17 @@
                                     <span>{{request.user}} - {% if request.user.userprofile.user_type == "Buyer" %}Buyer{% elif request.user.userprofile.user_type == "Seller" %}Seller{% endif %}</span>
                                 </p>
 
+                                
+                                
                                 <p class="pendingListingCount">
-                                    You have {% if request.user.userprofile.user_type == "Buyer" %} {{matched_requests_count}} Matches{% elif request.user.userprofile.user_type == "Seller" %}{{properties_count}} Properties{% endif %}
-                                    <a href="{% url 'mainapp:explore' %}">View all <img src="{% static 'content/img/global/rightArrow.svg' %}" alt="Arrow"></a>
+                                    You have {{matched_requests_count}} matches
+
+                                    <a href="{% if request.user.userprofile.user_type == 'Buyer' %}{% url 'mainapp:explore' %}{% elif request.user.userprofile.user_type == 'Seller' %}{% url 'mainapp:matches' %}{% endif %}">View all <img src="{% static 'content/img/global/rightArrow.svg' %}" alt="Arrow"></a>
                                     
                                 </p>
+
+
+
 
                                 <div class="accountCards">
                                     <div class="cardItem">
@@ -51,19 +57,30 @@
                                     </div>
 
                                    
+                                   {% if request.user.userprofile.user_type == "Buyer" %}
                                     <div class="cardItem">
-                                        <p class="cardTitle">notifications</p>
+                                        <p class="cardTitle">All your requests</p>
                                         <div class="cardBottomLine">
-                                            <h1>12</h1>
+                                            <h1>{{all_requests_count}}</h1>
                                             <a href="#">View all <img src="{% static 'content/img/global/rightArrowWhite.svg' %}" alt="Arrow"></a>
                                         </div>
                                     </div>
+                                    {% elif request.user.userprofile.user_type == "Seller" %}
+                                    <div class="cardItem">
+                                        <p class="cardTitle">All your properties</p>
+                                        <div class="cardBottomLine">
+                                            <h1>{{properties_count}}</h1>
+                                            <a href="{% url 'mainapp:explore' %}">View all <img src="{% static 'content/img/global/rightArrowWhite.svg' %}" alt="Arrow"></a>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
                                     
 
                                     <div class="cardItem">
                                         <p class="cardTitle">Total Visits</p>
                                         <div class="cardBottomLine">
-                                            <h1>45000</h1>
+                                            <h1>-</h1>
                                         </div>
                                     </div>
 
@@ -75,12 +92,13 @@
                             <div class="rentList">
                                 <h6>Recent Entries</h6>
                                 <div class="lists">
-                                    {% for entry in entries %}
+                              {% if request.user.userprofile.user_type == "Seller" %}
+                                {% for property in properties %} 
                                         <div class="listItem">
                                         <div class="itemCover">
                                             <img src="{% static 'content/img/listing-1.png' %}" alt="itemCover">
                                             <div class="price">
-                                                {{entry.price}}
+                                                {{property.price}}
                                             </div>
 
                                             <div class="itemHover">
@@ -90,20 +108,20 @@
                                         </div>
 
                                         <div class="itemBody">
-                                            <p class="propertyName">{{entry.location}}</p>
+                                            <p class="propertyName">{{property.location}}</p>
 
                                             <div class="propertyInfo">
                                                 <p>
                                                     <span>Room</span>
-                                                    {{entry.no_of_bedrooms}}
+                                                    {{property.no_of_bedrooms}}
                                                 </p>
                                                 <p>
                                                     <span>Bathroom</span>
-                                                    {{entry.no_of_bathrooms}}
+                                                    {{property.no_of_bathrooms}}
                                                 </p>
                                                 <p>
                                                     <span>DSQ</span>
-                                                    {% if entry.dsq %}
+                                                    {% if property.dsq %}
                                                     Available
                                                     {% else %}
                                                     Not Available
@@ -113,7 +131,49 @@
                                         </div>
                                     </div>
                                     {% endfor %}
+                                    {% elif request.user.userprofile.user_type == "Buyer" %}
 
+                                      {% for match in matched_requests %} 
+
+                                        <div class="listItem">
+                                        <div class="itemCover">
+                                            <img src="{% static 'content/img/listing-1.png' %}" alt="itemCover">
+                                            <div class="price">
+                                                {{match.property_entry.price}}
+                                            </div>
+
+                                            <div class="itemHover">
+                                                <a class="match-link" data-id={{match.id}} href="{{match.property_entry.get_absolute_url}}"><i class="fas fa-link"></i></a>
+                                                <a href="#"><i class="fas fa-pencil-alt"></i></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="itemBody">
+                                            <p class="propertyName">{{match.property_entry.location}}</p>
+
+                                            <div class="propertyInfo">
+                                                <p>
+                                                    <span>Room</span>
+                                                    {{match.property_entry.no_of_bedrooms}}
+                                                </p>
+                                                <p>
+                                                    <span>Bathroom</span>
+                                                    {{match.property_entry.no_of_bathrooms}}
+                                                </p>
+                                                <p>
+                                                    <span>DSQ</span>
+                                                    {% if property.dsq %}
+                                                    Available
+                                                    {% else %}
+                                                    Not Available
+                                                    {% endif %}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                               
+                                    {% endif %}
                                     
                                 </div>
                             </div>

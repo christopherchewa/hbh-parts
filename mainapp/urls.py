@@ -24,10 +24,13 @@ urlpatterns = [
     path('all-requests/', views.all_requests, name="all-requests"),
     path('all-requests/remove/<int:id>/', views.remove_request, name="remove-request"),
     path('all-requests/activate/<int:id>/', views.activate_request, name="activate-request"),
-    path('engage/< int:id>/', views.engage, name="engage"),
+    path('view-match/', views.view_match, name="view_match"),
+    path('engage/<int:id>/', views.engage, name="engage"),
+    path('view-contact/', views.view_contact, name="view_contact"),
     path('listings/', views.listings, name="listings"),
     path('list-inside/<int:id>/', views.list_inside, name="list-inside"),
     path('account/', views.account, name="account"),
+    path('matches/', views.matches, name="matches"),
     
 
     path('sent/', views.activation_sent_view, name="activation_sent"),

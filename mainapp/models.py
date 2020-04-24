@@ -230,7 +230,8 @@ class Match(BaseDateModel):
 	buyer_request = models.ForeignKey(Request, on_delete=models.CASCADE, null=True)
 	property_entry = models.ForeignKey(PropertyEntry, on_delete=models.CASCADE, null=True)
 	is_valid = models.BooleanField(default=True)
-	engagement_status = models.CharField(max_length=20, choices=EngagementStatus.CHOICES, default=EngagementStatus.PENDING)
+	engagement_status = models.CharField(max_length=20, choices=EngagementStatus.CHOICES, default=EngagementStatus.PENDING, blank=False, null=False)
+	engagement_date = models.DateTimeField(null=True, blank=True, auto_now=False, auto_now_add=False)
 	is_paid = models.BooleanField(default=False)
 
 
@@ -238,8 +239,6 @@ class Match(BaseDateModel):
 
 	def __str__(self):
 		return str(self.buyer_request)
-
-
 
 
 

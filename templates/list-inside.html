@@ -3,6 +3,8 @@
 
 
 {% block content %}
+{% include "includes/match-details-modal.html" %}
+{% include "includes/engage-modal.html" %}
 <!-- listInside page start -->
 <div class="listInside ">
   <div class="container listInsideWrapper">
@@ -163,17 +165,14 @@
         </div>
 
         <div class="buttonsLine">
-          <form method="GET" action="{% url 'mainapp:engage' %}">
-            {% csrf_token %}
-            <input type="hidden" name="match_id" value="123abc">
-          <button class="btn btnCall waves-effect waves-light" type="submit">
+          <button class="btn btnCall waves-effect waves-light engage-btn" data-toggle="modal" href="#myEngageModal">
             <i class="fas fa-inbox"></i> Engage Contact
-          </form>
           </button>
 
           <div class="othereButtons">
             <a href="#" class="d-none"><i class="fas fa-pen"></i> Edit</a>
-            <a href="#"><i class="fas fa-heart"></i> Favourite</a>
+            <a class="view-match" data-toggle="modal"><i class="view-match fas fa-arrows-alt-h"></i> View Match Details</a>
+            <!-- <a href="#"><i class="fas fa-heart"></i> Favourite</a> -->
             <a href="#"><i class="fas fa-trash"></i> Remove</a>
           </div>
         </div>

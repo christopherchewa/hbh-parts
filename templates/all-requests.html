@@ -12,12 +12,15 @@
 
 	
 	<div style="padding:1rem;">
-	{% if request.user.userprofile.user_type == "Buyer" %}
+	
 
 	<h2>All Requests</h2>
 		<h4>User: {{request.user}}</h4>
 		<h4>Type: {{request.user.userprofile.user_type}}</h4>
 		<p>Here you can track all your active and inactive requests</p>
+
+
+{% if all_requests.count > 0 %}
 <table class="table">
 		<tr>
 			<th>Request Id</th>
@@ -53,9 +56,9 @@
 				</td>
 				<td>
 					{% if r.is_active %}
-					<a class="btn sign" data-id="{{r.id}}" data-toggle="modal" href="#myDeleteModal">Remove Request</a>
+					<a class="btn unmatched-request-delete" data-id="{{r.id}}" data-toggle="modal" href="#myDeleteModal">Remove Request</a>
 					{% else %}
-					<a class="btn sign2" data-id="{{r.id}}" data-toggle="modal" href="#myActivateModal">Activate Request</a>
+					<a class="btn unmatched-request-activate" data-id="{{r.id}}" data-toggle="modal" href="#myActivateModal">Activate Request</a>
 					{% endif %}
 				</td>
 			</tr>
@@ -66,9 +69,11 @@
 			
 		{% endfor %}
 	</table>
+{% else %}
+<h1>You have no requests. <a href="{% url 'mainapp:add-listing' %}">Click here</a> to add new requests</h1>
 
+{% endif %}
 
-	{% endif %}
 	</div>
 	
 	

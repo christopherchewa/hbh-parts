@@ -3,17 +3,17 @@ from django.contrib.auth import (
 	get_user_model,
 	login,
 	logout)
-
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
-from django.http import Http404, JsonResponse
-from django.core.exceptions import PermissionDenied, ValidationError
 from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_text
-from django.db import IntegrityError
+from django.core.exceptions import PermissionDenied, ValidationError
 from django.core.mail import EmailMessage
+from django.db import IntegrityError
+from django.http import Http404, JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
+from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes
-from django.template.loader import render_to_string
+from django.utils.encoding import force_text
+from django.utils import timezone
 
 
 from .models import User, UserProfile, PropertyEntry, Request, Match
@@ -25,6 +25,7 @@ from comments.forms import CommentForm
 from comments.models import Comment
 
 from django import forms
+
 # Create your views here.
 
 
@@ -248,13 +249,17 @@ def account(request, template_name="account.html"):
 
 	if request.user.userprofile.user_type == "Seller":
 		properties = PropertyEntry.objects.filter(seller=request.user)
-		context["properties"] = properties
+		context["properties"] = properties[:3]
 		context["properties_count"] = properties.count()
 
-		unmatched_requests_1 = Request.objects.exclude(match__property_entry__seller=request.user).filter(is_active=True, match__isnull=False, request_status="Matched")
-		unmatched_requests_2 = Request.objects.filter(is_active=True, request_status="Pending").filter(match__isnull=True)
-		unmatched_requests = (unmatched_requests_1 | unmatched_requests_2).distinct()
+		matched_requests_qs = Match.objects.valid_matches()
+		matched_requests = matched_requests_qs.filter(property_entry__seller=request.user)
+		context["matched_requests"] = matched_requests
+		context["matched_requests_count"] = matched_requests.count()
 
+		unmatched_requests_1 = Request.objects.filter(is_active=True).exclude(match__property_entry__seller=request.user)
+		unmatched_requests_2 = Request.objects.filter(request_status="Pending")
+		unmatched_requests = (unmatched_requests_1 | unmatched_requests_2)
 		context["unmatched_requests"] = unmatched_requests
 		context["unmatched_requests_count"] = unmatched_requests.count()
 
@@ -263,14 +268,21 @@ def account(request, template_name="account.html"):
 		context["requests"] = requests
 		context["requests_count"] = requests.count()
 
-		matched_requests = Request.objects.filter(buyer=request.user, is_active=True, request_status="Matched").filter(match__isnull=False)
 		
+		matched_requests_qs = Match.objects.valid_matches()
+		matched_requests = matched_requests_qs.filter(buyer_request__buyer=request.user)
 		context["matched_requests"] = matched_requests
 		context["matched_requests_count"] = matched_requests.count()
+		context["properties"] = matched_requests
 
 		unmatched_requests = Request.objects.filter(buyer=request.user, is_active=True, request_status="Pending").filter(match__isnull=True)
 		context["unmatched_requests"] = unmatched_requests
 		context["unmatched_requests_count"] = unmatched_requests.count()
+
+
+		requests = Request.objects.filter(buyer=request.user)
+		context["all_requests"] = requests
+		context["all_requests_count"] = requests.count()
 	
 	if request.method == "POST":
 		if form.is_valid():
@@ -338,9 +350,24 @@ def explore(request, template_name="explore.html"):
 	else:
 		raise PermissionDenied()
 
+	return render(request, template_name, context)
 
+
+
+@login_must
+def matches(request, template_name="seller-matches.html"):
+	context = dict()
+
+	if request.user.userprofile.user_type == "Seller":
+		matches_qs = Match.objects.valid_matches()
+		matches = matches_qs.filter(property_entry__seller=request.user)
+		context["matches"] = matches
 
 	return render(request, template_name, context)
+
+
+
+
 
 @login_must
 def all_requests(request, template_name="all-requests.html"):
@@ -353,6 +380,22 @@ def all_requests(request, template_name="all-requests.html"):
 
 	elif request.user.userprofile.user_type == "Seller":
 		return redirect('mainapp:unmatched-requests')
+
+
+@login_must
+def unmatched_requests(request, template_name="unmatched-requests.html"):
+	context = dict()
+	if request.user.userprofile.user_type == "Seller":
+		context["unmatched_requests"] = Request.objects.filter(is_active=True).exclude(match__property_entry__seller=request.user)
+	elif request.user.userprofile.user_type == "Buyer":
+		unmatched_requests = Request.objects.filter(buyer=request.user, is_active=True, request_status="Pending").filter(match__isnull=True)
+		context["unmatched_requests"] = unmatched_requests
+	else:
+		raise PermissionDenied()
+
+
+	return render(request, template_name, context)
+
 
 @login_must
 def remove_request(request, id=None):
@@ -377,19 +420,6 @@ def activate_request(request, id=None):
 
 
 
-@login_must
-def unmatched_requests(request, template_name="unmatched-requests.html"):
-	context = dict()
-	if request.user.userprofile.user_type == "Seller":
-		context["unmatched_requests"] = Request.objects.filter(is_active=True).exclude(match__property_entry__seller=request.user)
-	elif request.user.userprofile.user_type == "Buyer":
-		unmatched_requests = Request.objects.filter(buyer=request.user, is_active=True, request_status="Pending").filter(match__isnull=True)
-		context["unmatched_requests"] = unmatched_requests
-	else:
-		raise PermissionDenied()
-
-
-	return render(request, template_name, context)
 
 
 @login_must
@@ -416,23 +446,52 @@ def list_inside(request, id=None, template_name="list-inside.html"):
 			print(created)
 			return HttpResponseRedirect(new_comment.property_entry.get_absolute_url()) 
 	context["comments"] = property_entry.comments
-	request.session["match_id"] = 
+	
 
 	return render(request, template_name, context)
 
 
+def view_match(request, id=None):
+	data = dict()
+
+	if request.method == "GET":
+		match_id = request.GET['match_id']
+		
+		this_match = Match.objects.get(id=match_id)
+		data["match_buyer"] = this_match.buyer_request.buyer.email
+		data["match_location"] = this_match.buyer_request.location
+		data["match_seller"] = this_match.property_entry.seller.email
+
+
+	return JsonResponse(data)
+
 def engage(request, id=None):
+	if request.method == "POST":
+		match = get_object_or_404(Match, id=id)
+		
+		match.engagement_status = "Accepted"
+		match.engagement_date = timezone.now()
+		match.save()
 	
-	form = EngageForm(request.GET or None)
-	print(form)
-
-
-
-	if form.is_valid
-
 	
+	return HttpResponseRedirect(match.property_entry.get_absolute_url())
 
-	return HttpResponseRedirect(new_comment.property_entry.get_absolute_url())
+
+@login_must
+def view_contact(request):
+	data = dict()
+
+	if request.method == "GET":
+		match_id = request.GET['match_id']
+		this_match = Match.objects.get(id=match_id)
+		data["buyer_first_name"] = this_match.buyer_request.buyer.first_name
+		data["buyer_last_name"] = this_match.buyer_request.buyer.last_name
+		data["buyer_email"] = str(this_match.buyer_request.buyer.email)
+		data["engagement_date"] = str(this_match.engagement_date)[:10]
+
+
+	return JsonResponse(data)
+
 
 def faqs(request, template_name="faq.html"):
 
