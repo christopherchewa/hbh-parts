@@ -62,7 +62,7 @@
                                         <p class="cardTitle">All your requests</p>
                                         <div class="cardBottomLine">
                                             <h1>{{all_requests_count}}</h1>
-                                            <a href="#">View all <img src="{% static 'content/img/global/rightArrowWhite.svg' %}" alt="Arrow"></a>
+                                            <a href="{% url 'mainapp:all-requests' %}">View all <img src="{% static 'content/img/global/rightArrowWhite.svg' %}" alt="Arrow"></a>
                                         </div>
                                     </div>
                                     {% elif request.user.userprofile.user_type == "Seller" %}

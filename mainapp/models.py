@@ -201,7 +201,6 @@ class RequestManager(models.Manager):
 class Request(BasePropertyDetailModel):
 	buyer = models.ForeignKey(User, on_delete=models.CASCADE)
 	is_active = models.BooleanField(default=True)
-	#match status
 	request_status = models.CharField(max_length=20, choices=HouseRequestStatus.CHOICES, default=HouseRequestStatus.PENDING)
 	
 
@@ -280,6 +279,7 @@ def update_matches_buyer(sender, instance, created, **kwargs):
 		for p in PropertyEntry.objects.all():
 			if p.location == instance.location:
 				m = Match.objects.create(buyer_request=instance, property_entry=p)
+				instance.is_active = True
 				if instance.request_status == "Pending":
 					instance.request_status = "Matched"
 					instance.save()

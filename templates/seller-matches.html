@@ -49,9 +49,9 @@
 				{{match.engagement_status}}	
 				</td>
 				<td>
-					<!-- {% if match.engagement_status == "Accepted" %} -->
+					{% if match.engagement_status == "Accepted" %}
 						<a class="btn view-contact-btn" data-matchid="{{match.id}}" data-toggle="modal" href="#myViewContactModal">View Contact</a>
-					<!-- {% endif %} -->
+					{% endif %}
 				</td>
 			</tr>
 		

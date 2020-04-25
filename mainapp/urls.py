@@ -24,9 +24,10 @@ urlpatterns = [
     path('all-requests/', views.all_requests, name="all-requests"),
     path('all-requests/remove/<int:id>/', views.remove_request, name="remove-request"),
     path('all-requests/activate/<int:id>/', views.activate_request, name="activate-request"),
-    path('view-match/', views.view_match, name="view_match"),
+    path('view-match/', views.view_match, name="view-match"),
     path('engage/<int:id>/', views.engage, name="engage"),
-    path('view-contact/', views.view_contact, name="view_contact"),
+    path('view-contact/', views.view_contact, name="view-contact"),
+    path('decline-offer/<int:id>/', views.decline_offer, name="decline-offer"),
     path('listings/', views.listings, name="listings"),
     path('list-inside/<int:id>/', views.list_inside, name="list-inside"),
     path('account/', views.account, name="account"),
@@ -35,4 +36,11 @@ urlpatterns = [
 
     path('sent/', views.activation_sent_view, name="activation_sent"),
     path('activate/<slug:uidb64>/<slug:token>/', views.activate, name='activate'),
+
+
+    #temporary urls for errors: 400, 403, 404, 500
+    path('E400/', views.error_400, name="error_400"),
+    path('E403/', views.error_403, name="error_403"),
+    path('E404/', views.error_404, name="error_404"),
+    path('E500/', views.error_500, name="error_500"),
 ]

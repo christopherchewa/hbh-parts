@@ -111,7 +111,7 @@ class RequestEntryForm(forms.ModelForm):
 
 	class Meta:
 		model = Request
-		exclude = ('created_at', 'updated_at', 'buyer', 'request_status')
+		exclude = ('created_at', 'updated_at', 'buyer', 'request_status', 'is_active')
 
 	
 

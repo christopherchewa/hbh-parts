@@ -3,6 +3,7 @@ from django.contrib.auth import (
 	get_user_model,
 	login,
 	logout)
+from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.core.mail import EmailMessage
@@ -326,7 +327,8 @@ def add_listing(request, template_name="add-listing.html"):
 			elif form_type == "RequestEntryForm":
 				request_entry = form.save(commit=False)
 				request_entry.buyer = request.user
-				request.request_status = "Pending"
+				request_entry.request_status = "Pending"
+				request_entry.is_active = True
 				request_entry.save()
 			
 			return redirect('mainapp:account')
@@ -425,8 +427,12 @@ def activate_request(request, id=None):
 @login_must
 def list_inside(request, id=None, template_name="list-inside.html"):
 
+
 	context = dict()
 	property_entry = get_object_or_404(PropertyEntry, id=id)
+	if not property_entry.is_available:
+		messages.info(request, "That property is no longer available")
+		return redirect('mainapp:explore')
 	context["property"] = property_entry
 
 
@@ -447,35 +453,56 @@ def list_inside(request, id=None, template_name="list-inside.html"):
 			return HttpResponseRedirect(new_comment.property_entry.get_absolute_url()) 
 	context["comments"] = property_entry.comments
 	
+	
+	try:
+		match_id = request.GET['mid']
+	except:
+		match_id = request.session["match_id_orig"]
+	
+	request.session["match_id_orig"] = match_id
+	match = get_object_or_404(Match, id=match_id)
+	context["match"] = match
+	print(match.engagement_status)
+		
 
 	return render(request, template_name, context)
 
 
-def view_match(request, id=None):
+
+######################################################################
+
+####Some Javascript Related Stuff
+
+
+
+	
+	
+
+
+
+###GET Requests
+
+#JSON Repsonse
+@login_must
+def view_match(request):
 	data = dict()
 
 	if request.method == "GET":
-		match_id = request.GET['match_id']
+		try:
+			match_id = request.GET['match_id']
+		except:
+			match_id = request.session["match_id_orig"]
 		
-		this_match = Match.objects.get(id=match_id)
+		this_match = get_object_or_404(Match, id=match_id)
 		data["match_buyer"] = this_match.buyer_request.buyer.email
 		data["match_location"] = this_match.buyer_request.location
-		data["match_seller"] = this_match.property_entry.seller.email
+
+		data["match_seller_first_name"] = this_match.property_entry.seller.first_name
+		data["match_seller_last_name"] = this_match.property_entry.seller.last_name
+		data["match_seller_email"] = this_match.property_entry.seller.email
 
 
 	return JsonResponse(data)
-
-def engage(request, id=None):
-	if request.method == "POST":
-		match = get_object_or_404(Match, id=id)
-		
-		match.engagement_status = "Accepted"
-		match.engagement_date = timezone.now()
-		match.save()
-	
-	
-	return HttpResponseRedirect(match.property_entry.get_absolute_url())
-
 
 @login_must
 def view_contact(request):
@@ -491,8 +518,50 @@ def view_contact(request):
 
 
 	return JsonResponse(data)
+###GET Requests
+
+###POST Requests
+
+#HTTP Response
+@login_must
+def engage(request, id=None):
+
+	if request.method == "POST":
+		match = get_object_or_404(Match, id=id)
+		if match.is_valid:
+			match.engagement_status = "Accepted"
+			match.engagement_date = timezone.now()
+			match.save()
+		else:
+			messages.info(request, "That property is no longer available")
+			return redirect('mainapp:explore')
+
+		return HttpResponseRedirect(match.property_entry.get_absolute_url())
+	
+@login_must
+def decline_offer(request, id=None):
+	if request.method == "POST":	
+		match = get_object_or_404(Match, id=id)
+		match.engagement_status = "Declined"
+		match.engagement_date = timezone.now()
+		match.save()
+		return HttpResponseRedirect(match.property_entry.get_absolute_url())
+###	POST Requests
 
 
+
+
+
+
+####Some Javascript Related Stuff
+######################################################################
+
+
+
+
+
+######################################################################
+#####Pages With No Code
 def faqs(request, template_name="faq.html"):
 
 	return render(request, template_name)
@@ -510,13 +579,32 @@ def pricing(request, template_name="pricing.html"):
 	return render(request, template_name)
 
 
-
-
 def listings(request, template_name="listings.html"):
 
 	return render(request, template_name)
 
-def contact(request, template_name="contact.html"):
+#####Pages With No Code
+######################################################################
+
+
+######################################################################
+#####Error Pages, Temporary View Functions
+
+def error_400(request, template_name="400.html"):
+
+	return render(request, template_name)
+def error_403(request, template_name="403.html"):
+
+	return render(request, template_name)
+def error_404(request, template_name="404.html"):
+
+	return render(request, template_name)
+def error_500(request, template_name="500.html"):
 
 	return render(request, template_name)
 
+
+
+
+#####Error Pages, Temporary View Functions
+######################################################################

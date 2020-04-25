@@ -39,11 +39,27 @@
 		});
 
 		//engage modal
+		//after django processes the post request, it will refresh the page
+		//no need for ajax in post requests
+		//need for ajax in get requests because they are informational modals
 		$('.engage-btn').on('click', function(){
 
 			var match_id = localStorage.getItem("match_id");
 			document.getElementById('engage_id').value = match_id;
 			$('#engage-form').attr('action', '/engage/'+match_id+'/');
+
+		});
+
+		//engage modal
+		//after django processes the post request, it will refresh the page
+		//no need for ajax in post requests
+		//need for ajax in get requests because they are informational modals
+		$('.decline-offer-btn').on('click', function(){
+
+			var match_id = localStorage.getItem("match_id");
+			console.log()
+			document.getElementById('decline_offer_id').value = match_id;
+			$('#decline-offer-form').attr('action', '/decline-offer/'+match_id+'/');
 
 		});
 
@@ -95,7 +111,9 @@
 
 	    $(".js-match-buyer").html(data.match_buyer);
 	    $(".js-match-location").html(data.match_location);
-	    $(".js-match-seller").html(data.match_seller);
+	    $(".js-match-seller-first-name").html(data.match_seller_first_name);
+	    $(".js-match-seller-last-name").html(data.match_seller_last_name);
+	    $(".js-match-seller-email").html(data.match_seller_email);
 	    $("#myMatchModal").modal("show");
 	    
 	    
@@ -105,29 +123,6 @@
 			});
 		});
 
-		$('.engage-btn').on('click', function(){
-			
-			var match_id = localStorage.getItem("match_id");
-			console.log(match_id);
-			$.ajax({
-	 			 url: '/engage/',
-	  			type: 'post',
-	  			data: {'match_id': match_id},
-	  
-	  success: function (data) {
-	  	
-
-	    $(".js-match-buyer").html(data.match_buyer);
-	    $(".js-match-location").html(data.match_location);
-	    $(".js-match-seller").html(data.match_seller);
-	    $("#myMatchModal").modal("show");
-	    
-	    
-
-	  }
-
-			});
-		});
 
 
 	});

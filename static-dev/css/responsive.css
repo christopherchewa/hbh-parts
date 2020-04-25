@@ -1,0 +1,3388 @@
+/* @media */
+/* Custom size: > 1440px */
+@media only screen and (min-width:1441px) {
+
+    .container {
+        max-width: 1440px !important;
+    }
+
+
+    .About-us {
+        padding: 150px 0;
+    }
+        
+    .contactWrapper .contactForm .detailInner,
+    .contactWrapper .contactInformation .detailInner,
+    .registrationWrapper .registrationInformation .registrationInstructions,
+    .registrationWrapper .registrationForm .detailInner {
+        padding: 4em 4em 3em;
+    }
+
+}
+
+/* Custom size: <1440px */
+@media only screen and (max-width: 1440px) {
+    
+    /*-- COVER CSS BEGIN --*/
+
+    /*
+ * Base structure
+ */
+    .cover .coverTitle .h1-responsive {
+        font-size: 40px;
+    }
+    
+    .cover .cover-item {
+        color: #fff;
+        display: block;
+        height: 100%;
+    }
+    
+    .cover .cover-item .content {
+        top: 65%;
+        left: 50%;
+        width: 100%;
+    }
+
+    .cover .cover-item .content .h1-responsive {
+        font-size: 27px;
+    }
+
+    .cover .cover-item .content ol {
+        font-size: 16px;
+    }
+
+    .cover .cover-item .content p {
+        font-size: 22px;
+    }
+
+    .cover .cover-item .content p .g-1 {
+        font-size: 28px;
+    }
+
+    .cover .cover-item .content p .g-2 {
+        font-size: 33px;
+    }
+
+    /*
+ * Cover *
+*/
+    /*-- COVER CSS END --*/
+
+
+
+    .About-us,
+    .ourServices,
+    .newsletter {
+        padding: 100px 0 !important;
+    }
+
+
+    /* Listing section */
+    .listing .listings .listingItem .itemCover {
+        height: 170px;
+    }
+
+    .listing .listings .listingItem .itemDesc .e-i {
+        margin: 0 20px;
+    }
+
+    /* Sell section */
+    .sell .sellWrapper .sellContent {
+        width: initial;
+        margin-left: 40px;
+    }
+
+    .sell .sellWrapper .sellContent h1 {
+        font-size: 43px;
+
+    }
+
+    .sell .sellWrapper .sellContent p {
+        font-size: 12px;
+    }
+
+    .sell .sellContent .addList {
+        margin-top: 20px;
+        padding: 10px 30px !important;
+    }
+
+    .sell .sellContent .toPrize {
+        margin-top: 30px;
+    }
+
+    /* Pricing section */
+    .pricing .pricingWrapper .pricingContent {
+        margin: 0 50px 0 0;
+    }
+
+    .pricing .pricingWrapper .pricingContent h1 {
+        font-size: 58px;
+    }
+
+    .pricing .pricingWrapper .pricingContent p {
+        font-size: 13px;
+    }
+
+    .pricing .pricingWrapper .pricingContent .tryBtn {
+        margin-top: 15px;
+    }
+
+    .pricing .pricingWrapper .pricingList .pricingItem {
+        flex: 0 0 32%;
+    }
+
+    .pricing .pricingWrapper .pricingList .pricingItem .planName {
+        font-size: 23px;
+    }
+
+    .pricing .pricingWrapper .pricingList .pricingItem .planPrice {
+        font-size: 58px;
+    }
+
+    .pricing .pricingWrapper .pricingList .pricingItem .planPrice sup {
+        font-size: 21px;
+    }
+
+    .pricing .pricingWrapper .pricingList .pricingItem .planPrice span {
+        font-size: 16px;
+    }
+
+    .pricing .pricingWrapper .pricingList .pricingItem ul li {
+        font-size: 14px;
+    }
+
+    /* Footer section */
+    footer .footeSecTitle {
+        font-size: 15px;
+    }
+
+    footer .copyright,
+    footer .news .innerNews .newsTitle,
+    footer .news .innerNews .newsDesc,
+    footer .links a,
+    footer .phone,
+    footer .address {
+        font-size: 13px;
+    }
+
+    footer .socialIcons a {
+        font-size: 13px;
+    }
+
+    footer .copyright:nth-of-type(1) {
+        margin-top: 0;
+    }
+
+    footer .news .innerNews img {
+        margin-right: 15px;
+    }
+
+    /* Contact Page */
+    .contactWrapper {}
+
+    /* News page */
+    .newsWrapper {
+        margin-top: 70px;
+    }
+
+    .newsWrapper .newsList .newsItem .itemCover {
+        height: 250px;
+    }
+
+    .newsWrapper .newsList .newsItem .itemBody .itemName {
+        width: 69%;
+    }
+
+
+    /* news Inside page */
+    .newsBody .bodyHeader h4 {
+        width: 40%;
+    }
+
+    /* Explore page */
+    .exploreWrapper .explore {
+        height: 1026px;
+    }
+
+    .exploreWrapper .headerBar .resultText {
+        font-size: 14px;
+    }
+
+    .exploreWrapper .explore .exploreSearch .nav-link[data-toggle="tab"] {}
+
+    .exploreWrapper .listings a {
+        margin-bottom: 20px;
+    }
+
+    .explore .listings .listingItem .itemCover {
+        height: 170px;
+    }
+
+    .explore .listings .listingItem .itemDesc .e-i {
+        margin: 0 20px;
+    }
+
+    /* addListing Page */
+    .addListingWrapper {}
+
+    .addListingWrapper .pricingList {
+        width: 90%;
+    }
+
+    .addListingWrapper .pricingList a {
+        flex: 30.333333%;
+    }
+
+    .addListingWrapper .pricingList .pricingItem .planName {
+        font-size: 23px;
+    }
+
+    .addListingWrapper .pricingList .pricingItem .planPrice {
+        font-size: 58px;
+    }
+
+    .addListingWrapper .pricingList .pricingItem .planPrice sup {
+        font-size: 21px;
+    }
+
+    .addListingWrapper .pricingList .pricingItem .planPrice span {
+        font-size: 16px;
+    }
+
+    .addListingWrapper .pricingList .pricingItem ul li {
+        font-size: 14px;
+    }
+
+
+    /* addListingInner page */
+    .addListingInnerWrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .addListingInnerWrapper .staticNav {
+        padding: 40px 30px 30px;
+    }
+
+    .addListingInnerWrapper .sectionHeader {
+        padding: 35px 30px 30px;
+    }
+
+    .addListingInnerWrapper .sectionBody {
+        padding: 30px;
+    }
+
+    .addListingInnerWrapper .sectionBody .listType label:nth-of-type(2) div {
+        margin-left: 10px;
+    }
+
+    /* Account page */
+    .accountWrapper .tab-content {
+        padding: 30px 30px 50px;
+    }
+
+    .accountWrapper .tab-content .accountInner .pendingListingCount {
+        margin-top: 30px;
+    }
+
+    .accountWrapper .tab-content .accountInner .accountCards {
+        margin-top: 40px;
+    }
+
+    .accountWrapper .tab-content .accountInner .accountCards .cardItem {
+        padding: 15px 20px;
+        width: 32%;
+    }
+
+    .accountWrapper .tab-content .accountInner .accountCards .cardItem .cardBottomLine h1 {
+        font-size: 25px;
+    }
+
+    .accountWrapper .tab-content .lists {
+        margin-top: 20px;
+    }
+
+    .accountWrapper .tab-content .lists .listItem {
+        width: 32%;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemCover {
+        height: 150px;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemBody .propertyName {
+        font-size: 14px;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemBody .propertyName:after {
+        bottom: -4px;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemBody .propertyInfo p {
+        font-size: 12px;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemCover .like {
+        left: 10px;
+        top: 10px;
+    }
+
+    .accountWrapper .tab-content .pricingInner {
+        margin-top: 30px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .left {
+        padding: 15px 20px 0;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .left .packName {
+        font-size: 22px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .left .packPrice {
+        font-size: 30px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .left .packPrice sup,
+    .accountWrapper .tab-content .pricingInner .couponPack .left .packPrice span,
+    .accountWrapper .tab-content .detailInner .inputGroup label,
+    .accountWrapper .tab-content .detailInner .inputGroup span {
+        font-size: 13px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .right {
+        padding: 15px 30px 0 15px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .right p {
+        font-size: 12px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .right p.expireDate {
+        margin-top: 59px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .invoiceTable .invoiceTitle {
+        font-size: 18px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .invoiceTable th {
+        font-size: 13px;
+        padding-bottom: 7px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .invoiceTable td {
+        padding: 15px 0;
+        font-size: 12px;
+    }
+
+    .accountWrapper .tab-content .detailInner .inputGroup:nth-of-type(1) {}
+
+    .accountWrapper .tab-content .detailInner .inputGroup:nth-of-type(1) .md-form {
+        flex: 0 0 50%;
+    }
+
+    .accountWrapper .tab-content .detailInner .btnSave {
+        font-size: 14px;
+    }
+
+    /* listInside page */
+    .listInsideWrapper {
+        /*margin-top: 50px;*/
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine,
+    .listInsideWrapper .listInsideInner .insideLeft .features,
+    .listInsideWrapper .listInsideInner .insideRight .homeDescription,
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine,
+    .listInsideWrapper .listInsideInner .insideRight .comments,
+    .listInsideWrapper .listInsideInner .insideRight .addComment {
+        padding: 30px 20px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .comments {
+        padding-bottom: 50px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .addComment {
+        padding-bottom: 80px;
+    }
+
+    .listInsideWrapper a.btnBack,
+    .listInsideWrapper .listInsideInner .insideLeft .features .featuresItemList .featuresItem {
+        font-size: 13px;
+    }
+
+    .listInsideWrapper a.btnBack img {
+        width: 22px;
+    }
+
+    .listInsideWrapper .listInsideInner {
+        margin-top: 15px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .homeNameSec span {
+        margin-left: 10px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .homePriceSec h3 {
+        font-size: 20px;
+    }
+
+    .slider #sync1 .item {
+        height: 300px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .features .featuresItemList .featuresItem i {
+        margin-right: 5px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideSecTitle {
+        font-size: 15px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideSecTitle:after {
+        bottom: -5px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .homeDesc {
+        font-size: 14px;
+        line-height: 23px;
+        margin-top: 20px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .features .featuresItemList {
+        margin-top: 40px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .features .featuresItemList .featuresItem {
+        margin-bottom: 20px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .carfeatures .featureCol .innerCol .featureTitle,
+    .listInsideWrapper .listInsideInner .insideRight .homefeatures .featureCol .innerCol .featureTxt {
+        font-size: 12px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .homeAdress {
+        font-size: 13px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .homeAdress i {
+        font-size: 20px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .showMap {
+        font-size: 11px;
+        margin-left: 31px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .btnCall {
+        font-size: 12px;
+        padding: 10px 30px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .btnCall i {
+        margin-right: 12px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .othereButtons a {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .othereButtons a i {
+        font-size: 12px;
+        margin-right: 10px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .commentItem {
+        margin-bottom: 30px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .commentItem img {
+        height: 50px;
+        width: 50px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .commentTxt,
+    .listInsideWrapper .listInsideInner .insideRight textarea {
+        font-size: 12px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .comments .commentBody .btnSeeMore {
+        font-size: 12px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .addComment .btnSubmit {
+        font-size: 12px;
+        padding: 10px 30px;
+    }
+    
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1199px) {
+
+    /* Navbar */
+    nav .searchWrap {
+        width: 20%;
+    }
+
+    nav .searchWrap .searchBar {
+        padding-left: 30px;
+    }
+    
+    
+    .sectionTitle p {
+        font-size: 16px;
+        width: 100%;
+    }
+
+    /*-- COVER CSS BEGIN --*/
+
+    /*
+ * Base structure
+ */
+    .cover .coverTitle .h1-responsive {
+        font-size: 40px;
+    }
+    
+    .cover .cover-item {
+        color: #fff;
+        display: block;
+        height: 100%;
+    }
+    
+    .cover .cover-item .content {
+        top: 65%;
+        left: 50%;
+        width: 100%;
+    }
+
+    .cover .cover-item .content .h1-responsive {
+        font-size: 27px;
+    }
+
+    .cover .cover-item .content ol {
+        font-size: 16px;
+    }
+
+    .cover .cover-item .content p {
+        font-size: 22px;
+    }
+
+    .cover .cover-item .content p .g-1 {
+        font-size: 28px;
+    }
+
+    .cover .cover-item .content p .g-2 {
+        font-size: 33px;
+    }
+
+    /*
+ * Cover *
+*/
+    /*-- COVER CSS END --*/
+    
+     .contactWrapper .contactInformation .detailInner {
+        padding: 5em 0;
+    }
+    
+    .registrationWrapper .registrationInformation .registrationInstructions,
+    .contactWrapper .contactForm .detailInner,
+    .registrationWrapper .registrationForm .detailInner {
+        padding: 5em 3em;
+    }
+
+    /* Listing section */
+    .listing .listings .listingItem .itemCover {
+        height: 150px;
+    }
+
+    .listing .listings .listingItem .itemDesc {
+        padding: 10px;
+    }
+
+    .listing .listings .listingItem .itemDesc .itemName {
+        font-size: 14px;
+    }
+
+    .listing .listings .listingItem .itemDesc .itemName span {
+        font-size: 12px;
+    }
+
+    .listing .listings .listingItem .itemDesc .e-i {
+        margin: 0 10px;
+    }
+
+    .listing .listings .listingItem .itemDesc .extraItem {
+        font-size: 13px;
+    }
+
+    /* Sell section */
+    .sell .sellWrapper {
+        display: block;
+    }
+
+    .sell .sellWrapper img {
+        width: 100%;
+    }
+
+    .sell .sellWrapper .sellContent {
+        text-align: center;
+        width: 100%;
+        margin-top: 30px;
+        margin-left: 0;
+    }
+
+    .sell .sellWrapper .sellContent h1 {
+        font-size: 46px;
+    }
+
+    .sell .sellWrapper .sellContent h1 br {
+        display: none;
+    }
+
+    .sell .sellWrapper .sellContent p {
+        font-size: 13px;
+    }
+
+    .sell .sellWrapper .sellContent .toPrize {
+        width: 100%;
+        border: none
+    }
+
+    /* Pricing section */
+    .pricing .pricingWrapper {
+        display: block;
+    }
+
+    .pricing .pricingWrapper .pricingContent {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+
+    .pricing .pricingWrapper .pricingContent h1 {
+        font-size: 30px;
+    }
+
+    .pricing .pricingWrapper .pricingContent p {
+        margin-top: 0;
+    }
+
+    .pricing .pricingWrapper .pricingContent .tryBtn {
+        margin-top: 0;
+        margin-bottom: 25px;
+    }
+
+    /* Footer section */
+    footer .col-md-6 {
+        margin-top: 50px;
+    }
+
+    footer .copyright,
+    footer .news .innerNews .newsTitle,
+    footer .news .innerNews .newsDesc,
+    footer .links a,
+    footer .phone,
+    footer .address {
+        font-size: 14px;
+    }
+    
+    /* Contact page */
+    .contactWrapper {
+        width: 100%;
+    }
+
+    .contactDesc {
+        width: 66%;
+    }
+
+    /* News Page */
+    .newsWrapper {
+        margin-top: 40px;
+    }
+
+    .newsWrapper .headerBar .pageTitle {
+        font-size: 25px;
+    }
+
+    .newsWrapper .headerBar .select-wrapper .select-dropdown {
+        font-size: 13px;
+    }
+
+    .newsWrapper .headerBar .pageTitle::before {
+        border-bottom-width: 3px;
+    }
+
+    .newsWrapper .newsList .newsItem .itemCover {
+        height: 200px;
+    }
+
+    .newsWrapper .newsList .newsItem .itemBody .itemName {
+        width: 85%;
+    }
+
+    /* NewsInside page */
+    .cover {
+        /*height: 400px;*/
+    }
+
+    .newsBody {
+        margin-top: -180px;
+    }
+
+    .newsBody a.btnBack {
+        font-size: 13px;
+    }
+
+    .newsBody .bodyHeader {
+        margin-top: 20px;
+    }
+
+    .newsBody .bodyHeader h4 {
+        width: 40%;
+        font-size: 25px;
+    }
+
+    .newsBody .bodyHeader .newsDate {
+        font-size: 12px;
+    }
+
+    .newsBody .bodyContent {
+        padding: 30px 0;
+    }
+
+    .newsBody .bodyContent p {
+        margin: 0 35px;
+        font-size: 14px;
+    }
+
+    .newsBody .bodyContent .innerImage {
+        margin: 25px 0 35px;
+        height: 450px;
+    }
+
+    .newsBody .bodyContent .newsComment {
+        margin: 37px 35px 0;
+    }
+
+    .newsBody .bodyContent .newsComment .commentSectionTitle {
+        font-size: 15px;
+    }
+
+    .newsBody .bodyContent .newsComment .commentItem img,
+    .newsBody .bodyContent .newsComment .addComment img {
+        height: 60px;
+        width: 60px;
+    }
+
+    .newsBody .bodyContent .newsComment .commentItem:nth-of-type(1) {
+        margin-top: 50px;
+    }
+
+    .newsBody .bodyContent .newsComment .addComment .commentInput input[type="text"]::placeholder {
+        font-size: 13px;
+    }
+
+    .newsBody .bodyContent .newsComment .commentItem .commentText p {
+        font-size: 12px;
+        line-height: 22px;
+    }
+
+    .newsBody .bodyContent .newsComment .btnSeeMore {
+        font-size: 13px;
+    }
+
+    .newsBody .bodyContent .newsComment .addComment .btnAddComment {
+        font-size: 12px;
+        height: 40px;
+        padding: 0 20px;
+    }
+
+    /* Explore page */
+    .exploreWrapper {
+        margin-top: 0px;
+    }
+
+    .exploreWrapper .explore {
+        margin-top: 0;
+        height: 998px;
+    }
+
+    .exploreWrapper .explore .exploreSearch .tab-content {}
+
+    .exploreWrapper .listings a {
+        margin-bottom: 15px;
+    }
+
+    .exploreWrapper .explore .exploreSearch .nav-link[data-toggle="tab"] {
+        font-size: 13px;
+    }
+
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .select-wrapper .select-dropdown {
+        font-size: 13px;
+    }
+
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .select-wrapper .search-wrap .md-form input {
+        font-size: 13px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .itemName {
+        font-size: 14px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .itemName span {
+        font-size: 12px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .e-i {
+        margin: 0 15px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .extraItem {
+        font-size: 13px;
+    }
+
+    /* addListing page */
+    .addListingWrapper .pricingList {
+        width: 100%;
+    }
+
+    .addListingWrapper p {
+        margin-top: 10px;
+    }
+
+
+    /* addListingInner page */
+    .addListingInnerWrapper {
+        width: 100%;
+    }
+
+    .addListingInnerWrapper .sectionHeader p,
+    .addListingInnerWrapper .btnListingSend {
+        font-size: 15px;
+    }
+
+    .addListingInnerWrapper .staticNav,
+    .addListingInnerWrapper .sectionBody .listType p,
+    .addListingInnerWrapper .sectionBody .inputType label,
+    .addListingInnerWrapper .sectionBody .inputType textarea::placeholder,
+    .addListingInnerWrapper .sectionBody .selectType .select-wrapper input.select-dropdown,
+    .addListingInnerWrapper .sectionBody .checkType .form-check label,
+    .addListingInnerWrapper .sectionBody span.photoInfo {
+        font-size: 13px;
+    }
+
+    .addListingInnerWrapper .sectionBody .listType label div {
+        font-size: 13px;
+        padding: 8px 50px;
+    }
+
+    .addListingInnerWrapper .sectionBody .photoUpload input[type="file"] + label,
+    .addListingInnerWrapper .sectionBody .photoUpload .uploadedImages img {
+        top: 0;
+        height: 80px;
+        width: 80px;
+        line-height: 80px;
+    }
+
+    .registrationWrapper .registrationInformation .registrationInstructions,
+    .registrationWrapper .registrationForm .detailInner {
+        /*padding: 3em 2em;*/
+    }
+    
+    
+.registrationWrapper .registrationInformation .instructionTitle h1 {
+    text-transform: none;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    font-size: 27px;
+}
+.registrationWrapper .registrationInformation .registrationInstructions {
+    font-size: 15px;
+}
+    
+    /* Account Page */
+    .accountWrapper {
+        width: 100%;
+        margin: 2em auto;
+    }
+
+    .accountWrapper .nav a {
+        padding: 20px 0;
+        justify-content: center;
+    }
+
+    .accountWrapper .nav a span {
+        display: none;
+    }
+
+    .accountWrapper .nav a i {
+        margin-right: 0;
+    }
+
+    /* listInside page */
+    .listInsideWrapper .listInsideInner .insideLeft,
+    .listInsideWrapper .listInsideInner .insideRight {
+        width: 100%;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight {
+        margin-top: 20px;
+    }
+
+    .slider #sync1 .item {
+        height: 350px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideSecTitle {
+        font-size: 20px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideSecTitle:after {
+        bottom: -10px;
+    }
+
+    .listInsideWrapper a.btnBack,
+    .listInsideWrapper .listInsideInner .insideLeft .features .featuresItemList .featuresItem {
+        font-size: 15px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .homeAdress {
+        font-size: 14px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .showMap {
+        font-size: 12px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .commentTxt,
+    .listInsideWrapper .listInsideInner .insideRight textarea {
+        font-size: 13px;
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 991px) {
+
+    /* Navbar */
+    .header .navbar-toggler i {
+        color: black !important;
+    }
+
+    /* mobileMenu */
+    .mobileMenuInner {
+        display: block;
+        min-height: 100%;
+        height: auto;
+        overflow: hidden;
+        background: #fff;
+        transition: .3s all linear;
+    }
+
+    .mobileMenuInner a {
+        color: rgba(40, 40, 40, 1);
+    }
+
+    .mobileMenuInner .menuItems {
+        position: relative;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .mobileMenuInner .menuItems a {
+        display: block;
+        text-align: left;
+        padding: 2vh 0 2vh 31px;
+    }
+
+    .mobileMenuInner .menuItems a:hover {
+        color: rgb(251, 161, 114);
+        background-color: #fafafa;
+        transition: all ease-in ease-out 2s;
+    }
+
+    .mobileMenuInner .menuItems a:last-child {}
+
+    .mobileMenuInner a.sign {
+        display: block;
+        border: 1px solid rgba(40, 40, 40, .10);
+        color: #555;
+        border-radius: 0;
+        padding: 10px 0;
+        font-size: 14px;
+        margin: 2rem auto;
+    }
+
+    .mobileMenuInner a.sign:hover {
+        border: 1px solid rgb(251, 161, 114);
+        color: rgb(251, 161, 114);
+    }
+
+    .mobileMenuInner a.create {}
+
+
+    .mobileMenuInnerToggle {
+        transition: .3s all linear;
+    }
+
+
+    /*-- COVER CSS BEGIN --*/
+
+    /*
+ * Base structure
+ */
+    
+    .cover {
+    }
+    
+    .cover-container {
+        width: 100%;
+    }
+    
+    .cover .coverTitle .h1-responsive {
+        font-size: 40px;
+    }
+    
+    .cover .cover-item {
+        color: #fff;
+        display: block;
+        height: 100%;
+    }
+    
+    .cover .cover-item .content {
+        top: 65%;
+        left: 50%;
+        width: 100%;
+    }
+
+    .cover .cover-item .content .h1-responsive {
+        font-size: 27px;
+    }
+
+    .cover .cover-item .content ol {
+        font-size: 16px;
+    }
+
+    .cover .cover-item .content p {
+        font-size: 22px;
+    }
+
+    .cover .cover-item .content p .g-1 {
+        font-size: 28px;
+    }
+
+    .cover .cover-item .content p .g-2 {
+        font-size: 33px;
+    }
+
+    /*
+ * Cover *
+*/
+    /*-- COVER CSS END --*/
+       .container .column {
+    margin: 2rem 0;
+}
+    
+    .termsWrapper,
+    .faqWrapper {
+        padding: 1em;
+    }
+    
+    .termsWrapper .article {
+        width: 100%;
+    }
+    
+    .termsWrapper .article ul {
+        width: 100%;
+    }
+    .termsWrapper .article ul li ul {
+        width: 100%;
+    }
+    
+    .faqWrapper .article ol li {
+        width: 100%;
+    }
+
+    .About-us {
+        padding: 100px 0;
+    }
+
+    /* Listing section */
+    .listing .listings a {
+        padding: 0;
+        flex: 0 0 100%;
+        margin-bottom: 30px;
+    }
+
+    .listing .listings a:nth-of-type(4),
+    .listing .listings a:nth-of-type(5),
+    .listing .listings a:nth-of-type(6) {
+        display: none;
+    }
+
+    .listing .listings .listingItem .itemCover {
+        height: 250px;
+    }
+
+    .listing .listings .listingItem .itemCover .price {
+        font-size: 20px;
+    }
+
+    .listing .listings .listingItem .itemCover .quickView {
+        padding: 50px 50px 0;
+    }
+
+    .listing .listings .listingItem .itemCover .quickView i {
+        font-size: 20px;
+    }
+
+    .listing .listings .listingItem .itemDesc {
+        padding: 20px;
+    }
+
+    .listing .listings .listingItem .itemDesc .itemName {
+        font-size: 18px;
+    }
+
+    .listing .listings .listingItem .itemDesc .itemName span {
+        font-size: 16px;
+    }
+
+    .listing .listings .listingItem .itemDesc .e-i {
+        margin: 0 40px;
+    }
+
+    .listing .listings .listingItem .itemDesc .extraItem {
+        line-height: 20px;
+        font-size: 18px;
+    }
+
+    .listing .listings .listingItem .itemDesc .extraItem span {
+        font-size: 13px;
+    }
+
+    .listing .viewAll {
+        margin-top: 30px;
+    }
+
+    /* Sell section */
+    .sell .sellWrapper {
+        display: block;
+    }
+
+    .sell .sellWrapper img {
+        width: 100%;
+    }
+
+    .sell .sellWrapper .sellContent {
+        text-align: center;
+        width: 100%;
+        margin-top: 30px;
+        margin-left: 0;
+    }
+
+    .sell .sellWrapper .sellContent h1 {
+        font-size: 46px;
+    }
+
+    .sell .sellWrapper .sellContent h1 br {
+        display: none;
+    }
+
+    .sell .sellWrapper .sellContent p {
+        font-size: 13px;
+    }
+
+    .sell .sellWrapper .sellContent .toPrize {
+        width: 100%;
+        border: none
+    }
+
+    /* Pricing section */
+    .pricing .pricingWrapper .pricingContent .tryBtn {
+        font-size: 12px;
+    }
+
+    .pricing .pricingWrapper .pricingList .pricingItem {
+        flex: 30.4%;
+    }
+
+    .pricing .pricingWrapper .pricingList .pricingItem .recomeded {
+        font-size: 10px;
+    }
+
+    .pricing .pricingWrapper .pricingList .pricingItem .planName {
+        font-size: 20px;
+    }
+
+    .pricing .pricingWrapper .pricingList .pricingItem .planPrice {
+        font-size: 48px;
+    }
+
+    .pricing .pricingWrapper .pricingList .pricingItem .planPrice sup {
+        font-size: 18px;
+    }
+
+    .pricing .pricingWrapper .pricingList .pricingItem .planPrice span {
+        font-size: 14px;
+    }
+
+    .pricing .pricingWrapper .pricingList .pricingItem ul li {
+        font-size: 12px;
+    }
+
+    /* Footer section */
+    footer {
+        
+    }
+
+    footer .copyright,
+    footer .news .innerNews .newsTitle,
+    footer .news .innerNews .newsDesc,
+    footer .links a,
+    footer .phone,
+    footer .address {
+        font-size: 15px;
+    }
+
+    footer .links a {
+        margin-bottom: 25px;
+    }
+
+    footer .address {
+        margin-top: 20px;
+    }
+
+    /* Contact page */
+    .contactTitle {
+        font-size: 36px;
+    }
+
+    .contactDesc {
+        font-size: 14px;
+        width: 78%;
+    }
+    
+     .contactWrapper .contactForm,
+     .contactWrapper .contactInformation,
+     .registrationWrapper .registrationInformation,
+     .registrationWrapper .registrationForm {
+
+         -webkit-box-shadow: none;
+         box-shadow: none;
+     }
+
+    .contactWrapper .contactForm .form-group input::placeholder,
+    .contactWrapper .contactForm .form-group textarea::placeholder {
+        font-size: 12px;
+    }
+
+    .contactWrapper .contactForm .form-group textarea {
+        height: 160px;
+    }
+
+    .contactWrapper .contactForm .btn {
+        font-size: 12px;
+    }
+
+    .contactWrapper .contactInformation .contactInformationTitle {
+        font-size: 15px;
+    }
+
+    .contactWrapper .contactInformation .contactInformationTitle + .phone {
+        font-size: 14px;
+        margin-top: 48px;
+    }
+
+    .contactWrapper .contactInformation .contactInformationTitle + .phone + .address {
+        font-size: 14px;
+    }
+
+    /* News page */
+    .newsWrapper {
+        margin-top: 20px;
+    }
+
+    .newsWrapper .headerBar .select-wrapper {
+        margin: 0;
+    }
+
+    .newsWrapper .newsList {
+        margin-top: 10px;
+    }
+
+    .newsWrapper .newsList a {
+        flex: 0 0 49%;
+    }
+
+    .newsWrapper .newsList .newsItem .itemBody {
+        padding: 20px;
+    }
+
+    .newsWrapper .newsList .newsItem .itemBody .itemName {
+        width: 70%;
+    }
+
+    .newsWrapper .newsList .newsItem .itemBody .itemDesc {
+        font-size: 13px;
+        margin: 0;
+    }
+
+    /* newsInside page */
+    .newsBody .bodyHeader {
+        margin-top: 10px;
+    }
+
+    .newsBody .bodyHeader h4 {
+        width: 50%;
+    }
+
+    .newsBody .bodyContent p {
+        margin: 0 25px;
+    }
+
+    .newsBody .bodyContent .innerImage {
+        height: 350px;
+    }
+
+    .newsBody .bodyContent .newsComment {
+        margin: 37px 25px 0;
+    }
+
+    /* Explore page */
+    
+     .explore .exploreWrapper .explore {
+        padding: 1em 0 1em;
+    }
+    
+    .exploreWrapper .explore {
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+    .exploreWrapper .explore .exploreSearch,
+    .exploreWrapper .explore .exploreResult {
+        width: 100%;
+    }
+
+    .exploreWrapper .explore .exploreSearch .nav-item {
+        text-align: center;
+    }
+
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .select-wrapper {
+        width: 100%;
+    }
+
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .select-wrapper:nth-child(even) {
+        margin-left: 2%;
+    }
+
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .form-check {
+        display: inline-block;
+        width: 48%;
+    }
+
+    .exploreWrapper .explore .exploreSearch,
+    .exploreWrapper .explore .exploreResult {
+        margin-top: 20px;
+    }
+
+    .exploreWrapper .pagination {
+        margin-left: 0;
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .exploreWrapper .pagination .pageNumbers,
+    .exploreWrapper .pagination p {
+        display: inline-block;
+        width: auto;
+    }
+
+    /* addListing Page */
+    .addListingWrapper {}
+
+    .addListingWrapper h1 {
+        font-size: 40px;
+    }
+
+    .addListingWrapper .pricingList .pricingItem {
+        flex: 30.4%;
+    }
+
+    .addListingWrapper .pricingList .pricingItem .recomeded {
+        font-size: 10px;
+    }
+
+    .addListingWrapper .pricingList .pricingItem .planName {
+        font-size: 20px;
+    }
+
+    .addListingWrapper .pricingList .pricingItem .planPrice {
+        font-size: 48px;
+    }
+
+    .addListingWrapper .pricingList .pricingItem .planPrice sup {
+        font-size: 18px;
+    }
+
+    .addListingWrapper .pricingList .pricingItem .planPrice span {
+        font-size: 14px;
+    }
+
+    .addListingWrapper .pricingList .pricingItem ul li {
+        font-size: 12px;
+    }
+
+    .addListingWrapper span,
+    .addListingWrapper p {
+        font-size: 13px;
+    }
+
+    /* addListingInner page */
+    .addListingInnerWrapper .staticNav {
+        padding: 30px 15px 20px;
+        width: 27%;
+    }
+
+    .addListingInnerWrapper .staticNav a {
+        font-size: 12px;
+    }
+
+    .addListingInnerWrapper .staticNav a.active {
+        padding-left: 20px;
+    }
+
+    .addListingInnerWrapper .rightSection {
+        width: 72%;
+    }
+
+    .addListingInnerWrapper .sectionHeader {
+        padding: 25px 20px 30px;
+    }
+
+    .addListingInnerWrapper .sectionHeader p,
+    .addListingInnerWrapper .btnListingSend {
+        font-size: 14px;
+    }
+
+    .addListingInnerWrapper .sectionBody {
+        padding: 20px;
+    }
+
+    .addListingInnerWrapper .sectionBody .listType label div:nth-of-type(1) {
+        margin-left: 5px;
+    }
+
+    .addListingInnerWrapper .sectionBody .listType label div {
+        font-size: 12px;
+        padding: 8px 40px;
+    }
+
+    /* Account page */
+    .accountWrapper .nav {
+        flex-direction: row !important;
+    }
+
+    .accountWrapper .nav a {
+        flex: 0 0 16.666667%;
+    }
+
+    .accountWrapper .tab-content .accountInner .customerName span {
+        display: initial;
+    }
+
+    .accountWrapper .tab-content .pricingInner .invoiceTable {
+        margin-left: 30px;
+    }
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+    /* Navbar */
+    nav {}
+
+    .navbar-brand img {
+        width: 60% !important;
+        margin-top: 10%;
+    }
+
+
+    .header {
+        height: 100px;
+    }
+
+    /* mobileMenu */
+    .mobileMenuInner .account {
+        padding: 10px 16px;
+    }
+    
+    .sectionTitle p {
+        width: 100%;
+    }
+
+    /*-- COVER CSS BEGIN --*/
+
+    /*
+ * Cover
+ */
+    .cover {
+        position: relative;
+        background-image: url(../assets/images/home/banner-half-3.jpg);
+        background-size: cover;
+    }
+
+    .cover-container {
+        width: 100%;
+        color: #fff;
+    }
+
+    .cover .coverTitle {
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .cover .coverTitle .h1-responsive {
+        font-size: 40px;
+    }
+
+    /*
+ * Cover *
+*/
+
+    /*-- COVER CSS END --*/
+    
+    .termsWrapper,
+    .faqWrapper {
+        padding: 1em;
+    }
+    
+    .termsWrapper .article {
+        width: 100%;
+    }
+    
+    .termsWrapper .article ul {
+        width: 100%;
+    }
+    .termsWrapper .article ul li ul {
+        width: 100%;
+    }
+    
+    .faqWrapper .article ol li {
+        width: 100%;
+    }
+
+
+    /* Listing section */
+    .listing {
+        margin-top: 50px;
+    }
+
+    .listing .listings .listingItem .itemCover {
+        height: 200px;
+    }
+
+    .listing .listings .listingItem .itemCover .price {
+        font-size: 15px;
+    }
+
+    .listing .listings .listingItem .itemDesc .itemName {
+        font-size: 16px;
+    }
+
+    .listing .listings .listingItem .itemDesc .itemName span {
+        font-size: 14px;
+    }
+
+    .listing .listings .listingItem .itemDesc .extraItem {
+        font-size: 15px;
+        line-height: 15px;
+    }
+
+    .listing .listings .listingItem .itemDesc .extraItem span {
+        font-size: 11px;
+    }
+
+    .listing .viewAll {
+        margin-top: 0;
+    }
+    
+    .contactWrapper .contactInformation .detailInner {
+        padding: 5em 0;
+    }
+    
+    .registrationWrapper .registrationInformation .registrationInstructions,
+    .contactWrapper .contactForm .detailInner,
+    .registrationWrapper .registrationForm .detailInner {
+        padding: 4em 3em;
+    }
+
+
+    /* Registration section */
+
+    .registrationWrapper .registrationInformation,
+    .registrationWrapper .registrationForm,
+    .contactWrapper .contactForm,
+    .contactWrapper .contactInformation {
+        position: relative;
+    }
+        
+    /* Pricing section */
+
+    .pricing .pricingWrapper .pricingList .pricingItem {
+        flex: 0 0 100%;
+        margin: 0 0 30px;
+    }
+
+    /* Footer section */
+    footer {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    footer .row div[class^=col-xl] {
+        margin-bottom: 40px;
+    }
+
+    footer .footeSecTitle {
+        font-size: 16px;
+    }
+
+    footer .news {
+        text-align: left;
+    }
+
+    footer .news .innerNews img {
+        height: 70px;
+        width: 70px;
+    }
+
+    footer .col-md-6 {
+        margin-top: initial;
+    }
+
+    footer .copyright,
+    footer .news .innerNews .newsTitle,
+    footer .news .innerNews .newsDesc,
+    footer .links a,
+    footer .phone,
+    footer .address {
+        font-size: 14px;
+    }
+
+    footer .links a {
+        flex: 1 0 30%;
+    }
+
+    footer .footeSecTitle:after {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -5px;
+    }
+
+    /* Contact Page */
+    .contactWrapper .contactForm,
+    .contactWrapper .contactInformation {
+        /*flex: 0 0 100%;*/
+    }
+
+    .contactDesc {
+        width: 100%;
+    }
+    
+    /* News page */
+    .newsWrapper .headerBar .pageTitle {
+        font-size: 20px;
+    }
+
+    .newsWrapper .headerBar .pageTitle::before {
+        width: 30px;
+        border-bottom-width: 2px;
+    }
+
+    .newsWrapper .newsList a {
+        flex: 0 0 100%;
+    }
+
+    .newsWrapper .newsList .newsItem .itemCover {
+        height: 220px;
+    }
+
+    .newsWrapper .newsList .newsItem .itemBody .itemName {
+        width: 44%;
+    }
+
+    /* newsInside Page */
+    .newsBody {
+        margin-top: -140px;
+    }
+
+    .newsBody a.btnBack img {
+        width: 20px;
+    }
+
+    .newsBody .bodyHeader h4 {
+        font-size: 20px;
+        width: 58%;
+    }
+
+    .newsBody .bodyHeader .newsDate {
+        padding: 7px 14px 7px 7px;
+    }
+
+    .newsBody .bodyContent {
+        margin-top: 20px;
+        padding: 25px 0;
+    }
+
+    .newsBody .bodyContent p {
+        margin: 0 20px;
+    }
+
+    .newsBody .bodyContent .innerImage {
+        height: 250px;
+        margin: 20px 0 30px;
+    }
+
+    .newsBody .bodyContent .newsComment {
+        margin: 20px 20px 0;
+    }
+
+    .newsBody .bodyContent .newsComment .commentSectionTitle {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .newsBody .bodyContent .newsComment .commentSectionTitle:after {
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .newsBody .bodyContent .newsComment .commentItem img,
+    .newsBody .bodyContent .newsComment .addComment img {
+        height: 50px;
+        width: 50px;
+    }
+
+    .newsBody .bodyContent .newsComment .addComment .commentInput {
+        width: 55%;
+    }
+
+    .newsBody .bodyContent .newsComment .addComment .commentInput input[type="text"] {
+        margin-top: 15px;
+    }
+
+    .newsBody .bodyContent .newsComment .btnSeeMore {
+        margin-top: 20px;
+    }
+
+    .newsBody .bodyContent .newsComment .addComment .btnAddComment {
+        margin-left: 20px;
+        padding: 0 15px;
+    }
+
+    /* Explore page */
+    .exploreWrapper .listings a {
+        flex: 0 0 100%;
+    }
+
+    .exploreWrapper .listings .listingItem .itemCover {
+        height: 200px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemCover .price {
+        font-size: 15px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .itemName {
+        font-size: 16px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .itemName span {
+        font-size: 14px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .e-i {
+        margin: 0 30px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .extraItem {
+        font-size: 15px;
+        line-height: 15px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .extraItem span {
+        font-size: 11px;
+    }
+
+    /* addListing page */
+    .addListingWrapper h1 {
+        font-size: 36px;
+    }
+
+    .addListingWrapper .pricingList a {
+        flex: 0 0 100%;
+        margin: 0 0 30px;
+    }
+
+    /* addListingInner page */
+    .addListingInnerWrapper {}
+
+    .addListingInnerWrapper .staticNav {
+        display: none;
+    }
+
+    .addListingInnerWrapper .rightSection {
+        width: 100%;
+    }
+
+    .addListingInnerWrapper .sectionHeader {
+        padding: 25px 20px;
+    }
+
+    .addListingInnerWrapper .sectionHeader p:after {
+        width: 30px;
+        bottom: -7px;
+    }
+
+    /* Acoount page */
+    .accountWrapper .tab-content .accountInner .accountCards {
+        flex-wrap: wrap;
+    }
+
+    .accountWrapper .tab-content .accountInner .accountCards .cardItem,
+    .accountWrapper .tab-content .lists .listItem {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemCover {
+        height: 200px;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemCover .price {
+        font-size: 20px;
+        bottom: -2px;
+        left: 1px;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemBody .propertyName {
+        font-size: 18px;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemBody .propertyInfo p {
+        font-size: 16px;
+    }
+
+    .accountWrapper .tab-content .accountInner .customerName {
+        font-size: 23px;
+    }
+
+    .accountWrapper .tab-content .accountInner .pendingListingCount {
+        font-size: 13px;
+    }
+
+    .accountWrapper .tab-content .rentList h6,
+    .accountWrapper .tab-content .sellList h6,
+    .accountWrapper .tab-content .proList h6,
+    .accountWrapper .tab-content .favList h6,
+    .accountWrapper .tab-content h6 {
+        font-size: 18px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack {
+        width: 100%;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .left {
+        padding: 15px 50px 0;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .right {
+        padding: 15px 50px 0 30px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .invoiceTable {
+        margin-left: 0;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    /* listInside page */
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .homeNameSec h5 {
+        font-size: 18px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .homeNameSec span {
+        font-size: 9px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .homePriceSec .date {
+        font-size: 10px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .homePriceSec h3 {
+        font-size: 19px;
+    }
+
+    .slider #sync1 .item {
+        height: 270px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideSecTitle {
+        font-size: 15px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideSecTitle:after {
+        bottom: -7px;
+    }
+
+    .listInsideWrapper a.btnBack,
+    .listInsideWrapper .listInsideInner .insideLeft .features .featuresItemList .featuresItem {
+        font-size: 12px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .homeAdress,
+    .listInsideWrapper .listInsideInner .insideRight .homeDesc {
+        font-size: 12px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .homefeatures p {
+        font-size: 13px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .showMap {
+        font-size: 12px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .commentTxt,
+    .listInsideWrapper .listInsideInner .insideRight textarea {
+        font-size: 12px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .homeAdress {
+        font-size: 11px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .btnCall,
+    .listInsideWrapper .listInsideInner .insideRight .addComment .btnSubmit {
+        padding: 8px 25px;
+    }
+}
+
+/* Custom size: <575px */
+@media only screen and (max-width: 575px) {
+
+    /* Navbar */
+    .navbar-toggler {
+        margin-top: 10px;
+    }
+
+    /* mobileMenu */
+
+    .mobileMenuInner {
+    }
+
+    .mobileMenuInner .menuItems a {
+        font-size: 17px;
+    }
+
+    .mobileMenuInner a.addList {
+        font-size: 13px;
+        padding: 13px 35px !important;
+    }
+
+    .closeLine span {
+        font-size: 25px;
+    }
+
+    /*-- COVER CSS BEGIN --*/
+
+    /*
+ * Cover
+ */
+    .cover {
+        width: 100% !important;
+        position: relative;
+        background-image: url(../assets/images/home/banner-half-3.jpg);
+        background-size: cover;
+    }
+
+    .cover-container {
+        width: 100%;
+        color: #fff;
+    }
+
+    .cover .coverTitle {
+        text-align: center;
+        top: 50%;
+        left: 55%;
+        width: 90%;
+        transform: translate(-50%, -50%);
+    }
+
+    .cover .coverTitle .h1-responsive {
+        font-size: 40px;
+    }
+
+    /*
+ * Cover *
+*/
+
+    /*-- COVER CSS END --*/
+    
+    .container .column {
+    margin: 1.5rem 0;
+}
+    
+    .termsWrapper,
+    .faqWrapper {
+        padding: 1em;
+    }
+    
+    .termsWrapper .article {
+        width: 100%;
+    }
+    
+    .termsWrapper .article ul {
+        width: 100%;
+    }
+    .termsWrapper .article ul li ul {
+        width: 100%;
+    }
+    
+    .faqWrapper .article ol li {
+        width: 100%;
+    }
+    
+    /* Contact Page */
+    .contactDesc {
+        width: 100%;
+    }
+
+    /* News Page */
+    .newsWrapper .newsList .newsItem .itemBody .itemName {
+        width: 41%;
+    }
+
+    /* newsInside page */
+    .newsBody .bodyHeader h4 {
+        width: 54%;
+    }
+
+    /* Account page */
+    .accountWrapper .tabs {
+        margin: 0;
+    }
+
+    /* listInside page */
+    .listInsideWrapper {
+        /*margin-top: 0px;*/
+    }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+
+    /* Navbar */
+    nav {}
+
+    .navbar-brand img {
+        width: 63% !important;
+        margin-top: 10%;
+    }
+
+    .header {
+        height: 80px;
+    }
+
+    /* Main section */
+    .main {
+        height: 120vh;
+    }
+    
+    .sectionTitle p {
+        font-size: 15px;
+        width: 100%;
+    }
+
+    /*-- COVER CSS BEGIN --*/
+
+    /*
+ * Cover
+ */
+    .cover {
+        width: 100% !important;
+        position: relative;
+        background-image: url(../assets/images/home/banner-half-3.jpg);
+        background-size: cover;
+    }
+
+    .cover-container {
+        width: 100%;
+        color: #fff;
+    }
+
+     .cover .coverTitle {
+        top: 50%;
+         width: 90%;
+    }
+
+    .cover .coverTitle .h1-responsive {
+        font-size: 40px;
+    }
+
+    /*
+ * Cover *
+*/
+
+    /*-- COVER CSS END --*/
+    
+    .contactWrapper .contactForm .detailInner,
+    .registrationWrapper .registrationForm .detailInner {
+        padding: 3em 1em 5em;
+    }
+    
+    .form-check {
+        font-size: 14px;
+    }
+    
+    
+    .contactWrapper .contactInformation .detailInner {
+        padding: 4em 0;
+    }
+    
+    .registrationWrapper .registrationInformation .registrationInstructions {
+        padding: 4em 1em;
+    }
+    
+    .registrationWrapper .registrationInformation ul li {
+    padding: 5px 0;
+}
+
+    /* Listing section */
+    .listing .listings {
+        margin-top: 20px;
+    }
+
+    .listing .listings .listingItem .itemCover {
+        height: 170px;
+    }
+
+    .listing .listings .listingItem .itemDesc .e-i {
+        margin: 0 25px;
+    }
+
+    /* Footer section */
+    footer .copyright,
+    footer .news .innerNews .newsTitle,
+    footer .news .innerNews .newsDesc,
+    footer .links a,
+    footer .phone,
+    footer .address {
+        font-size: 13px;
+    }
+    
+    footer .links a {
+        flex: 1 0 50%;
+    }
+    
+    /* Contact Page */
+    .contactWrapper .contactForm,
+    .contactWrapper .contactInformation {
+    }
+
+    /* News Page */
+    .newsWrapper .headerBar .select-wrapper span.caret {
+        top: .6rem;
+    }
+
+    .newsWrapper .newsList .newsItem .itemBody .itemName {
+        width: 70%;
+    }
+
+    /* newsInside page */
+
+    .newsBody {
+        margin-top: -88px;
+    }
+
+    .newsBody a.btnBack {
+        font-size: 12px;
+        margin-right: 10px;
+    }
+
+    .newsBody a.btnBack img {
+        width: 18px;
+    }
+
+    .newsBody .bodyHeader h4 {
+        width: 66%;
+        font-size: 17px;
+    }
+
+    .newsBody .bodyHeader .newsDate {
+        font-size: 11px;
+        padding: 5px 12px 5px 5px;
+    }
+
+    .newsBody .bodyContent p {
+        font-size: 13px;
+    }
+
+    .newsBody .bodyContent .innerImage {
+        margin: 15px 0;
+    }
+
+    .newsBody .bodyContent .newsComment .addComment {
+        flex-wrap: wrap;
+        margin-top: 50px;
+    }
+
+    .newsBody .bodyContent .newsComment .addComment .commentInput {
+        width: 83%;
+    }
+
+    .newsBody .bodyContent .newsComment .addComment .btnAddComment {
+        position: relative;
+        margin-top: 20px;
+        margin-left: 0;
+        left: 100%;
+        transform: translateX(-100%);
+    }
+
+    /* Explore page */
+    .explore .exploreWrapper .explore {
+        padding: 1em 0 1em;
+    }
+    
+    .exploreWrapper .headerBar {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .exploreWrapper .headerBar .resultText {
+        order: 2;
+    }
+
+    .exploreWrapper .pagination {
+        padding: 10px 20px;
+    }
+
+    .exploreWrapper .pagination .pageNumbers a,
+    .exploreWrapper .pagination p {
+        font-size: 14px;
+    }
+
+    /* addListing page */
+    .addListingWrapper {
+        margin-top: 10px;
+    }
+
+    .addListingWrapper h1 {
+        font-size: 30px;
+    }
+
+    .addListingWrapper .pricingList {
+        margin-top: 20px;
+    }
+
+    /* Account page */
+    .accountWrapper .tab-content .pricingInner .couponPack .left {
+        padding: 15px 30px 0;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .right {
+        padding: 15px 0 0 20px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .right p {
+        margin-bottom: 5px;
+    }
+
+    /* listInside page */
+    .slider #sync1 .item {
+        height: 240px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .propertyNameSec h5,
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .carPriceSec h3 {
+        font-size: 16px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .propertyNameSec span {
+        padding: 5px 15px;
+    }
+
+
+    .listInsideWrapper .listInsideInner .insideRight .homeAdress {
+        font-size: 10px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .showMap {
+        font-size: 10px;
+    }
+
+    .listInsideWrapper a.btnBack,
+    .listInsideWrapper .listInsideInner .insideLeft .features .featuresItemList .featuresItem {
+        font-size: 10px;
+    }
+
+    .listInsideWrapper a.btnBack img {
+        width: 15px;
+        margin-right: 9px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .homePriceSec .date:after {
+        height: 30px;
+        top: -6px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .features .featuresItemList,
+    .listInsideWrapper .listInsideInner .insideRight .homefeatures {
+        margin-top: 30px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .comments .commentBody {
+        margin-top: 40px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .commentItem img {
+        height: 40px;
+        width: 40px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .commentTxt,
+    .listInsideWrapper .listInsideInner .insideRight textarea {
+        font-size: 10px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .addComment .btnSubmit,
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .btnCall {
+        font-size: 11px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .homeAdress,
+    .listInsideWrapper .listInsideInner .insideRight .homeDesc {
+        font-size: 13px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine {
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .btnCall {
+        margin: 0;
+        flex: 0 0 100%;
+        display: flex;
+        justify-content: center;
+        font-size: 15px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .othereButtons {
+        display: flex;
+        justify-content: flex-end;
+        flex: 0 0 100%;
+        margin-top: 20px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .othereButtons a,
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .othereButtons a i {
+        font-size: 11px;
+    }
+}
+
+/* Custom size: <425px */
+@media only screen and (max-width: 425px) {
+
+    /* Mobile Menu */
+    .mobileMenuInner span i {
+        font-size: 25px;
+    }
+
+    .mobileMenuInner .menuItems a {
+        font-size: 15px;
+    }
+    
+    .addListingWrapper,
+    .pricingWrapper,
+    .exploreWrapper,
+    .listingWrapper,
+    .termsWrapper,
+    .registrationWrapper,
+    .contactWrapper,
+    .faqWrapper {
+        width: 100%;
+    }
+    
+    .sectionTitle {
+        padding: 0;
+}
+    .sectionTitle h1 {
+    font-size: 38px;
+}
+    
+    
+    .sectionTitle p {
+        font-size: 14px;
+    }
+
+    /*-- COVER CSS BEGIN --*/
+
+    /*
+ * Cover
+ */
+    .cover {
+        width: 100% !important;
+        position: relative;
+        background-image: url(../assets/images/home/banner-half-3.jpg);
+        background-size: cover;
+    }
+
+    .cover-container {
+        width: 100%;
+        color: #fff;
+    }
+
+     .cover .coverTitle {
+        top: 50%;
+        width: 100%;
+         transform: translate(-55%, -50%);
+    }
+    
+    .cover .coverTitle .h1-responsive {
+        font-size: 40px;
+    }
+
+    /*
+ * Cover *
+*/
+
+    /*-- COVER CSS END --*/
+    /* Listing section */
+    .listing .listings .listingItem .itemCover .price {
+        font-size: 14px;
+    }
+
+    .listing .listings .listingItem .itemCover .quickView {
+        padding: 40px 40px 0;
+    }
+
+    .listing .listings .listingItem .itemCover .quickView i {
+        font-size: 15px;
+    }
+
+    .listing .listings .listingItem .itemDesc .e-i {
+        margin: 0 20px;
+    }
+
+    .listing .listings .listingItem .itemDesc .extraItem {
+        font-size: 14px;
+    }
+
+    .listing .listings .listingItem .itemDesc .extraItem span {
+        font-size: 8px;
+    }
+
+    .listing .listings .listingItem .itemDesc .extraItem:nth-of-type(2) {
+        margin-top: -10px;
+    }
+
+    /* Footer section */
+    footer {
+        margin-top: 20px;
+    }
+
+    .footeSecTitle {
+        margin: 3em 0;
+        display: block;
+    }
+
+    .footer-logo {
+        /*width: 50%;*/
+        height: auto;
+    }
+
+    /* Contact Page */
+    .contactWrapper {
+        margin-top: 20px;
+    }
+
+    .contactDesc {
+        font-size: 12px;
+    }
+
+    /* News page */
+    .newsWrapper .headerBar .select-wrapper {
+        width: 100px;
+    }
+
+    /* NewsInsde page */
+    .newsBody .bodyHeader h4 {
+        width: 52%;
+        font-size: 14px;
+    }
+
+    .newsBody .bodyContent .newsComment .addComment .commentInput {
+        width: 80%;
+    }
+
+    /* Explore page */
+    .exploreWrapper {
+        margin-top: 0px;
+    }
+
+    .exploreWrapper .headerBar .select-wrapper .select-dropdown,
+    .exploreWrapper .headerBar .resultText,
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .form-check .form-check-label,
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .btnExploreSearch,
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .btnReset {
+        font-size: 13px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemCover .price {
+        font-size: 14px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemCover .quickView {
+        padding: 40px 40px 0;
+    }
+
+    .exploreWrapper .listings .listingItem .itemCover .quickView i {
+        font-size: 15px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .e-i {
+        margin: 0 20px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .extraItem {
+        font-size: 14px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .extraItem span {
+        font-size: 8px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .extraItem:nth-of-type(2) {
+        margin-top: -10px;
+    }
+
+    /* Account page */
+    .accountWrapper {}
+
+    .accountWrapper .nav a {
+        padding: 15px 0;
+        font-size: 13px;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemCover {
+        height: 150px;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemCover .price {
+        font-size: 15px;
+        left: 0;
+        bottom: 0;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemBody .propertyName {
+        font-size: 16px;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemBody .propertyInfo p {
+        font-size: 14px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .left .packPrice sup,
+    .accountWrapper .tab-content .pricingInner .couponPack .left .packPrice span,
+    .accountWrapper .tab-content .detailInner .inputGroup label,
+    .accountWrapper .tab-content .detailInner .inputGroup span {
+        font-size: 12px;
+    }
+
+    .accountWrapper .tab-content .detailInner p {
+        font-size: 15px;
+    }
+
+    .accountWrapper .tab-content .detailInner p:after {
+        bottom: -7px;
+    }
+
+    .accountWrapper .tab-content .detailInner .btnSave {
+        font-size: 13px;
+    }
+
+
+    /* listInside page */
+    .listInsideWrapper .listInsideInner .insideLeft .features .featuresItemList .featuresItem {
+        flex: 0 0 50%;
+        font-size: 12px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine {
+        flex-wrap: wrap;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .homeNameSec,
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .homePriceSec {
+        flex: 0 0 100%;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .homeNameSec {
+        justify-content: space-between;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .homeNameSec h5 {
+        font-size: 20px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .homePriceSec {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .homePriceSec .date:after {
+        height: 20px;
+        top: -3px;
+        right: -15px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .homePriceSec h3 {
+        margin-left: 30px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .homefeatures {
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .homefeatures p {
+        flex: 0 0 50%;
+        margin-right: 0;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .homeAdress {
+        margin-top: 50px;
+    }
+
+    .register-right {
+        margin-top: 2em;
+        border-top-left-radius: 0% !important;
+        border-bottom-left-radius: 0% !important;
+    }
+
+
+    .register .nav-tabs {
+        margin-top: 10%;
+    }
+
+    .register-right .tab-content {
+        padding: 0;
+        padding-top: 4rem;
+    }
+
+    .register .register-form {
+        padding: 10% 5%;
+        margin-top: 15%;
+    }
+
+    .btnRegister {
+        float: none;
+    }
+    
+    .termsWrapper,
+    .faqWrapper {
+        padding: .5em;
+    }
+    
+    .termsWrapper .article {
+        width: 100%;
+    }
+    
+    .termsWrapper .article ul {
+        width: 100%;
+    }
+    .termsWrapper .article ul li ul {
+        width: 100%;
+    }
+    
+    .faqWrapper .article ol li {
+        width: 100%;
+    }
+}
+
+/* Custom size: <375px */
+@media only screen and (max-width: 375px) {
+
+    .addListing,
+    .registration,
+    .listInside,
+    .explore,
+    .pricing,
+    .listing,
+    .faq,
+    .terms,
+    .account,
+    .contact {
+        margin: 20px auto;
+        padding: 2em 0;
+        background: #fff;
+    }
+
+    .ourServices .accordion .card-header i {
+        font-size: 1.3em;
+    }
+
+    /* Nabar */
+    .navbar-brand img {
+        width: 80%;
+    }
+
+
+    /*-- COVER CSS BEGIN --*/
+
+    /*
+ * Cover
+ */
+    .cover {
+        width: 100% !important;
+        position: relative;
+        background-image: url(../assets/images/home/banner-half-3.jpg);
+        background-size: cover;
+    }
+
+    .cover-container {
+        width: 100%;
+        color: #fff;
+    }
+
+    .cover .coverTitle {
+        top: 50%;
+        width: 100%;
+    }
+
+    .cover .coverTitle .h1-responsive {
+        font-size: 40px;
+    }
+
+    /*
+ * Cover *
+*/
+
+    /*-- COVER CSS END --*/
+
+    /* Listing section */
+    .listing .listingTitle {
+        font-size: 28px;
+    }
+
+    .listing .listings .listingItem .itemCover {
+        height: 150px;
+    }
+
+    .listing .listings .listingItem .itemDesc {
+        padding: 10px;
+    }
+
+
+    .listing .listings .listingItem .itemDesc .itemName {
+        line-height: 17px;
+        font-size: 14px;
+    }
+
+    .listing .listings .listingItem .itemDesc .itemName span {
+        font-size: 12px;
+    }
+
+    .listing .listings .listingItem .itemDesc .extraItem {
+        font-size: 13px;
+    }
+
+    /* Sell section */
+    .sell .sellWrapper .sellContent h1 {
+        font-size: 32px;
+    }
+
+    /* Pricing section */
+    .pricing .pricingWrapper .pricingContent h1 {
+        font-size: 28px;
+    }
+
+    /* Registration section */
+
+    .registrationWrapper .registrationInformation,
+    .registrationWrapper .registrationForm,
+    .contactWrapper .contactForm,
+    .contactWrapper .contactInformation {
+        position: relative;
+        flex: 0 0 100%;
+    }
+    
+    .registrationWrapper .registrationForm .form-check-label {
+        width: 100% !important;
+    }
+
+
+    /* Frequently Asked Questions Section */
+
+    .faqWrapper {
+        width: 90%;
+        text-align: left;
+        font-size: 14px;
+    }
+
+
+    /* Footer section */
+    footer {
+        padding-bottom: 20px;
+    }
+
+    .footer-logo {
+        
+    }
+
+    footer .copyright,
+    footer .news .innerNews .newsTitle,
+    footer .news .innerNews .newsDesc,
+    footer .links a,
+    footer .phone,
+    footer .address {
+        font-size: 14px;
+    }
+
+    footer .links a {
+        flex: 1 0 50%;
+    }
+
+    /* Contact Page */
+    .contactTitle {
+        font-size: 32px;
+        margin-top: 20px;
+    }
+
+    /* newsInside Page */
+    .newsBody {
+        margin-top: -80px;
+    }
+
+    .newsBody .bodyHeader h4 {
+        width: 60%;
+    }
+
+    .newsBody .bodyHeader .newsDate {
+        font-size: 10px;
+    }
+
+    .newsBody .bodyContent p {
+        font-size: 11px;
+        margin: 0 15px;
+        line-height: 20px;
+    }
+
+    .newsBody .bodyContent .innerImage {
+        height: 170px;
+    }
+
+    .newsBody .bodyContent .newsComment .btnSeeMore {
+        font-size: 11px;
+    }
+
+    .newsBody .bodyContent .newsComment .commentItem .commentText p {
+        font-size: 10px;
+        line-height: 17px;
+    }
+
+    .newsBody .bodyContent .newsComment .addComment .commentInput {
+        width: 78%;
+    }
+
+    .newsBody .bodyContent .newsComment .addComment .btnAddComment {
+        font-size: 10px;
+        height: 35px;
+    }
+
+    /* Explore Page */
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .form-check {
+        width: 100%;
+    }
+
+    .exploreWrapper .explore .exploreSearch .nav-link[data-toggle="tab"] {}
+
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .checkList {
+        margin-top: 20px !important;
+    }
+
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .btnExploreSearch {
+        margin-top: 20px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemCover {
+        height: 150px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc {
+        padding: 10px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .itemName {
+        line-height: 17px;
+        font-size: 14px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .itemName span {
+        font-size: 12px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .extraItem {
+        font-size: 13px;
+    }
+
+    .exploreWrapper .pagination .pageNumbers a {
+        margin-right: 10px;
+    }
+
+    /* addListing page */
+    .addListingWrapper h1 {
+        font-size: 28px;
+    }
+
+    /* addListingInnerWrapper page */
+    .addListingInnerWrapper .sectionBody .listType {
+        display: inherit;
+    }
+
+    .addListingInnerWrapper .sectionBody .listType label {
+        margin-top: 10px;
+    }
+
+    .addListingInnerWrapper .sectionBody .listType label:nth-of-type(1) div {
+        margin-left: 0;
+    }
+
+    .addListingInnerWrapper .staticNav,
+    .addListingInnerWrapper .sectionBody .listType p,
+    .addListingInnerWrapper .sectionBody .inputType label,
+    .addListingInnerWrapper .sectionBody .inputType textarea::placeholder,
+    .addListingInnerWrapper .sectionBody .selectType .select-wrapper input.select-dropdown,
+    .addListingInnerWrapper .sectionBody .checkType .form-check label,
+    .addListingInnerWrapper .sectionBody span.photoInfo {
+        font-size: 11px;
+    }
+
+    .addListingInnerWrapper .sectionBody .photoUpload input[type="file"] + label {
+        width: 100%;
+    }
+
+    .addListingInnerWrapper .addListingContact .inputType:nth-of-type(1) {
+        margin-right: 10%;
+    }
+
+    .addListingInnerWrapper .addListingContact .inputType,
+    .addListingInnerWrapper .addListingPricing .inputType {
+        width: 100%;
+    }
+
+    .addListingInnerWrapper .btnListingSend {
+        padding: 12px;
+        font-size: 12px;
+    }
+
+    .addListingInnerWrapper .sectionBody .selectType {
+        margin-top: 20px;
+    }
+
+    .addListingInnerWrapper .sectionBody .selectType .select-wrapper {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .addListingInnerWrapper .sectionBody .checkType .form-check {
+        flex: 0 0 100%;
+        margin-bottom: 10px;
+    }
+
+    /* Account page */
+    .accountWrapper .tab-content .accountInner .customerName {
+        font-size: 20px;
+    }
+
+    .accountWrapper .tab-content .accountInner .pendingListingCount {
+        margin-top: 20px;
+    }
+
+    .accountWrapper .tab-content .accountInner .accountCards {
+        margin-top: 30px;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemCover {
+        height: 130px;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemCover .price {
+        font-size: 13px;
+        left: -2px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .left {
+        padding: 15px 15px 0;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .left .packName {
+        font-size: 20px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .left .packPrice {
+        font-size: 25px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .left .packPrice sup,
+    .accountWrapper .tab-content .pricingInner .couponPack .left .packPrice span,
+    .accountWrapper .tab-content .detailInner .inputGroup label,
+    .accountWrapper .tab-content .detailInner .inputGroup span {
+        font-size: 10px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .right p {
+        margin-bottom: 5px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .right p.expireDate {
+        margin-top: 65px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .invoiceTable {
+        margin-top: 30px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .invoiceTable .invoiceTitle {
+        font-size: 15px;
+    }
+
+    /* Account page */
+    .accountWrapper .tab-content .pricingInner .invoiceTable th {
+        font-size: 11px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .invoiceTable td {
+        padding: 10px 0;
+        font-size: 10px;
+    }
+
+    .accountWrapper .tab-content .pricingInner a {
+        font-size: 11px;
+    }
+
+    /* listInside Page */
+    .slider #sync1 .item {
+        height: 180px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .homeAdress,
+    .listInsideWrapper .listInsideInner .insideRight .homeDesc {
+        font-size: 12px;
+    }
+
+    .register-right {
+        margin-top: 2em;
+        border-top-left-radius: 0% !important;
+        border-bottom-left-radius: 0% !important;
+    }
+
+
+    .register .nav-tabs {
+        margin-top: 10%;
+    }
+
+    .register-right .tab-content {
+        padding: 0;
+        padding-top: 4rem;
+    }
+
+    .register .register-form {
+        padding: 10% 5%;
+        margin-top: 15%;
+    }
+
+    .btnRegister {
+        float: none;
+    }
+
+}
+
+/* Custom size: 320px */
+@media only screen and (max-width: 320px) {
+    
+    /* Listing section */
+    .listing .listingTitle {
+        font-size: 25px;
+    }
+
+    .listing .listings .listingItem .itemDesc .e-i {
+        margin: 0 15px;
+    }
+
+    /* Sell section */
+    .sell .sellWrapper .sellContent h1 {
+        font-size: 28px;
+    }
+
+    /* Pricing section */
+    .pricing .pricingWrapper .pricingContent h1 {
+        font-size: 25px;
+    }
+
+    .pricing .pricingWrapper .pricingContent p {
+        font-size: 12px;
+    }
+
+    /* Contact Page */
+    .contactWrapper .contactForm,
+    .contactWrapper .contactInformation {
+        padding: 20px;
+    }
+
+    /* News Page */
+    .newsWrapper .newsList .newsItem .itemCover {
+        height: 170px;
+    }
+
+    .newsWrapper .newsList .newsItem .itemBody .itemName {
+        font-size: 13px;
+        width: 100%;
+    }
+
+
+    /* Explore page */
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .select-wrapper {
+        width: 47%;
+    }
+
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .select-wrapper:nth-child(even) {
+        margin-left: 3%;
+    }
+
+    .exploreWrapper .headerBar .select-wrapper .select-dropdown,
+    .exploreWrapper .headerBar .resultText,
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .form-check .form-check-label,
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .btnExploreSearch,
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .btnReset,
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .select-wrapper .select-dropdown {
+        font-size: 12px;
+    }
+
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .form-check {
+        margin-bottom: 10px;
+    }
+
+    .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .checkList {
+        margin-top: 10px !important;
+        margin-bottom: 10px;
+    }
+
+    .exploreWrapper .listings .listingItem .itemDesc .e-i {
+        margin: 0 15px;
+    }
+
+    .exploreWrapper .pagination {
+        padding: 5px 15px;
+    }
+
+    .exploreWrapper .pagination .pageNumbers a {
+        margin-right: 5px;
+    }
+
+    /* addListing page */
+    .addListingWrapper h1 {
+        font-size: 25px;
+    }
+
+    .addListingWrapper p,
+    .addListingWrapper span {
+        font-size: 12px;
+    }
+
+    /* .addListingInnerWrapper page */
+
+    .addListingInnerWrapper .sectionBody .selectType {
+        margin-top: 20px;
+    }
+
+    .addListingInnerWrapper .sectionBody .selectType .select-wrapper {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .addListingInnerWrapper .sectionBody .checkType .form-check {
+        flex: 0 0 100%;
+        margin-bottom: 10px;
+    }
+
+    /* Account page */
+    .accountWrapper .tab-content .accountInner .customerName {
+        font-size: 18px;
+    }
+
+    .accountWrapper .tab-content .accountInner .pendingListingCount {
+        font-size: 11px;
+    }
+
+    .accountWrapper .tab-content .accountInner .pendingListingCount {
+        font-size: 11px;
+        margin-left: 5px;
+    }
+
+    .accountWrapper .tab-content .accountInner .accountCards .cardItem {
+        padding: 10px 20px;
+    }
+
+    .accountWrapper .tab-content .accountInner .accountCards .cardItem .cardTitle {
+        font-size: 12px;
+    }
+
+    .accountWrapper .tab-content .accountInner .accountCards .cardItem .cardBottomLine {
+        margin-top: 20px;
+    }
+
+    .accountWrapper .tab-content .accountInner .accountCards .cardItem .cardBottomLine h1 {
+        font-size: 20px;
+    }
+
+    .accountWrapper .tab-content .accountInner .accountCards .cardItem .cardBottomLine a {
+        font-size: 10px;
+    }
+
+    .accountWrapper .tab-content .accountInner .accountCards .cardItem .cardBottomLine a img {
+        width: 20%;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemBody .propertyName {
+        font-size: 13px;
+    }
+
+    .accountWrapper .tab-content .lists .listItem .itemBody .propertyInfo p,
+    .accountWrapper .tab-content .lists .listItem .itemCover .price {
+        font-size: 12px;
+    }
+
+    .accountWrapper .tab-content .rentList h6,
+    .accountWrapper .tab-content .sellList h6,
+    .accountWrapper .tab-content .proList h6,
+    .accountWrapper .tab-content .favList h6,
+    .accountWrapper .tab-content h6 {
+        font-size: 16px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .left .packName {
+        font-size: 17px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .left .packPrice {
+        font-size: 23px;
+        margin-top: 50px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .left .packPrice sup,
+    .accountWrapper .tab-content .pricingInner .couponPack .left .packPrice span,
+    .accountWrapper .tab-content .detailInner .inputGroup label,
+    .accountWrapper .tab-content .detailInner .inputGroup span {
+        font-size: 8px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .right p {
+        font-size: 10px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .couponPack .right p.expireDate {
+        margin-top: 45px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .invoiceTable th,
+    .accountWrapper .tab-content .pricingInner a {
+        font-size: 10px;
+    }
+
+    .accountWrapper .tab-content .pricingInner .invoiceTable td {
+        font-size: 9px;
+    }
+
+    .accountWrapper .tab-content .pricingInner a img {
+        margin-left: 5px;
+        width: 9%;
+    }
+
+    .accountWrapper .tab-content .detailInner .inputGroup:nth-of-type(1) {
+        margin-top: 20px;
+    }
+
+    .accountWrapper .tab-content .detailInner .inputGroup label {
+        font-size: 10px;
+    }
+
+    .accountWrapper .tab-content .detailInner .inputGroup .md-form {
+        margin-top: .5rem;
+        margin-bottom: .5rem;
+    }
+
+    .accountWrapper .tab-content .detailInner p {
+        font-size: 12px;
+        margin-top: 25px;
+    }
+
+    .accountWrapper .tab-content .detailInner p:after {
+        bottom: -7px;
+    }
+
+    .accountWrapper .tab-content .detailInner .btnSave {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    /* listInside page */
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine .carPriceSec h3 {
+        font-size: 14px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .homeDesc {
+        font-size: 11px;
+        line-height: 20px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .homeAdress,
+    .listInsideWrapper .listInsideInner .insideRight .homeDesc {
+        font-size: 12px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .othereButtons {
+        justify-content: space-between;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .commentItem {
+        margin-bottom: 20px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .othereButtons a {
+        margin: 0;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .commentItem img {
+        height: 30px;
+        width: 30px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .commentTxt,
+    .listInsideWrapper .listInsideInner .insideRight textarea {
+        padding-left: 0;
+    }
+}

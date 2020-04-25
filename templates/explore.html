@@ -3,7 +3,14 @@
 
 
 {% block content %}
-
+{% for message in messages %}
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+{% endfor %}
 
 
 <!-- Explore page start -->
@@ -162,7 +169,7 @@
             {% if request.user.userprofile.user_type == "Buyer" %}
              {% for entry in entries %}
              
-                <a href="{{entry.property_entry.get_absolute_url }}" data-id={{entry.id}} class="match-link">
+                <a href="{{entry.property_entry.get_absolute_url}}?mid={{entry.id}}" data-id={{entry.id}} class="match-link">
               <div class="listingItem">
                 <div class="itemCover">
 
@@ -217,7 +224,7 @@
             {% elif request.user.userprofile.user_type == "Seller" %}
 
             {% for entry in entries %}
-              <a href="#">
+              <a href="{{entry.get_absolute_url}}">
               <div class="listingItem">
                 <div class="itemCover">
 

@@ -5,6 +5,7 @@
 {% block content %}
 {% include "includes/match-details-modal.html" %}
 {% include "includes/engage-modal.html" %}
+{% include "includes/decline-offer-modal.html" %}
 <!-- listInside page start -->
 <div class="listInside ">
   <div class="container listInsideWrapper">
@@ -163,19 +164,35 @@
           <p class="homeAdress"><i class="fas fa-map-marker-alt"></i> {{property.location}}</p>
           <a class="showMap" href="#">Show on map</a>
         </div>
-
+        {% if request.user.userprofile.user_type == "Buyer" %}
         <div class="buttonsLine">
+          {% if match.engagement_status == "Pending" %}
           <button class="btn btnCall waves-effect waves-light engage-btn" data-toggle="modal" href="#myEngageModal">
             <i class="fas fa-inbox"></i> Engage Contact
+          </button> 
+          {% elif match.engagement_status == "Accepted" %}
+          <button class="btn btnCall waves-effect waves-light engage-btn" disabled>
+            <i class="fas fa-inbox"></i> Contact Engaged
           </button>
-
+          {% elif match.engagement_status == "Declined" %}
+          <button class="btn btnCall waves-effect waves-light engage-btn" data-toggle="modal" href="#myEngageModal">
+            <i class="fas fa-inbox"></i> Re-Engage Contact
+          </button> 
+          <button class="btn btnCall waves-effect waves-light engage-btn" disabled>
+            <i class="fas fa-trash"></i> Offer Declined
+          </button>
+          {% endif %}
           <div class="othereButtons">
             <a href="#" class="d-none"><i class="fas fa-pen"></i> Edit</a>
             <a class="view-match" data-toggle="modal"><i class="view-match fas fa-arrows-alt-h"></i> View Match Details</a>
             <!-- <a href="#"><i class="fas fa-heart"></i> Favourite</a> -->
-            <a href="#"><i class="fas fa-trash"></i> Remove</a>
+            {% if match.engagement_status == "Accepted" %}
+            <a class="decline-offer-btn" data-toggle="modal" href="#myDeclineOfferModal"><i class="fas fa-trash"></i> Decline Offer</a>
+            {% endif %}
+
           </div>
         </div>
+        {% endif %}
 
         <div class="comments">
            {% if form.errors %}
@@ -201,8 +218,11 @@
             <div class="commentItem">
               <img src="{% static 'content/img/th-1.png' %}" alt="thumbnail">
               <div class="commentTxt">
-               {{comment.content}}
+               <b>{{comment.content}}</b>
+               <br>
+               <i>By: {{comment.buyer.email}} {% if request.user == comment.buyer %}(Me){% endif %}</i>
               </div>
+
             </div>
             {% endfor %}
 
