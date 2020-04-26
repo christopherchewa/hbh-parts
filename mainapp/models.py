@@ -134,7 +134,7 @@ class PropertyEntryManager(models.Manager):
 
 
 class PropertyEntry(BasePropertyDetailModel):
-	property_number = models.CharField(max_length=10, unique=True, blank=True, null=False)
+	property_title = models.CharField(max_length=10, blank=True, null=True)
 	seller = models.ForeignKey(User, on_delete=models.CASCADE)
 	is_available = models.BooleanField(default=True, null=False, blank=False)
 	other_details = models.TextField(blank=True, null=True)
@@ -163,22 +163,14 @@ class PropertyEntry(BasePropertyDetailModel):
 
 	def save(self, *args, **kwargs):
 		#automatically generate plot number
-		self.property_number = get_property_number()
+		no_of_bedrooms = self.no_of_bedrooms
+		property_type = self.property_type
+		location = self.location
+		property_title_str = "{} BR {} in {}".format(no_of_bedrooms, property_type, location)
+		self.property_title = property_title_str
 		super(PropertyEntry, self).save(*args, **kwargs)
 
 
-
-def get_property_number():
-	property_number = str(uuid.uuid4())[:7].replace("-","").lower()
-	
-	try:
-		id_exists = PropertyEntry.objects.get(property_number=property_number)
-		get_property_number()
-		
-	except:
-		return property_number
-
-	return property_number
 
 
 

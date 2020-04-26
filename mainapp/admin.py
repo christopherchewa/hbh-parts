@@ -46,7 +46,7 @@ class PropertyEntryImageInline(admin.TabularInline):
 @admin.register(PropertyEntry)
 class PropertyEntryAdmin(admin.ModelAdmin):
     inlines = [PropertyEntryImageInline]
-    list_display = ('__str__','is_available', )
+    list_display = ('id', 'property_title', 'seller', 'is_available', )
 
 @admin.register(Favourite)
 class FavouriteAdmin(admin.ModelAdmin):

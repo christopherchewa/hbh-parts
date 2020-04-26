@@ -87,7 +87,7 @@ CHOICES = (
 )
 
 class PropertyEntryForm(forms.ModelForm):
-	property_number = forms.CharField(widget=forms.TextInput(attrs={'class': "form-control"}), max_length=255, required=True)
+	# property_number = forms.CharField(widget=forms.TextInput(attrs={'class': "form-control"}), max_length=255, required=True)
 	location = forms.CharField(widget=forms.TextInput(attrs={'class': "form-control"}), max_length=255, required=True)
 	property_type = forms.ChoiceField(widget=forms.Select(attrs={'class': "form-control"}), choices=CHOICES)
 	other_details = forms.CharField(widget=forms.Textarea(attrs={'class': "form-control"}), max_length=255, required=True)
@@ -98,7 +98,7 @@ class PropertyEntryForm(forms.ModelForm):
 
 	class Meta:
 		model = PropertyEntry
-		exclude = ('created_at', 'updated_at', 'seller')
+		exclude = ('created_at', 'updated_at', 'seller', 'property_title')
 
 
 class RequestEntryForm(forms.ModelForm):
