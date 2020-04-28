@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import path
 from . import views
+from comments import views as comments_views
 # Create your views here.
 
 urlpatterns = [
@@ -32,6 +33,10 @@ urlpatterns = [
     path('list-inside/<int:id>/', views.list_inside, name="list-inside"),
     path('account/', views.account, name="account"),
     path('matches/', views.matches, name="matches"),
+
+    path('favourite/', views.favourite, name="favourite"),
+    path('add-review/', comments_views.add_review, name="add-review"),
+    path('set-rating/', comments_views.set_rating, name="set-rating"),
     
 
     path('sent/', views.activation_sent_view, name="activation_sent"),

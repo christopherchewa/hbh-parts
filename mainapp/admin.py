@@ -4,8 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from .models import (Favourite,
-    Match,
+from .models import (Match,
     PropertyEntry,
     PropertyEntryImage, 
     Request,
@@ -47,10 +46,6 @@ class PropertyEntryImageInline(admin.TabularInline):
 class PropertyEntryAdmin(admin.ModelAdmin):
     inlines = [PropertyEntryImageInline]
     list_display = ('id', 'property_title', 'seller', 'is_available', )
-
-@admin.register(Favourite)
-class FavouriteAdmin(admin.ModelAdmin):
-    list_display = ('buyer', 'get_favourites')
 
 
 @admin.register(Match)

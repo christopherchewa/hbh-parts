@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+
+
+
+	
+	<div style="padding:1rem;">
+	{% if request.user.userprofile.user_type == "Seller" %}
+
+	<h2>All Matches</h2>
+		<h4>User: {{request.user}}</h4>
+		<h4>Type: {{request.user.userprofile.user_type}}</h4>
+		<p>Here you can track all your matches</p>
+<table class="table">
+		<tr>
+			<th>Match Id</th>
+			<th>Buyer</th>
+			<th>Location</th>
+			<th>Property Type</th>
+			<th>Bedrooms</th>
+			<th>Buyer Price</th>
+			<th>My Price</th>
+			<th>Request Status</th>
+
+
+			
+		</tr>
+
+		
+			{% for match in matches %}
+					
+			<tr>
+				<td>
+				##{{match.id}}
+				</td>
+				<td>
+				{{match.buyer_request.buyer.first_name}} {{match.buyer_request.buyer.last_name}}
+				</td>
+				<td>
+				{{match.property_entry.location}}
+				</td>
+				<td>
+				{{match.property_entry.property_type}}
+				</td>
+				<td style="padding-left:2.5rem;">
+					{{match.property_entry.no_of_bedrooms}}
+				</td>
+				<td>
+				Kshs. {{match.buyer_request.kshs_price}}
+				</td>
+				<td>
+				Kshs. {{match.property_entry.kshs_price}}
+				</td>
+				<td>
+				{{match.engagement_status}}	
+				</td>
+				<td>
+					{% if match.engagement_status == "Accepted" %}
+						<a class="btn view-contact-btn" data-matchid="{{match.id}}" data-toggle="modal" href="#myViewContactModal">View Contact</a>
+					{% endif %}
+				</td>
+			</tr>
+		
+		
+				
+			
+			
+		{% endfor %}
+	</table>
+
+
+	{% endif %}
+	</div>
+	
+
+	{% include "includes/view-contact-modal.html" %}
+	
+{% endblock content %}
+

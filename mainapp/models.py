@@ -139,6 +139,8 @@ class PropertyEntry(BasePropertyDetailModel):
 	is_available = models.BooleanField(default=True, null=False, blank=False)
 	other_details = models.TextField(blank=True, null=True)
 	
+	favourites = models.ManyToManyField(User, related_name='favourites', blank=True)
+
 	objects = PropertyEntryManager()
 	
 	class Meta:
@@ -151,11 +153,35 @@ class PropertyEntry(BasePropertyDetailModel):
 
 
 	@property
+	def kshs_price(self):
+		price_unformatted = self.price
+		price = f"{price_unformatted:,d}"
+		return price
+
+
+	@property
 	def comments(self):
 		property_entry = self
 		from comments.models import Comment
 		qs = Comment.objects.filter(property_entry=property_entry)
 		return qs
+
+
+	@property
+	def total_favourites(self):
+		return self.favourites.count()
+
+
+	def is_favourite(self, request):
+		user = request.user
+
+		if self.favourites.filter(id=user.id).exists():
+			is_favourite_property = True
+		else:
+			is_favourite_property = False
+
+		return is_favourite_property
+
 
 	def __str__(self):
 		retstr = str(self.pk) + "-" + str(self.seller) + "-" + str(self.location)
@@ -201,6 +227,15 @@ class Request(BasePropertyDetailModel):
 	def __str__(self):
 		retstr = str(self.pk) + "-" + str(self.buyer) + "-" + str(self.location)
 		return retstr
+
+	@property
+	def kshs_price(self):
+		price_unformatted = self.price
+		price = f"{price_unformatted:,d}"
+		return price
+
+
+
 
 	@property
 	def valid_match_count(self):		
@@ -295,13 +330,3 @@ def update_matches_buyer(sender, instance, created, **kwargs):
 post_save.connect(update_matches_buyer, sender=Request)
 
 
-
-class Favourite(BaseDateModel):
-	buyer = models.OneToOneField(User, on_delete=models.CASCADE)
-	property_entries = models.ManyToManyField(PropertyEntry)
-
-	def get_favourites(self):
-		return "\n".join([str(p) for p in self.property_entry.all()])
-
-	def __str__(self):
-		return str(self.buyer)

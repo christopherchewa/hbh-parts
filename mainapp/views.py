@@ -18,12 +18,12 @@ from django.utils import timezone
 
 
 from .models import User, UserProfile, PropertyEntry, Request, Match
-from .tokens import account_activation_token
+from .tokens import default_token_generator
 
 from .forms import UserLoginForm, UserSignUpForm, PropertyEntryForm, UserAccountForm, RequestEntryForm
 
-from comments.forms import CommentForm
-from comments.models import Comment
+from comments.forms import CommentForm, ReviewForm
+from comments.models import Comment, Review
 
 from django import forms
 
@@ -39,9 +39,6 @@ from django import forms
 # Decorators
 # login required 
 
-
-class EngageForm(forms.Form):
-	match_id = forms.IntegerField()
 
 
 def get_manual_field_add_listing(context, form, form_type):
@@ -63,6 +60,7 @@ def get_manual_field_add_listing(context, form, form_type):
 	password2 = 'password2'
 
 	content = "content"
+	ratings = "ratings"
 	
 
 	if form_type == "UserSignUpForm" or form_type == "UserAccountForm":
@@ -102,6 +100,9 @@ def get_manual_field_add_listing(context, form, form_type):
 	elif form_type == "CommentForm":
 		context["content_field"] = form.fields[content].get_bound_field(form, content)
 
+	elif form_type == "ReviewForm":
+		context["content_field"] = form.fields[content].get_bound_field(form, content)
+
 	return context
 
 
@@ -129,7 +130,7 @@ def activate(request, uidb64, token):
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
     # checking if the user exists, if the token is valid.
-    if user is not None and account_activation_token.check_token(user, token):
+    if user is not None and default_token_generator.check_token(user, token):
         # if valid set active true 
         user.is_active = True
         # set signup_confirmation true
@@ -222,7 +223,7 @@ def register(request, template_name="registration.html"):
 	'domain': current_site.domain,
 	'uid': urlsafe_base64_encode(force_bytes(user.pk)),
 	# method will generate a hash value with user related data
-	'token': account_activation_token.make_token(user),
+	'token': default_token_generator.make_token(user),
 	})
 
 			to_email = form.cleaned_data.get('email')
@@ -344,6 +345,7 @@ def explore(request, template_name="explore.html"):
 		matches_qs = Match.objects.valid_matches()
 		matches = matches_qs.filter(buyer_request__buyer=request.user)
 		context["entries"] = matches
+
 		
 	elif request.user.userprofile.user_type == "Seller":
 		properties = PropertyEntry.objects.filter(seller=request.user)
@@ -362,8 +364,10 @@ def matches(request, template_name="seller-matches.html"):
 
 	if request.user.userprofile.user_type == "Seller":
 		matches_qs = Match.objects.valid_matches()
-		matches = matches_qs.filter(property_entry__seller=request.user)
+		matches = matches_qs.filter(property_entry__seller=request.user).order_by('engagement_status')
 		context["matches"] = matches
+	elif request.user.userprofile.user_type == "Buyer":
+		return redirect('mainapp:explore')
 
 	return render(request, template_name, context)
 
@@ -388,9 +392,9 @@ def all_requests(request, template_name="all-requests.html"):
 def unmatched_requests(request, template_name="unmatched-requests.html"):
 	context = dict()
 	if request.user.userprofile.user_type == "Seller":
-		context["unmatched_requests"] = Request.objects.filter(is_active=True).exclude(match__property_entry__seller=request.user)
+		context["unmatched_requests"] = Request.objects.filter(is_active=True).exclude(match__property_entry__seller=request.user).order_by('location')
 	elif request.user.userprofile.user_type == "Buyer":
-		unmatched_requests = Request.objects.filter(buyer=request.user, is_active=True, request_status="Pending").filter(match__isnull=True)
+		unmatched_requests = Request.objects.filter(buyer=request.user, is_active=True, request_status="Pending").filter(match__isnull=True).order_by('location')
 		context["unmatched_requests"] = unmatched_requests
 	else:
 		raise PermissionDenied()
@@ -435,7 +439,31 @@ def list_inside(request, id=None, template_name="list-inside.html"):
 		return redirect('mainapp:explore')
 	context["property"] = property_entry
 
+	if property_entry.is_favourite(request):
 
+		css_class = 'fas'
+		fav_status = "Remove From Favourites"
+	else:
+		css_class = 'far' 
+		fav_status = "Add to Favourites"
+	context["css_class"] = css_class
+	context["add_or_remove"] = fav_status
+
+
+	################
+	#Rating stuff
+	this_review, created= Review.objects.get_or_create(buyer=request.user, seller=property_entry.seller)
+	print("B-{} - S-{} - thisbuyerrating-{} -avg_rating: {}".format(
+		request.user.email,
+		property_entry.seller.email,
+		this_review.rating,
+		this_review.average_rating))
+	context["ratings"] = this_review.rating
+	context["average_rating"] = this_review.average_rating
+
+	###############
+
+	
 	comment_form = CommentForm(request.POST or None)
 	form_type = "CommentForm"
 	context = get_manual_field_add_listing(context, comment_form, form_type)
@@ -453,31 +481,26 @@ def list_inside(request, id=None, template_name="list-inside.html"):
 			return HttpResponseRedirect(new_comment.property_entry.get_absolute_url()) 
 	context["comments"] = property_entry.comments
 	
-	
-	try:
-		match_id = request.GET['mid']
-	except:
-		match_id = request.session["match_id_orig"]
-	
-	request.session["match_id_orig"] = match_id
-	match = get_object_or_404(Match, id=match_id)
-	context["match"] = match
-	print(match.engagement_status)
+	if request.user.userprofile.user_type == "Buyer":	
+		try:
+			match_id = request.GET['mid']
+		except:
+			match_id = request.session["match_id_orig"]
+		
+		request.session["match_id_orig"] = match_id
+		match = get_object_or_404(Match, id=match_id)
+		context["match"] = match
+		print(match.engagement_status)
 		
 
 	return render(request, template_name, context)
 
 
 
+
 ######################################################################
 
 ####Some Javascript Related Stuff
-
-
-
-	
-	
-
 
 
 ###GET Requests
@@ -487,19 +510,22 @@ def list_inside(request, id=None, template_name="list-inside.html"):
 def view_match(request):
 	data = dict()
 
-	if request.method == "GET":
-		try:
-			match_id = request.GET['match_id']
-		except:
-			match_id = request.session["match_id_orig"]
-		
+	if request.user.userprofile.user_type == "Buyer":	
+		if request.method == "GET":
+			try:
+				match_id = request.GET['match_id']
+			except:
+				match_id = request.session["match_id_orig"]
+			
 		this_match = get_object_or_404(Match, id=match_id)
-		data["match_buyer"] = this_match.buyer_request.buyer.email
-		data["match_location"] = this_match.buyer_request.location
+		data["match_buyer_first_name"] = this_match.buyer_request.buyer.first_name
+		data["match_buyer_last_name"] = this_match.buyer_request.buyer.last_name
+		data["match_buyer_email"] = this_match.buyer_request.buyer.email
+		
 
 		data["match_seller_first_name"] = this_match.property_entry.seller.first_name
 		data["match_seller_last_name"] = this_match.property_entry.seller.last_name
-		data["match_seller_email"] = this_match.property_entry.seller.email
+		data["match_property_location"] = this_match.property_entry.location
 
 
 	return JsonResponse(data)
@@ -518,6 +544,32 @@ def view_contact(request):
 
 
 	return JsonResponse(data)
+
+
+@login_must
+def favourite(request):
+
+	data = dict()
+	if request.user.userprofile.user_type == "Buyer":
+		user = request.user
+		property_id = request.GET.get("property_entry_id")
+		this_property = get_object_or_404(PropertyEntry, id=property_id)
+		
+		if this_property.favourites.filter(id=user.id).exists():
+			data["remove_favourite"] = True
+			this_property.favourites.remove(user)
+			data["flash_message"] = "This Property Has Been Removed From Your Favourites"
+			data["fav_status"] = "Add to Favourites"
+		else:
+			data["add_favourite"] = True
+			this_property.favourites.add(user)
+			data["flash_message"] = "This Property Has Been Added To Your Favourites"
+			data["fav_status"] = "Remove From Favourites"
+
+
+	return JsonResponse(data)
+
+
 ###GET Requests
 
 ###POST Requests
