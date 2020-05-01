@@ -1,6 +1,6 @@
 /* @media */
 /* Custom size: > 1440px */
-@media only screen and (min-width:1441px) {
+@media only screen and (min-width:1920px) {
 
     .container {
         max-width: 1440px !important;
@@ -17,7 +17,18 @@
     .registrationWrapper .registrationForm .detailInner {
         padding: 4em 4em 3em;
     }
-
+    
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine {
+        padding: 30px 20px;
+    }
+    
+    .listInsideWrapper .listInsideInner .insideLeft .features,
+    .listInsideWrapper .listInsideInner .insideRight .homeDescription,
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine,
+    .listInsideWrapper .listInsideInner .insideRight .comments,
+    .listInsideWrapper .listInsideInner .insideRight .addComment {
+        padding: 30px 40px;
+    }
 }
 
 /* Custom size: <1440px */
@@ -29,7 +40,7 @@
  * Base structure
  */
     .cover .coverTitle .h1-responsive {
-        font-size: 40px;
+        
     }
     
     .cover .cover-item {
@@ -393,12 +404,16 @@
     }
 
     .listInsideWrapper .listInsideInner .insideLeft .headerLine,
+    .listInsideWrapper .listInsideInner .insideLeft .reviews {
+        padding: 30px 10px;
+    }
+    
     .listInsideWrapper .listInsideInner .insideLeft .features,
     .listInsideWrapper .listInsideInner .insideRight .homeDescription,
     .listInsideWrapper .listInsideInner .insideRight .buttonsLine,
     .listInsideWrapper .listInsideInner .insideRight .comments,
     .listInsideWrapper .listInsideInner .insideRight .addComment {
-        padding: 30px 20px;
+        padding: 30px 40px;
     }
 
     .listInsideWrapper .listInsideInner .insideRight .comments {
@@ -447,7 +462,6 @@
     }
 
     .listInsideWrapper .listInsideInner .insideRight .homeDesc {
-        font-size: 14px;
         line-height: 23px;
         margin-top: 20px;
     }
@@ -474,22 +488,21 @@
     }
 
     .listInsideWrapper .listInsideInner .insideRight .showMap {
-        font-size: 11px;
         margin-left: 31px;
     }
 
     .listInsideWrapper .listInsideInner .insideRight .buttonsLine .btnCall {
         font-size: 12px;
-        padding: 10px 30px;
+        padding-left: 7px;
+        padding-right: 7px;
     }
 
     .listInsideWrapper .listInsideInner .insideRight .buttonsLine .btnCall i {
-        margin-right: 12px;
+        margin-right: 5px;
     }
 
     .listInsideWrapper .listInsideInner .insideRight .buttonsLine .othereButtons a {
-        padding: 5px 10px;
-        font-size: 12px;
+        padding: 10px 10px;
     }
 
     .listInsideWrapper .listInsideInner .insideRight .buttonsLine .othereButtons a i {
@@ -512,11 +525,10 @@
     }
 
     .listInsideWrapper .listInsideInner .insideRight .comments .commentBody .btnSeeMore {
-        font-size: 12px;
+        
     }
 
     .listInsideWrapper .listInsideInner .insideRight .addComment .btnSubmit {
-        font-size: 12px;
         padding: 10px 30px;
     }
     
@@ -546,7 +558,7 @@
  * Base structure
  */
     .cover .coverTitle .h1-responsive {
-        font-size: 40px;
+        
     }
     
     .cover .cover-item {
@@ -957,7 +969,7 @@
     }
 
     .listInsideWrapper .listInsideInner .insideRight .showMap {
-        font-size: 12px;
+        
     }
 
     .listInsideWrapper .listInsideInner .insideRight .commentTxt,
@@ -1045,7 +1057,7 @@
     }
     
     .cover .coverTitle .h1-responsive {
-        font-size: 40px;
+        
     }
     
     .cover .cover-item {
@@ -1379,7 +1391,7 @@
     }
 
     .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .select-wrapper:nth-child(even) {
-        margin-left: 2%;
+        
     }
 
     .exploreWrapper .explore .exploreSearch .tab-content .tab-pane .form-check {
@@ -1404,6 +1416,36 @@
         width: auto;
     }
 
+    /* listInside Page */
+    .listInsideWrapper .listInsideInner .insideLeft .headerLine {
+        padding: 30px 10px;
+    }
+    
+    .listInsideWrapper .listInsideInner .insideLeft .features,
+    .listInsideWrapper .listInsideInner .insideLeft .reviews,
+    .listInsideWrapper .listInsideInner .insideRight .homeDescription,
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine,
+    .listInsideWrapper .listInsideInner .insideRight .comments,
+    .listInsideWrapper .listInsideInner .insideRight .addComment {
+        padding: 30px 10px;
+    }
+    
+    
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .btnCall {
+        font-size: 12px;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .btnCall i {
+        margin-right: 5px;
+    }
+
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .othereButtons a {
+        /*padding: 10px 10px;*/
+    }
+    
+    
     /* addListing Page */
     .addListingWrapper {}
 
@@ -1645,7 +1687,6 @@
     /* Footer section */
     footer {
         text-align: center;
-        margin-top: 50px;
     }
 
     footer .row div[class^=col-xl] {
@@ -1800,7 +1841,7 @@
     }
 
     .exploreWrapper .listings .listingItem .itemCover .price {
-        font-size: 15px;
+        
     }
 
     .exploreWrapper .listings .listingItem .itemDesc .itemName {
@@ -1919,7 +1960,6 @@
 
     /* listInside page */
     .listInsideWrapper .listInsideInner .insideLeft .headerLine .homeNameSec h5 {
-        font-size: 18px;
     }
 
     .listInsideWrapper .listInsideInner .insideLeft .headerLine .homeNameSec span {
@@ -1948,12 +1988,12 @@
 
     .listInsideWrapper a.btnBack,
     .listInsideWrapper .listInsideInner .insideLeft .features .featuresItemList .featuresItem {
-        font-size: 12px;
+        font-size: 13px;
     }
 
     .listInsideWrapper .listInsideInner .insideRight .homeAdress,
     .listInsideWrapper .listInsideInner .insideRight .homeDesc {
-        font-size: 12px;
+        
     }
 
     .listInsideWrapper .listInsideInner .insideRight .homefeatures p {
@@ -1961,7 +2001,7 @@
     }
 
     .listInsideWrapper .listInsideInner .insideRight .showMap {
-        font-size: 12px;
+        
     }
 
     .listInsideWrapper .listInsideInner .insideRight .commentTxt,
@@ -1970,12 +2010,17 @@
     }
 
     .listInsideWrapper .listInsideInner .insideRight .homeAdress {
-        font-size: 11px;
+        
     }
+    
+    .listInsideWrapper .listInsideInner .insideRight .buttonsLine .btnCall {
+    padding-left: 20px;
+    padding-right: 20px;
+}
 
     .listInsideWrapper .listInsideInner .insideRight .buttonsLine .btnCall,
     .listInsideWrapper .listInsideInner .insideRight .addComment .btnSubmit {
-        padding: 8px 25px;
+        margin: 10px 2px;
     }
 }
 
@@ -2325,16 +2370,16 @@
 
 
     .listInsideWrapper .listInsideInner .insideRight .homeAdress {
-        font-size: 10px;
+        
     }
 
     .listInsideWrapper .listInsideInner .insideRight .showMap {
-        font-size: 10px;
+        
     }
 
     .listInsideWrapper a.btnBack,
     .listInsideWrapper .listInsideInner .insideLeft .features .featuresItemList .featuresItem {
-        font-size: 10px;
+        
     }
 
     .listInsideWrapper a.btnBack img {
@@ -2363,17 +2408,16 @@
 
     .listInsideWrapper .listInsideInner .insideRight .commentTxt,
     .listInsideWrapper .listInsideInner .insideRight textarea {
-        font-size: 10px;
     }
 
     .listInsideWrapper .listInsideInner .insideRight .addComment .btnSubmit,
     .listInsideWrapper .listInsideInner .insideRight .buttonsLine .btnCall {
-        font-size: 11px;
+        
     }
 
     .listInsideWrapper .listInsideInner .insideRight .homeAdress,
     .listInsideWrapper .listInsideInner .insideRight .homeDesc {
-        font-size: 13px;
+        /*font-size: 13px;*/
     }
 
     .listInsideWrapper .listInsideInner .insideRight .buttonsLine {
@@ -2382,7 +2426,6 @@
     }
 
     .listInsideWrapper .listInsideInner .insideRight .buttonsLine .btnCall {
-        margin: 0;
         flex: 0 0 100%;
         display: flex;
         justify-content: center;
@@ -2393,12 +2436,12 @@
         display: flex;
         justify-content: flex-end;
         flex: 0 0 100%;
-        margin-top: 20px;
+        margin-top: 2rem;
     }
 
     .listInsideWrapper .listInsideInner .insideRight .buttonsLine .othereButtons a,
     .listInsideWrapper .listInsideInner .insideRight .buttonsLine .othereButtons a i {
-        font-size: 11px;
+        
     }
 }
 
@@ -2429,7 +2472,7 @@
         padding: 0;
 }
     .sectionTitle h1 {
-    font-size: 38px;
+    
 }
     
     
@@ -2551,7 +2594,7 @@
     }
 
     .exploreWrapper .listings .listingItem .itemCover .price {
-        font-size: 14px;
+        
     }
 
     .exploreWrapper .listings .listingItem .itemCover .quickView {
@@ -2644,7 +2687,6 @@
     }
 
     .listInsideWrapper .listInsideInner .insideLeft .headerLine .homeNameSec h5 {
-        font-size: 20px;
     }
 
     .listInsideWrapper .listInsideInner .insideLeft .headerLine .homePriceSec {
@@ -2671,6 +2713,7 @@
     .listInsideWrapper .listInsideInner .insideRight .homefeatures p {
         flex: 0 0 50%;
         margin-right: 0;
+        padding: 8px 0;
     }
 
     .listInsideWrapper .listInsideInner .insideRight .homeAdress {
@@ -3091,7 +3134,7 @@
 
     .listInsideWrapper .listInsideInner .insideRight .homeAdress,
     .listInsideWrapper .listInsideInner .insideRight .homeDesc {
-        font-size: 12px;
+        
     }
 
     .register-right {

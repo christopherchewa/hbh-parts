@@ -9,144 +9,158 @@
 
 
 {% include "includes/remove-request-modal.html" %}
-	
-	<div style="padding:1rem;">
-	{% if request.user.userprofile.user_type == "Buyer" %}
 
-	<h2>Your Unmatched Requests</h2>
-		<h4>User: {{request.user}}</h4>
-		<h4>Type: {{request.user.userprofile.user_type}}</h4>
-		<p>These are your umatched requests.</p>
-		<p>once a match is found, the request will be removed from this list and put in the explore page</p>
+<div class="account">
+    <div class="container">
+        
+    <a class="btnBack text-dark" href="{% url 'mainapp:account' %}">
+      <img src="{% static 'content/img/global/backArrowBlue.svg' %}" alt="backArrow"> Back
+    </a>
+        {% if request.user.userprofile.user_type == "Buyer" %}
 
-		{% if unmatched_requests.count > 0 %}
-	<table class="table">
-		<tr>
-			<th>Request Id</th>
-			<th>Location</th>
-			<th>Property Type</th>
-			<th>Bedrooms</th>
-			<th>Bathrooms</th>
-			<th>My Price</th>
-			
-		</tr>
+        <div class="sectionTitle">
+            <center><h3>All Unmatched Requests</h3></center>
+            <h5><span>User:</span> {{request.user.get_full_names}} ({{request.user.userprofile.user_type}})</h5>
+            
+            <p>When a property match is made, the request will be automatically updated</p>
+        </div>
 
-		
-			{% for r in unmatched_requests %}		
-			<tr>
-				<td>
-				##{{r.id}}
-				</td>
-				<td>
-				{{r.location}}
-				</td>
-				<td>
-				{{r.property_type}}
-				</td>
-				<td style="padding-left:2.5rem;">
-				{{r.no_of_bedrooms}}
-				</td>
-				<td style="padding-left:2.5rem;">
-				{{r.no_of_bathrooms}}
-				</td>
-				<td>
-				Kshs. {{r.kshs_price}}
-				</td>
-				<td>
-					{% if r.is_active %}
-					<a class="btn unmatched-request-delete" data-id="{{r.id}}" data-toggle="modal" href="#myDeleteModal">Remove Request</a>
-					{% else %}
-					<a class="btn unmatched-request-activate" data-id="{{r.id}}" data-toggle="modal" href="#myActivateModal">Activate Request</a>
-					{% endif %}
-				</td>
-			</tr>
-		
-		
-				
-			
-			
-		{% endfor %}
-	</table>
-	{% else %}
-	<br>
-		<br>
-	<center>
+        {% if unmatched_requests.count > 0 %}
+        <table class="table table-responsive-lg table-hover table-sm">
+            <caption>List of all unmatched requests</caption>
+            <thead class="thead-light">
+                <tr>
+                    <th>Request Id</th>
+                    <th>Location</th>
+                    <th>Property Type</th>
+                    <th>Bedrooms</th>
+                    <th>Bathrooms</th>
+                    <th>My Price</th>
+                    <th>Action</th>
 
-
-	<h4>You have no unmatched requests. <a href="{% url 'mainapp:explore' %}">Click here</a> to see your matches</h4>
-</center>
-	{% endif %}
+                </tr>
+            </thead>
+            
+            {% for r in unmatched_requests %}
+            <tr>
+                <td>
+                    ##{{r.id}}
+                </td>
+                <td>
+                    {{r.location}}
+                </td>
+                <td>
+                    {{r.property_type}}
+                </td>
+                <td style="padding-left:2rem;">
+                    {{r.no_of_bedrooms}}
+                </td>
+                <td style="padding-left:2rem;">
+                    {{r.no_of_bathrooms}}
+                </td>
+                <td>
+                    Kshs. {{r.kshs_price}}
+                </td>
+                <td style="padding-left:2rem;">
+                    {% if r.is_active %}
+                    <a class="btn-md unmatched-request-delete" data-id="{{r.id}}" data-toggle="modal" href="#myDeleteModal"><i class="far fa-trash-alt"></i></a>
+                    {% else %}
+                    <a class="btn-md unmatched-request-activate" data-id="{{r.id}}" data-toggle="modal" href="#myActivateModal">Activate Request</a>
+                    {% endif %}
+                </td>
+            </tr>
 
 
 
-	{% elif request.user.userprofile.user_type == "Seller" %}
-		<h4>User: {{request.user}}</h4>
-		<h4>Type: {{request.user.userprofile.user_type}}</h4>
-		<h2>Your Unmatched Requests</h2>
-		<p>These are buyer requests that aren't matched to any of your properties</p>
-		<p>Take this opportunity to suggest new property to match with the below requests</p>
-	
 
-	{% if unmatched_requests.count > 0 %}
-	<table class="table">
-		<tr>
-			<th>Buyer</th>
-			<th>Location</th>
-			<th>Property Type</th>
-			<th>Bedrooms</th>
-			<th>Bathrooms</th>
-			<th>Buyer's Price</th>
-			<th>Suggest Property</th>
-		</tr>
 
-		
-			{% for r in unmatched_requests %}
-				
-					
-			<tr>
-				<td>
-				{{r.buyer.first_name}} {{r.buyer.last_name}}
-				</td>
-				<td>
-				{{r.location}}
-				</td>
-				<td>
-				{{r.property_type}}
-				</td>
-				<td style="padding-left:2.5rem;">
-				{{r.no_of_bedrooms}}
-				</td>
-				<td style="padding-left:2.5rem;">
-				{{r.no_of_bathrooms}}
-				</td>
-				<td>
-				{{r.location}}
-				</td>
-				<td>
-				Kshs. {{r.kshs_price}}
-				</td>
-	
-				<td>
-					<a class="btn sign" href="{% url 'mainapp:add-listing' %}">Suggest New Property</a>
-				</td>
-			</tr>
-		
-		
-				
-			
-			
-		{% endfor %}
-	</table>
-	{% else %}
-	<br>
-		<br>
-	<center>
-	<h4>You have no unmatched requests. <a href="{% url 'mainapp:matches' %}">Click here</a> to see your matches</h4>
-</center>
-{% endif %}
+            {% endfor %}
+        </table>
+        {% else %}
+        <br>
+        <br>
+        <center>
 
-	{% endif %}
-	</div>
-	
-	
+
+            <h4>You have no unmatched requests. <a href="{% url 'mainapp:explore' %}">Click here</a> to see your matches</h4>
+        </center>
+        {% endif %}
+
+
+
+        {% elif request.user.userprofile.user_type == "Seller" %}
+        <div class="sectionTitle">
+            <center><h3>All Unmatched Requests</h3></center>
+            <h5><span>User:</span> {{request.user.get_full_names}} ({{request.user.userprofile.user_type}})</h5>
+            <p>List of buyer requests available to match to your properties.</p>
+            <p>Take this opportunity to make property suggestions to match the requests below.</p>
+        </div>
+
+
+        {% if unmatched_requests.count > 0 %}
+        <table class="table table-responsive-lg table-hover table-sm">
+            <caption>List of unmatched requests</caption>
+            <thead class="thead-light">
+                <tr>
+                    <th>Buyer</th>
+                    <th>Location</th>
+                    <th>Property Type</th>
+                    <th>Bedrooms</th>
+                    <th>Bathrooms</th>
+                    <th>Location</th>
+                    <th>Buyer's Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            {% for r in unmatched_requests %}
+
+
+            <tr>
+                <td>
+                    {{r.buyer.get_full_names}}
+                </td>
+                <td>
+                    {{r.location}}
+                </td>
+                <td>
+                    {{r.property_type}}
+                </td>
+                <td style="padding-left:2rem;">
+                    {{r.no_of_bedrooms}}
+                </td>
+                <td style="padding-left:2rem;">
+                    {{r.no_of_bathrooms}}
+                </td>
+                <td>
+                    {{r.location}}
+                </td>
+                <td>
+                    Kshs. {{r.kshs_price}}
+                </td>
+
+                <td>
+                    <a class="btn-md sign" href="{% url 'mainapp:add-listing' %}?location={{r.location}}">Suggest Property</a>
+                </td>
+            </tr>
+
+
+
+
+
+            {% endfor %}
+        </table>
+        {% else %}
+        <br>
+        <br>
+        <center>
+            <h4>You have no unmatched requests. <a href="{% url 'mainapp:matches' %}">Click here</a> to see your matches</h4>
+        </center>
+        {% endif %}
+
+        {% endif %}
+    </div>
+</div>
+
+
 {% endblock content %}

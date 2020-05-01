@@ -3,6 +3,7 @@ from django.contrib.auth import (
 	get_user_model,
 	login,
 	logout)
+
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import PermissionDenied, ValidationError
@@ -16,12 +17,10 @@ from django.utils.encoding import force_bytes
 from django.utils.encoding import force_text
 from django.utils import timezone
 
-
 from .models import User, UserProfile, PropertyEntry, Request, Match
 from .tokens import default_token_generator
 
 from .forms import UserLoginForm, UserSignUpForm, PropertyEntryForm, UserAccountForm, RequestEntryForm
-
 from comments.forms import CommentForm, ReviewForm
 from comments.models import Comment, Review
 
@@ -39,6 +38,9 @@ from django import forms
 # Decorators
 # login required 
 
+# User = get_user_model()
+
+
 
 
 def get_manual_field_add_listing(context, form, form_type):
@@ -50,7 +52,7 @@ def get_manual_field_add_listing(context, form, form_type):
 	price = "price"
 	dsq = "dsq"
 	other_details = "other_details"
-	property_number = "property_number"
+	# property_number = "property_number"
 
 	first_name = 'first_name'
 	last_name = 'last_name'
@@ -86,7 +88,7 @@ def get_manual_field_add_listing(context, form, form_type):
 		context["price_field"] = form.fields[price].get_bound_field(form, price)
 		context["dsq_field"] = form.fields[dsq].get_bound_field(form, dsq)
 		context["other_details_field"] = form.fields[other_details].get_bound_field(form, other_details)
-		context["property_number_field"] = form.fields[property_number].get_bound_field(form, property_number)
+		# context["property_number_field"] = form.fields[property_number].get_bound_field(form, property_number)
 		context["other_details_field"] = form.fields[other_details].get_bound_field(form, other_details)
 
 	elif form_type == "RequestEntryForm":
@@ -117,6 +119,8 @@ def login_must(f):
 
 # ======================================================
 
+def reset_password(request, template_name="reset-password.html"):
+	pass
 
 
 def activation_sent_view(request, template_name="activation_sent.html"):
@@ -285,6 +289,11 @@ def account(request, template_name="account.html"):
 		requests = Request.objects.filter(buyer=request.user)
 		context["all_requests"] = requests
 		context["all_requests_count"] = requests.count()
+
+
+		favourites = PropertyEntry.objects.filter(favourites=request.user)
+		context["favourites"] = favourites
+		print("favs:{}".format(favourites))
 	
 	if request.method == "POST":
 		if form.is_valid():
@@ -306,9 +315,25 @@ def add_listing(request, template_name="add-listing.html"):
 	context = dict()
 	
 	if request.user.userprofile.user_type == "Seller":
-		form = PropertyEntryForm(request.POST or None)
+		try:
+			location = request.GET['location']
+		except:
+			location = None
+			
+		if request.session.get("suggest"):
+			form = PropertyEntryForm(request.POST or None, suggest=True, location=location)
+			request.session["suggest"] = False
+		elif not request.session.get("suggest") and location is not None:
+			request.session["suggest"] = True
+			form = PropertyEntryForm(request.POST or None, suggest=True, location=location)
+		else:
+			form = PropertyEntryForm(request.POST or None, suggest=True)
+
+
+
 		form_type = "PropertyEntryForm"
 		context = get_manual_field_add_listing(context, form, form_type)
+
 		# context["form"] = seller_form
 	elif request.user.userprofile.user_type == "Buyer":
 		form = RequestEntryForm(request.POST or None)
@@ -330,12 +355,29 @@ def add_listing(request, template_name="add-listing.html"):
 				request_entry.buyer = request.user
 				request_entry.request_status = "Pending"
 				request_entry.is_active = True
+
 				request_entry.save()
+
 			
 			return redirect('mainapp:account')
 	context["form"] = form
 	return render(request, template_name, context)
 
+def edit_listing(request, id=None, template_name="add-listing.html"):
+
+	context	= dict()
+
+	property_entry = get_object_or_404(PropertyEntry, id=id)
+
+	if request.user.userprofile.user_type == "Seller":
+		form = PropertyEntryForm(request.POST or None, instance=property_entry)
+		form_type = "PropertyEntryForm"
+		context = get_manual_field_add_listing(context, form, form_type)
+		if form.is_valid():
+			print("cleaned_data: {}".format(form.cleaned_data))
+	
+
+	return render(request, template_name, context)
 
 @login_must
 def explore(request, template_name="explore.html"):
@@ -393,6 +435,7 @@ def unmatched_requests(request, template_name="unmatched-requests.html"):
 	context = dict()
 	if request.user.userprofile.user_type == "Seller":
 		context["unmatched_requests"] = Request.objects.filter(is_active=True).exclude(match__property_entry__seller=request.user).order_by('location')
+		request.session["suggest"] = True
 	elif request.user.userprofile.user_type == "Buyer":
 		unmatched_requests = Request.objects.filter(buyer=request.user, is_active=True, request_status="Pending").filter(match__isnull=True).order_by('location')
 		context["unmatched_requests"] = unmatched_requests
@@ -453,11 +496,6 @@ def list_inside(request, id=None, template_name="list-inside.html"):
 	################
 	#Rating stuff
 	this_review, created= Review.objects.get_or_create(buyer=request.user, seller=property_entry.seller)
-	print("B-{} - S-{} - thisbuyerrating-{} -avg_rating: {}".format(
-		request.user.email,
-		property_entry.seller.email,
-		this_review.rating,
-		this_review.average_rating))
 	context["ratings"] = this_review.rating
 	context["average_rating"] = this_review.average_rating
 
@@ -490,7 +528,7 @@ def list_inside(request, id=None, template_name="list-inside.html"):
 		request.session["match_id_orig"] = match_id
 		match = get_object_or_404(Match, id=match_id)
 		context["match"] = match
-		print(match.engagement_status)
+		
 		
 
 	return render(request, template_name, context)
@@ -513,7 +551,7 @@ def view_match(request):
 	if request.user.userprofile.user_type == "Buyer":	
 		if request.method == "GET":
 			try:
-				match_id = request.GET['match_id']
+				match_id = request.GET['mid']
 			except:
 				match_id = request.session["match_id_orig"]
 			

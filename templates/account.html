@@ -14,7 +14,7 @@
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active" id="acccount-tab" data-toggle="pill" href="#acccount-app" role="tab" aria-controls="acccount-app" aria-selected="true"><i class="fas fa-user"></i> <span>My account</span></a>
                         <a class="nav-link" id="listing-tab" data-toggle="pill" href="#listing-app" role="tab" aria-controls="listing-app" aria-selected="false"><i class="fas fa-th-list"></i> <span>My {% if request.user.userprofile.user_type == "Buyer" %}Matches{% elif request.user.userprofile.user_type == "Seller" %}Properties{% endif %}</span></a>
-                        <a class="nav-link" id="notifications-tab" data-toggle="pill" href="#notifications-app" role="tab" aria-controls="notifications-app" aria-selected="false"><i class="fas fa-inbox"></i> <span>Notifications </span> <span class="badge badge-light"> 9</span><span class="sr-only">unread messages</span></a>
+                        <a class="nav-link" id="notifications-tab" data-toggle="pill" href="#notifications-app" role="tab" aria-controls="notifications-app" aria-selected="false"><i class="fas fa-inbox"></i> <span>Notifications </span> <span class="badge"> {{matched_requests_count}} </span><span class="sr-only">unread messages</span></a>
                         
                         {% if request.user.userprofile.user_type == "Buyer" %}
                         <a class="nav-link" id="favorite-tab" data-toggle="pill" href="#favorite-app" role="tab" aria-controls="favorite-app" aria-selected="false"><i class="fas fa-heart"></i> <span>Favorite listings</span></a>
@@ -30,7 +30,7 @@
                         <div class="tab-pane show active" id="acccount-app" role="tabpanel" aria-labelledby="acccount-tab">
                             <div class="accountInner">
                                 <p class="customerName">Hello,
-                                    <span>{{request.user}} - {% if request.user.userprofile.user_type == "Buyer" %}Buyer{% elif request.user.userprofile.user_type == "Seller" %}Seller{% endif %}</span>
+                                    <span>{{request.user.get_full_names}} - {% if request.user.userprofile.user_type == "Buyer" %}Buyer{% elif request.user.userprofile.user_type == "Seller" %}Seller{% endif %}</span>
                                 </p>
 
                                 
@@ -227,101 +227,44 @@
                             <div class="favList">
                                 <h6>Favorite listing</h6>
                                 <div class="lists">
+                                    {% for fav_property in favourites %}
                                     <div class="listItem">
                                         <div class="itemCover">
                                             <img src="{% static 'content/img/listing-6.png' %}" alt="itemCover">
                                             <div class="price">
-                                                $75 / <span>day</span>
+                                                Kshs. {{fav_property.kshs_price}}
                                             </div>
 
                                             <div class="like">
-                                                <i class="fas fa-heart"></i>
+                                                <a href="#chewa"><i class="fas fa-heart"></i></a>
                                             </div>
                                         </div>
 
                                         <div class="itemBody">
-                                            <p class="propertyName">Kilimani Green</p>
+                                            <p class="propertyName">{{fav_property.property_title}}</p>
 
                                             <div class="propertyInfo">
                                                 <p>
-                                                    <span>Room</span>
-                                                    2
+                                                    <span>Bedrooms</span>
+                                                    {{fav_property.no_of_bedrooms}}
                                                 </p>
                                                 <p>
-                                                    <span>Bathroom</span>
-                                                    2
+                                                    <span>Bathrooms</span>
+                                                    {{fav_property.no_of_bedrooms}}
                                                 </p>
                                                 <p>
-                                                    <span>Bed</span>
-                                                    1
+                                                    <span>DSQ</span>
+                                                    {% if fav_property.dsq %}
+                                                    Available
+                                                    {% else %}
+                                                    Not Available
+                                                    {% endif %}
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="listItem">
-                                        <div class="itemCover">
-                                            <img src="{% static 'content/img/listing-5.png' %}" alt="itemCover">
-                                            <div class="price">
-                                                $75 / <span>day</span>
-                                            </div>
-
-                                            <div class="like">
-                                                <i class="fas fa-heart"></i>
-                                            </div>
-                                        </div>
-
-                                        <div class="itemBody">
-                                            <p class="propertyName">Kilimani Green</p>
-
-                                            <div class="propertyInfo">
-                                                <p>
-                                                    <span>Room</span>
-                                                    2
-                                                </p>
-                                                <p>
-                                                    <span>Bathroom</span>
-                                                    2
-                                                </p>
-                                                <p>
-                                                    <span>Bed</span>
-                                                    1
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="listItem">
-                                        <div class="itemCover">
-                                            <img src="{% static 'content/img/listing-3.png' %}" alt="itemCover">
-                                            <div class="price">
-                                                $75 / <span>day</span>
-                                            </div>
-
-                                            <div class="like">
-                                                <i class="fas fa-heart"></i>
-                                            </div>
-                                        </div>
-
-                                        <div class="itemBody">
-                                            <p class="propertyName">Kilimani Green</p>
-
-                                            <div class="propertyInfo">
-                                                <p>
-                                                    <span>Room</span>
-                                                    2
-                                                </p>
-                                                <p>
-                                                    <span>Bathroom</span>
-                                                    2
-                                                </p>
-                                                <p>
-                                                    <span>Bed</span>
-                                                    1
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -378,6 +321,8 @@
                         <div class="tab-pane" id="detail-app" role="tabpanel" aria-labelledby="detail-tab">
                             <h6>Your Account details</h6>
                                <div class="detailInner">
+                                   
+                                     <form method="POST">
                                 {% if form.errors %}
                                     {% for field in form %}
                                         {% for error in field.errors %}
@@ -395,62 +340,62 @@
 
                                 
                                 <div class="inputGroup">
-                                     <form method="POST">
                                     {% csrf_token %}
                                
-                                    <div class="md-form">
+                                    <div class="md-form d-flex col-sm-12 col-md-6 pl-0">
                                         {{first_name_field}}
                                         <label for="name">First name</label>
                                     </div>
 
-                                    <div class="md-form">
+                                    <div class="md-form d-flex col-sm-12 col-md-6 pl-0">
                                         {{last_name_field}}
                                         <label for="surname">Last name</label>
                                     </div>
                                 </div>
-                                <div class="inputGroup">
-                                    <div class="md-form mb-0">
+                                         
+                                <div class="inputGroup mb-3">
+                                    <div class="md-form d-flex col-sm-12 col-md-6 pl-0">
                                         <input type="text" id="username" class="form-control mb-0">
                                         <label for="username">Display name</label>
                                     </div>
                                     <span>This will be how your name will be displayed in the account section and in reviews</span>
                                 </div>
 
-                                <div class="inputGroup">
-                                    <div class="md-form">
+                                <div class="inputGroup py-3 mb-3">
+                                    <div class="md-form d-flex col-sm-12 col-md-6 pl-0">
                                         {{email_field}}
                                         <label for="email">Email adress</label>
                                     </div>
 
-                                    <div class="md-form">
+                                    <div class="md-form d-flex col-sm-12 col-md-6 pl-0">
                                         {{phone_number_field}}
                                         <label for="phone_number">Phone number</label>
                                     </div>
                                 </div>
 
-                           <!--      <p>Password changes</p>
+                                 <!--<p>Password changes</p>
 
                                 <div class="inputGroup">
-                                    <div class="md-form">
+                                    <div class="md-form col-6 p-0">
                                         <input type="password" id="currPass" class="form-control">
                                         <label for="currPass">Current password (leave blank to leave unchanged)</label>
                                     </div>
                                 </div>
 
                                 <div class="inputGroup">
-                                    <div class="md-form">
+                                    <div class="md-form col-6 p-0">
                                         <input type="password" id="newPass" class="form-control">
                                         <label for="newPass">New password (leave blank to leave unchanged)</label>
                                     </div>
                                 </div>
 
                                 <div class="inputGroup">
-                                    <div class="md-form">
+                                    <div class="md-form col-6 p-0">
                                         <input type="password" id="comPass" class="form-control">
                                         <label for="comPass">Confirm new password</label>
                                     </div>
-                                </div>
- -->
+                                </div>-->
+ 
                                 <button class="btn btnSave" type="submit">Save Changes</button>
                                 </form>
                             </div>

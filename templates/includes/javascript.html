@@ -10,6 +10,24 @@
 
 <script type="text/javascript">
 
+var bed_number_field = document.getElementById('id_no_of_bedrooms');
+var bath_number_field = document.getElementById('id_no_of_bathrooms');
+
+// Listen for input event on numInput.
+function validateLetters(field){
+
+	if (field){
+		field.onkeydown = function(e) {
+    		if(!((e.keyCode > 95 && e.keyCode < 106) || (e.keyCode > 47 && e.keyCode < 58) || e.keyCode == 8)) {
+        	return false;
+    		}
+		}
+	}
+}
+
+validateLetters(bed_number_field);
+validateLetters(bath_number_field);
+
 
 	function showFlashMessage(message){
 		
@@ -90,7 +108,7 @@
 		//view contact
 		$('.view-contact-btn').on('click', function(){
 			var match_id = $(this).attr('data-matchid');
-			console.log(match_id);
+			
 			$.ajax({
 	 			 url: '/view-contact/',
 	  			type: 'get',
@@ -114,6 +132,7 @@
 	
 
 		$('.view-match').on('click', function(){
+			console.log("viewmatch clicked");
 			
 			var match_id = localStorage.getItem("match_id");
 			
@@ -242,6 +261,16 @@ setRatingFunction("2");
 setRatingFunction("3");
 setRatingFunction("4");
 setRatingFunction("5");
+
+
+
+//before this, one had to click on the field, to activate it. 
+//you could only click past the label in the input field
+//fixed
+$('label').click(function() {
+       $(this)[0].classList.add('active');
+
+});
 
 	});
 </script>

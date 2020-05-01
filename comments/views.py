@@ -1,14 +1,19 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 # Create your views here.
 from mainapp.models import PropertyEntry
 from mainapp.views import get_manual_field_add_listing
 from .forms import ReviewForm
-from .models import Review
+from .models import Comment, Review
 
 User = get_user_model()
 
+
+
+
+@login_required
 def add_review(request):
 	review_form = ReviewForm(request.POST or None)
 	if request.method == "POST":
@@ -24,6 +29,8 @@ def add_review(request):
 		return redirect('mainapp:explore')
 	
 
+
+@login_required
 def set_rating(request):
 	data = dict()
 	print("seting")
@@ -38,3 +45,30 @@ def set_rating(request):
 	review.save() 
 	
 	return JsonResponse(data)
+
+
+@login_required
+def property_comments(request, id=None, template_name="property-comments.html"):
+	context = dict()
+
+	property_entry = get_object_or_404(PropertyEntry, id=id)
+	comments_qs = Comment.objects.filter(property_entry=property_entry)
+	context["property"] = property_entry
+	context["comments"] = comments_qs
+
+	return render(request, template_name, context)
+
+
+@login_required
+def seller_reviews(request, id=None, template_name="user-reviews.html"):
+	context = dict()
+	property_entry = get_object_or_404(PropertyEntry, id=id)
+	seller = get_object_or_404(User, id=property_entry.seller.id)
+
+	seller_reviews_qs = Review.objects.filter(seller=seller, content__isnull=False)
+	context["property"] = property_entry
+	context["seller_reviews"] = seller_reviews_qs
+
+
+
+	return render(request, template_name, context)

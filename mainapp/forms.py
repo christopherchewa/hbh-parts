@@ -92,9 +92,14 @@ class PropertyEntryForm(forms.ModelForm):
 	property_type = forms.ChoiceField(widget=forms.Select(attrs={'class': "form-control"}), choices=CHOICES)
 	other_details = forms.CharField(widget=forms.Textarea(attrs={'class': "form-control"}), max_length=255, required=True)
 	price = forms.CharField(widget=forms.TextInput(attrs={'class': "form-control"}), max_length=255, required=True)
-	no_of_bedrooms = forms.IntegerField(widget=forms.NumberInput(attrs={'class': "form-control"}), required=True)
-	no_of_bathrooms = forms.IntegerField(widget=forms.NumberInput(attrs={'class': "form-control"}), required=True)
+	no_of_bedrooms = forms.IntegerField(widget=forms.NumberInput(attrs={'class': "form-control", 'min':"1"}), required=True)
+	no_of_bathrooms = forms.IntegerField(widget=forms.NumberInput(attrs={'class': "form-control", 'min':"1"}), required=True)
 	dsq = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': "form-check-input", 'id':"materialChecked6"}), required=True)
+
+	def __init__(self, request, suggest=None, location=None, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		if suggest:
+			self.fields['location'].initial = location
 
 	class Meta:
 		model = PropertyEntry
@@ -105,8 +110,8 @@ class RequestEntryForm(forms.ModelForm):
 	location = forms.CharField(widget=forms.TextInput(attrs={'class': "form-control"}), max_length=255, required=True)
 	property_type = forms.ChoiceField(widget=forms.Select(attrs={'class': "form-control"}), choices=CHOICES)
 	price = forms.CharField(widget=forms.TextInput(attrs={'class': "form-control"}), max_length=255, required=True)
-	no_of_bedrooms = forms.IntegerField(widget=forms.NumberInput(attrs={'class': "form-control"}), required=True)
-	no_of_bathrooms = forms.IntegerField(widget=forms.NumberInput(attrs={'class': "form-control"}), required=True)
+	no_of_bedrooms = forms.IntegerField(widget=forms.NumberInput(attrs={'class': "form-control", 'min':"1"}), required=True)
+	no_of_bathrooms = forms.IntegerField(widget=forms.NumberInput(attrs={'class': "form-control", 'min':"1"}), required=True)
 	dsq = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': "form-check-input", 'id':"materialChecked6"}), required=True)
 
 	class Meta:

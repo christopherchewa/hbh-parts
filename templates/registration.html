@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% load staticfiles %}
 
@@ -6,194 +5,179 @@
 {% block content %}
 
 
-    <!-- contactBody section start -->
-    <div class="registration">
-        <div class="registrationWrapper">
-            <div class="container">
-                <div class="sectionTitle">
-                    <h1 class="contactTitle">Create Account</h1>
-                    <p class="registrationDesc">Thank you for visiting our website.
-                    </p>
-                </div>
+<!-- contactBody section start -->
+<div class="registration">
+    <div class="registrationWrapper">
+        <div class="container">
+            <div class="sectionTitle">
+                <h1 class="contactTitle">Create Account</h1>
+                <p class="registrationDesc">Thank you for visiting our website.
+                </p>
+            </div>
 
-                <div class="registrationWrapperInner">
-                    <div class="d-lg-flex">
-                       <div class="bg-5 registrationInformation ">
-                            <div class="registrationInstructions">
-                                <div class="detailInner">
-                                    <div class="d-block">
-                                        <div class="instructionTitle">
-                                            {% if user_type == "buyer" %}
-                                            <h1>Want to BUY A HOME?</h1>
-                                            
-                                        </div>
-                                        <p>We believe that everyone should own a home at a location of their choice and at a reasonable price that matches their ability</p>
+            <div class="registrationWrapperInner">
+                <div class="bg-5 d-lg-flex registrationInformation ">
+                    <div class="registrationInstructions">
+                        <div class="detailInner">
+                            <div class="d-block">
+                                <div class="instructionTitle">
+                                    {% if user_type == "buyer" %}
+                                    <h1>Want to BUY A HOME?</h1>
 
-                                        <p>HBH is creating a whole new home buying experience.
-                                        </p>
-                                        <p>With our motto 'My Home@My Price', we are giving you an opportunity to find a home that matches your price and preferences.
-
-                                        </p>
-
-                                        <p>A willing seller will send you matching offers directly to your inbox</p>
-                                    </div>
-
-                                    <div class="d-block">
-                                        <div class="instructionTitle pt-5">
-                                            <h1>How it Works?</h1>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                Register an Account
-                                            </li>
-                                            <li>
-                                                State your price
-                                            </li>
-                                            <li>
-                                                Provide your preferences
-                                            </li>
-
-                                            <li>
-                                                Let the sellers find you
-                                            </li>
-
-
-                                            {% elif user_type == "seller" %}
-                                               <h1>Want to SELL A HOME?</h1>
-                                    </div>
-                                    <p>We believe that selling a property can be easy and fast, and at a price suitable to the owner.</p>
-
-                                    <p>HBH is creating a whole new home selling experience.
-                                    </p>
-                                    <p>With our motto 'My Home@My Price’,  we are giving you an opportunity to sell your property quickly, by connecting with buyers directly.</p>
-
-                                    <p>A willing buyers will send you matching offers directly to your inbox</p>
                                 </div>
+                                <p>We believe that everyone should own a home at a location of their choice and at a reasonable price that matches their ability</p>
 
-                                <div class="d-block">
-                                    <div class="instructionTitle pt-3">
-                                        <h1>How it Works?</h1>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            Register an Account
-                                        </li>
-                                        <li>
-                                            State your price
-                                        </li>
-                                        <li>
-                                            Provide your property details
-                                        </li>
+                                <p>HBH is creating a whole new home buying experience.
+                                </p>
+                                <p>With our motto 'My Home@My Price', we are giving you an opportunity to find a home that matches your price and preferences.
 
-                                        <li>
-                                            Let the buyers find you
-                                        </li>
-                                        {% endif %}
+                                </p>
 
-
-
-                                        </ul>
-                                    </div>
-                                </div>
+                                <p>A willing seller will send you matching offers directly to your inbox</p>
                             </div>
+
+                            <div class="d-block">
+                                <div class="instructionTitle pt-5">
+                                    <h1>How it Works?</h1>
+                                </div>
+                                <ul>
+                                    <li>
+                                        Register an Account
+                                    </li>
+                                    <li>
+                                        State your price
+                                    </li>
+                                    <li>
+                                        Provide your preferences
+                                    </li>
+
+                                    <li>
+                                        Let the sellers find you
+                                    </li>
+                                </ul>
+
+                                {% elif user_type == "seller" %}
+                                <h1>Want to SELL A HOME?</h1>
+                            </div>
+                            <p>We believe that selling a property can be easy and fast, and at a price suitable to the owner.</p>
+
+                            <p>HBH is creating a whole new home selling experience.
+                            </p>
+                            <p>With our motto 'My Home@My Price’, we are giving you an opportunity to sell your property quickly, by connecting with buyers directly.</p>
+
+                            <p>A willing buyers will send you matching offers directly to your inbox</p>
                         </div>
 
-                        <div class="registrationForm ">
-                            <div class="detailInner">
-                                <div class="sectionHeader">
-                                    <p>Complete the form
-                                    </p>
-                                </div>
-                                {% if form.errors %}
-                                    {% for field in form %}
-                                        {% for error in field.errors %}
-                                            <div class="alert alert-danger">
-                                                <strong>{{ error|escape }}</strong>
-                                            </div>
-                                        {% endfor %}
-                                    {% endfor %}
-                                    {% for error in form.non_field_errors %}
-                                        <div class="alert alert-danger">
-                                            <strong>{{ error|escape }}</strong>
-                                        </div>
-                                    {% endfor %}
-                                {% endif %}
-                                <form method="POST" action="{% url 'mainapp:register' %}">
-                                    {% csrf_token %}
-                                <div class="inputGroup">
-                                    <div class="md-form">
-                                        {{first_name_field}}
-                                        <label for="first_name">First name</label>
-                                    </div>
-
-                                    <div class="md-form">
-                                        {{last_name_field}}
-                                        <label for="last_name">Last name</label>
-                                    </div>
-
-                                    <div class="md-form">
-                                        {{phone_number_field}}
-                                        <label for="phone_number">Phone Number</label>
-                                    </div>
-                                </div>
-
-                                <div class="inputGroup">
-                                    <div class="md-form">
-                                        {{email_field}}
-                                        <label for="email">Email address</label>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="inputGroup">
-                                    <div class="md-form">
-                                        {{password1_field}}
-                                        <label for="password1">Enter new password </label>
-                                        <span>Password must be at least 8 characters long and must contain at least one upper case and lower case letters</span>
-                                    </div>
-                                </div>
-
-                                <div class="inputGroup">
-                                    <div class="md-form">
-                                        {{password2_field}}
-                                        <label for="password2">Confirm new password</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-check my-3">
-                                    <input type="checkbox" class="form-check-input" id="materialChecked2">
-                                    <label class="form-check-label" for="materialChecked2">By clicking Sign Up, you agree to our <a href="{% url 'mainapp:terms'%}">Terms of service</a> and that you have read our <a href="{% url 'mainapp:terms'%}">Data Use Policy</a>, including our <a href="{% url 'mainapp:terms'%}">Cookie Use</a>.</label>
-                                </div>
-
-                                <div class="inputGroup mt-4">
-                                    <div class="md-form">
-                                        <button class="btn btnSave"><i class="fas fa-paper-plane"></i> Create Account</button>
-                                    </div>
-                                </div>
-                            </form>
+                        <div class="d-block">
+                            <div class="instructionTitle pt-3">
+                                <h1>How it Works?</h1>
                             </div>
+                            <ul>
+                                <li>
+                                    Register an Account
+                                </li>
+                                <li>
+                                    State your price
+                                </li>
+                                <li>
+                                    Provide your property details
+                                </li>
+
+                                <li>
+                                    Let the buyers find you
+                                </li>
+                                {% endif %}
 
 
+
+                            </ul>
                         </div>
                     </div>
+                </div>
+
+                <div class=" d-lg-flex registrationForm ">
+                    <div class="detailInner">
+                        <div class="sectionHeader">
+                            <p>Complete the form
+                            </p>
+                        </div>
+                        {% if form.errors %}
+                        {% for field in form %}
+                        {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        <form method="POST" action="{% url 'mainapp:register' %}">
+                            {% csrf_token %}
+                            <div class="inputGroup">
+                                <div class="md-form">
+                                    {{first_name_field}}
+                                    <label for="first_name">First name</label>
+                                </div>
+
+                                <div class="md-form">
+                                    {{last_name_field}}
+                                    <label for="last_name">Last name</label>
+                                </div>
+
+                                <div class="md-form">
+                                    {{phone_number_field}}
+                                    <label for="phone_number">Phone Number</label>
+                                </div>
+                            </div>
+
+                            <div class="inputGroup">
+                                <div class="md-form">
+                                    {{email_field}}
+                                    <label for="email">Email address</label>
+                                </div>
+                            </div>
+
+
+
+                            <div class="inputGroup">
+                                <div class="md-form">
+                                    {{password1_field}}
+                                    <label for="password1">Enter new password </label>
+                                    <span>Password must be at least 8 characters long and must contain at least one upper case and lower case letters</span>
+                                </div>
+                            </div>
+
+                            <div class="inputGroup">
+                                <div class="md-form">
+                                    {{password2_field}}
+                                    <label for="password2">Confirm new password</label>
+                                </div>
+                            </div>
+
+                            <div class="form-check my-3">
+                                <input type="checkbox" class="form-check-input" id="materialChecked2">
+                                <label class="form-check-label" for="materialChecked2">By clicking Sign Up, you agree to our <a href="{% url 'mainapp:terms'%}">Terms of service</a> and that you have read our <a href="{% url 'mainapp:terms'%}">Data Use Policy</a>, including our <a href="{% url 'mainapp:terms'%}">Cookie Use</a>.</label>
+                            </div>
+
+                            <div class="inputGroup mt-4">
+                                <div class="md-form">
+                                    <button class="btn btnSave"><i class="fas fa-paper-plane"></i> Create Account</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
                 </div>
             </div>
         </div>
     </div>
-    <!-- contactBody section end -->
- 
+</div>
+<!-- contactBody section end -->
 
-    <!-- page Banner begin -->
-    <div class="adBanner d-none bg-2 text-center">
-        <div class="sectionHeader">
-            <h1>Register Today</h1>
-        </div>
-        <div class="adDetails">
-            <p>Account registration is free for the first 100 people that sign up.</p>
-        </div>
-        <div class=""><button class="btn "> Click to Begin</button></div>
-    </div>
-    <!-- page Banner end -->
 
 {% endblock content %}

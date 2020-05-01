@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.urls import reverse
+
 from phone_field import PhoneField
 from modelchoices import Choices
 
@@ -87,6 +88,12 @@ class User(AbstractUser):
 
 	objects = UserManager()
 
+	@property
+	def get_full_names(self):
+		first_name = self.first_name
+		last_name = self.last_name
+		full_names = "{} {}".format(first_name, last_name)
+		return full_names
 
 class UserProfile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -150,6 +157,12 @@ class PropertyEntry(BasePropertyDetailModel):
 
 	def get_absolute_url(self):
 		return reverse('mainapp:list-inside', kwargs={'id':self.id})
+
+	def get_comments_absolute_url(self):
+		return reverse('comments:property-comments', kwargs={'id':self.id})
+
+	def get_seller_reviews_absolute_url(self):
+		return reverse('comments:seller-reviews', kwargs={'id':self.id})
 
 
 	@property
@@ -219,10 +232,12 @@ class RequestManager(models.Manager):
 class Request(BasePropertyDetailModel):
 	buyer = models.ForeignKey(User, on_delete=models.CASCADE)
 	is_active = models.BooleanField(default=True)
-	request_status = models.CharField(max_length=20, choices=HouseRequestStatus.CHOICES, default=HouseRequestStatus.PENDING)
+	request_status = models.CharField(max_length=20, choices=HouseRequestStatus.CHOICES, default=HouseRequestStatus.PENDING, blank=False, null=False)
 	
+	class Meta:
+		ordering = ['-buyer']
 
-	objects = RequestManager()
+	# objects = RequestManager()
 
 	def __str__(self):
 		retstr = str(self.pk) + "-" + str(self.buyer) + "-" + str(self.location)
@@ -233,8 +248,6 @@ class Request(BasePropertyDetailModel):
 		price_unformatted = self.price
 		price = f"{price_unformatted:,d}"
 		return price
-
-
 
 
 	@property
