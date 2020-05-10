@@ -1,0 +1,335 @@
+{% load staticfiles %}
+
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+       <script src="{% static 'js/slider.conf.js' %}"></script>
+    <script src="{% static 'js/mdb.min.js' %}"></script>
+    <div class="hiddendiv common"></div>
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+<script type="text/javascript">
+
+var bed_number_field = document.getElementById('id_no_of_bedrooms');
+var bath_number_field = document.getElementById('id_no_of_bathrooms');
+
+// Listen for input event on numInput.
+function validateLetters(field){
+
+	if (field){
+		field.onkeydown = function(e) {
+    		if(!((e.keyCode > 95 && e.keyCode < 106) || (e.keyCode > 47 && e.keyCode < 58) || e.keyCode == 8)) {
+        	return false;
+    		}
+		}
+	}
+}
+
+validateLetters(bed_number_field);
+validateLetters(bath_number_field);
+
+
+	function showFlashMessage(message){
+		
+	var template = "<div class='alert-container'>" +
+	"<div class='alert alert-success alert-dismissible fade show' role='alert'>"+message+
+	"<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"+
+	"<span aria-hidden='true'>&times;</span></button></div></div>"
+
+	    $("body").append(template);
+	    $(".alert-container").fadeIn();
+
+	    setTimeout(function(){
+	        $(".alert-container").fadeOut();                
+	    }, 1800);
+
+	}	
+
+
+	$(document).ready(function(){
+
+		$('.unmatched-request-delete').on('click', function(){
+
+			var rid = $(this).attr('data-id');
+			document.getElementById('request_id').value = rid;
+			document.getElementById('delete-btn').value = "Remove Request ## " + rid;
+
+			$('#delete-form').attr('action', '/all-requests/remove/'+rid+'/');
+			
+		});
+
+
+		
+
+		$('.unmatched-request-activate').on('click', function(){
+
+			var rid = $(this).attr('data-id');
+			document.getElementById('request_id').value = rid;
+			document.getElementById('activate-btn').value = "Activate Request ## " + rid;
+
+			$('#activate-form').attr('action', '/all-requests/activate/'+rid+'/');
+			
+		});
+
+		//engage modal
+		//after django processes the post request, it will refresh the page
+		//no need for ajax in post requests
+		//need for ajax in get requests because they are informational modals
+		$('.engage-btn').on('click', function(){
+
+			var match_id = localStorage.getItem("match_id");
+			document.getElementById('engage_id').value = match_id;
+			$('#engage-form').attr('action', '/engage/'+match_id+'/');
+
+		});
+
+		//engage modal
+		//after django processes the post request, it will refresh the page
+		//no need for ajax in post requests
+		//need for ajax in get requests because they are informational modals
+		$('.decline-offer-btn').on('click', function(){
+
+			var match_id = localStorage.getItem("match_id");
+			document.getElementById('decline_offer_id').value = match_id;
+			$('#decline-offer-form').attr('action', '/decline-offer/'+match_id+'/');
+
+		});
+
+		//explore page
+		$('.match-link').on('click', function(){
+			var match_id = $(this).attr('data-id');
+			localStorage.setItem("match_id", match_id);
+			
+
+
+		});
+
+		//view contact
+		$('.view-contact-btn').on('click', function(e){
+			console.log(e);
+			var match_id = $(this).attr('data-matchid');
+			
+			$.ajax({
+	 			 url: '/view-contact/',
+	  			type: 'get',
+	  			data: {'match_id': match_id},
+	  
+	  success: function (data) {
+	  	
+	  	
+	    $("#match-first-name").html(data.buyer_first_name);
+	    $("#match-last-name").html(data.buyer_last_name);
+	    $("#match-email").html(data.buyer_email);
+	    $("#match-phone-number").html(data.buyer_phone_number);
+	    $("#match-engagement-date").html(data.engagement_date);
+	    $("#myViewContactModal").modal("show");
+	    
+	    
+
+	  }
+
+			});
+		});
+	
+
+		$('.view-match').on('click', function(){
+			
+			
+			var match_id = localStorage.getItem("match_id");
+			
+			$.ajax({
+	 			 url: '/view-match/',
+	  			type: 'get',
+	  			data: {'match_id': match_id},
+	  
+	  success: function (data) {
+	  	
+
+	    $(".js-match-buyer-first-name").html(data.match_buyer_first_name);
+	    $(".js-match-buyer-last-name").html(data.match_buyer_last_name);
+	    $('.js-match-buyer-email').html(data.match_buyer_email)
+
+	    $(".js-match-seller-first-name").html(data.match_seller_first_name);
+	    $(".js-match-seller-last-name").html(data.match_seller_last_name);
+	    $(".js-match-property-location").html(data.match_property_location);
+	    $("#myMatchModal").modal("show");
+	    
+	    
+
+	  }
+
+			});
+		});
+
+
+$('.fa-search-plus').on('click', function(e){
+		e.preventDefault();
+	});
+
+
+$('.explore-like').on('click', function(e){
+		e.preventDefault();
+	});
+
+	function setFavourite(like_btn){
+			$(like_btn).on('click', function(){
+			
+			var from_inside;
+			if (like_btn == ".add-fave-btn"){
+				from_inside = true;
+			}
+			else{
+				from_inside = false;
+			}
+
+			var property_id = $(this).attr('data-faveid');
+			control = $(this);
+			control_icon = control[0].childNodes[1]
+			
+			
+
+			$.ajax({
+	 			 url: '/favourite/',
+	  			type: 'get',
+	  			data: {'property_entry_id': property_id},
+	  
+	  success: function (data) {
+	  	
+
+	    if (data.remove_favourite){
+	    		//removed
+ 				if(from_inside){
+ 					control_icon.classList.remove("fas");
+ 					control_icon.classList.add("far");
+ 					control[0].childNodes[0].textContent = data.fav_status
+ 				}
+ 				else{
+ 					control[0].classList.remove('is-favourite');
+ 					control_icon.classList.remove("is-favourite-inner");	
+ 				}
+ 				
+ 			}
+ 			else if(data.add_favourite){
+ 				//added
+ 				if(from_inside){
+	 				control_icon.classList.remove("far");
+	 				control_icon.classList.add("fas");
+	 				control[0].childNodes[0].textContent = data.fav_status
+ 				}
+ 				else{
+ 					control[0].classList.add('is-favourite');
+ 					control_icon.classList.add("is-favourite-inner");	
+ 				}
+ 				
+
+ 			}
+ 			showFlashMessage(data.flash_message);	    
+
+	  	}
+			});
+		});
+
+	}
+	setFavourite('.add-fave-btn');
+	setFavourite('.explore-like');
+
+// function setRating(rating_class_value){
+// 	var rating_class_name = ".star-form-" + rating_class_value;
+// 	return rating_class_name;
+// }
+
+
+function setRatingFunction(rating_class_value){
+	$("i.star-form-"+rating_class_value).on('click', function(){
+	seller_id = $(this).attr("data-sellerid");
+	rating_clicked = $(this)[0]
+	
+
+		$.ajax({
+	 	url: '/set-rating/',
+	  	type: 'get',
+	  	data: {'seller_id': seller_id, 'rating_value':rating_class_value},
+	  
+	  			success: function (data) {
+	  	
+	    			if (data){
+
+ 						if (rating_clicked.classList.contains("far"))
+ 						{
+
+ 							for (var i = 5; i > 0; i--) {
+ 								if (i > parseInt(rating_class_value))
+ 								{
+ 									$("i.star-form-"+i)[0].classList.remove("fas");
+ 								}
+ 								else
+ 								{
+ 									$("i.star-form-"+i)[0].classList.remove("far");
+ 									$("i.star-form-"+i)[0].classList.add("fas");
+ 								}
+ 							}
+ 						}
+ 						else if (rating_clicked.classList.contains("fas")){
+ 							for (var i = 5; i > 0; i--) {
+ 								if (i > parseInt(rating_class_value))
+ 								{
+ 									$("i.star-form-"+i)[0].classList.remove("fas");
+ 									$("i.star-form-"+i)[0].classList.add("far");
+ 								}
+ 							}
+ 						}
+					
+						
+	 				}
+	 				else{
+	 					
+	 				}
+
+		  		}
+
+		});		
+	
+	});
+}
+
+
+setRatingFunction("1");
+setRatingFunction("2");
+setRatingFunction("3");
+setRatingFunction("4");
+setRatingFunction("5");
+
+
+
+//before this, one had to click on the field, to activate it. 
+//you could only click past the label in the input field
+////fixed
+	$('label').click(function() {
+       $(this)[0].classList.add('active');
+
+	});
+
+
+			$('.close-view-contact-btn').click(function(){
+				location.relaod();
+
+			});
+
+			$('.clickable-cell').on('click', function() {
+				var data_href = $(this)[0].parentNode.attributes[0].nodeValue;
+				console.log(data_href)
+        		window.location = data_href;
+    		})
+
+    		$('*[data-href]').hover(function () {
+   				 $(this).css({
+        		'cursor': 'pointer'
+    			});
+			});
+
+	
+});
+</script>
+
+
+

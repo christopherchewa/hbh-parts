@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/chewa.css' %}">
+
+<div class="account">
+
+    <div class="container">
+        <div class="sectionTitle">
+            <h1 style="text-align: center;padding-top:1rem;">Seller Reviews</h1>
+            <br>
+            <hr>
+        </div>
+        <a class="btnBack" href="{% url 'mainapp:list-inside' property.id %}">
+            <img src="{% static 'content/img/global/backArrowBlue.svg' %}" alt="backArrow"> Back to Property
+        </a>
+        <br>
+        <br>
+
+        {% if seller_reviews.count > 0 %}
+        {% for review in seller_reviews %}
+        <div class="comments-main">
+
+            <div class="comment-inner">
+                <div class="comment-image">
+                    <img src="{% static 'content/img/th-1.png' %}" class="img-responsive">
+                </div>
+
+                <div class="comment-inner-details">
+                    <div class="comment-container-title">
+                        <a href="{% url 'mainapp:account' %}">
+                            <p class="review-buyer">
+                                {{review.buyer.get_full_names}} {% if request.user == review.buyer %}<i>(Me)</i>{% endif %}
+                            </p>
+                        </a>
+
+                        <p class="review-date"><span>Added on: {{review.created_at}}</span></p>
+                    </div>
+                    <p class="review-content">
+                        {{review.content}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+          {% else %}
+       <br>
+        <br>
+        <center>
+
+
+            <h4>This Seller Does NOT Have Any Reviews Yet.</h4>
+        </center>
+
+       {% endif %}
+
+    </div>
+</div>
+
+
+{% endblock content %}

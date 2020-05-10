@@ -1,0 +1,85 @@
+{% load staticfiles %}
+
+<footer class="navbar-fixed-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-md text-center m-auto col-xl">
+                <img class="footer-logo d-xs-none dsm-none" src="{% static 'content/img/global/logo.png' %}" alt="Logo">
+                <p class="copyright"> Home Buyers Haven © 2020 All right reserved.</p>
+            </div>
+
+            <div class="col d-none d-xl-block col-xl">
+                <p class="footeSecTitle">The news</p>
+
+                <div class="news">
+                    <a href="newsInside.html">
+                        <div class="innerNews">
+                            <img src="{% static 'content/img/th-2.png' %}" alt="Image">
+                            <div class="newsContent">
+                                <p class="newsTitle">
+                                    7 Tips to know when house hunting!
+                                </p>
+                                <p class="newsDesc">
+                                    Looking for a house in Nairobi is quite the task. You will come across all sorts of houses and problems.
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="newsInside.html">
+                        <div class="innerNews">
+                            <img src="{% static 'content/img/th-3.png' %}" alt="Image">
+                            <div class="newsContent">
+                                <p class="newsTitle">
+                                    Rent payment and Mortgage facilities in Kenya
+                                </p>
+                                <p class="newsDesc">
+                                    Paying your rent in Nairobi just got a whole lot easier. While mortgage opportunities continue to ...
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-sm-8 col-md col-xl">
+                <p class="footeSecTitle">Navigate</p>
+                <div class="links">
+                    <a href="{% url 'mainapp:home' %}" class="waves-effect waves-light">Home</a>
+                    <a href="{% url 'mainapp:contact' %}" class="waves-effect waves-light">Contact Us</a>
+                    <a href="{% url 'mainapp:home' %}" class="waves-effect waves-light">About Us</a>
+                    <a href="{% url 'mainapp:terms' %}" class="waves-effect waves-light">Agreements</a>
+                    <a href="{% url 'mainapp:pricing' %}" class="waves-effect waves-light">Pricing plans</a>
+                    <a href="{% url 'mainapp:terms' %}" class="waves-effect waves-light">Terms of usage</a>
+                </div>
+            </div>
+
+            <div class="d-none d-xl-block  col-xl">
+                <p class="footeSecTitle">Contact Us</p>
+
+                <p class="phone">
+                    Tel: <span> +254 12 123 45 67</span><br>
+                    Mob: <span> +254 12 123 45 67</span><br>
+                </p>
+                <div class="socialIcons">
+                    <a href="#">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <p class="address">
+                    232 Nzami district H.Javid 123
+                    Nairobi, Kenya
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

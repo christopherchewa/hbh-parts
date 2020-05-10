@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load sorting_tags %}
+
+{% block content %}
+
+
+
+<div class="account">
+    <div class="container">
+        
+         <a class="btnBack text-dark" href="{% url 'mainapp:account' %}">
+            <img src="{% static 'content/img/global/backArrowBlue.svg' %}" alt="backArrow"> Back
+        </a>
+        {% if request.user.userprofile.user_type == "Seller" %}
+
+        <div class="sectionTitle">
+            <h3>All Matches</h3>
+            <h5><span>User:</span> {{request.user}}</h5>
+            <h5><span>Type:</span> {{request.user.userprofile.user_type}}</h5>
+            <p>The following is a list of all matched properties</p>
+        </div>
+        
+        {% if matches_count > 0 %}
+        <table class="table table-responsive-lg table-hover table-sm">
+            <caption>List of matched properties</caption>
+            
+            <thead class="thead-light">
+                <tr>
+                <th>Match Id</th>
+                <th>{% anchor buyer_request__buyer__first_name _("Buyer") %}</th>
+                <th>{% anchor property_entry__location _("Location") %}</th>
+                <th>{% anchor property_entry__property_type _("Property Type") %}</th>
+                <th>{% anchor property_entry__no_of_bedrooms _("Bedrooms") %}</th>
+                <th>{% anchor property_entry__no_of_bathrooms _("Bathrooms") %}</th>
+                <th>{% anchor property_entry__price _("My Price") %}</th>
+                <th>{% anchor buyer_request__price _("Buyer's Price") %}</th>
+                <th>{% anchor engagement_status _("Buyer Response") %}</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% autosort matches %}
+            {% for match in matches %}
+
+                    
+                <tr data-href="{{match.property_entry.get_absolute_url}}">
+                <td class=clickable-cell>
+                    ##{{match.id}}
+                </td>
+                <td class=clickable-cell>
+                    {{match.buyer_request.buyer.first_name}} {{match.buyer_request.buyer.last_name}}
+                </td>
+                <td class=clickable-cell>
+                    {{match.property_entry.location}}
+                </td>
+                <td class=clickable-cell>
+                    {{match.property_entry.property_type}}
+                </td>
+                <td style="padding-left:2rem;">
+                    {{match.property_entry.no_of_bedrooms}}
+                </td>
+                <td style="padding-left:2rem;">
+                    {{match.property_entry.no_of_bathrooms}}
+                </td>
+                <td class=clickable-cell>
+                    {{match.property_entry.kshs_price}}
+                </td>
+                <td class=clickable-cell>
+                    {{match.buyer_request.kshs_price}}
+                </td>
+                <td class=clickable-cell>
+                    {{match.engagement_status}}
+                </td>
+                         <td>
+                    {% if match.engagement_status == "Accepted" or match.engagement_status == "Completed" %}
+                    <a class="btn-md view-contact-btn" data-matchid="{{match.id}}" data-toggle="modal" href="#myViewContactModal">View Contact</a>
+                    {% endif %}
+                </td>
+                
+            </tr>
+           
+
+
+
+
+         {% endfor %}
+        </tbody>
+        </table>
+        {% else %}
+        <br>
+        <br>
+        <center>
+            <h4>You have no matches. <a href="{% url 'mainapp:add-listing' %}">Click here</a> to add property that can be matched by a buyer request</h4>
+        </center>
+        {% endif %}
+
+
+        <style type="text/css">
+            .pagination .page-item.active .page-link{
+                background-color: #ff8d59 !important;
+            }
+        </style>
+        <!--Pagination Start-->
+            {% if matches.has_other_pages %}    
+                <ul class="pagination" style="justify-content: center;">
+                    {% if matches.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ matches.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    {% else %}
+                     <li class="page-item disabled"><a class="page-link">&laquo;</a></li>
+                    {% endif %}
+
+                    {% for i in matches.paginator.page_range %}
+                        {% if matches.number == i %}
+                            <li class="page-item active"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if matches.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{matches.next_page_number}}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                    {% else %}
+                     <li class="page-item disabled"><a class="page-link">&raquo;</a></li>
+                    {% endif %} 
+                </ul>
+            {% endif %}
+        <!--Pagination End-->
+        {% endif %}
+    </div>
+</div>
+
+
+{% include "includes/view-contact-modal.html" %}
+
+{% endblock content %}
