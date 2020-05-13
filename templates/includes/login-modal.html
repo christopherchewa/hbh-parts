@@ -1,0 +1,35 @@
+
+<div class="modal hide text-center" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h3>Sign In</h3>
+                    <button type="button" class="close" data-dismiss="modal">x</button>
+                </div>
+                <div class="modal-body">
+                    <div class="md-form my-0">
+                        <div class="box">
+                            <div class="content">
+                                <div class="error"></div>
+                                <div class="form loginBox">
+                                     <form method="POST" action="{% url 'mainapp:sign-in' %}" accept-charset="UTF-8">
+                                   {% csrf_token %}
+                                        <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                                        <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                        <input class="btn waves" type="submit" value="Login" >
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="forgot login-footer">
+                        <span>Can't sign in?
+                            <a data-toggle="modal" href="#registerModal">Create account</a>.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    

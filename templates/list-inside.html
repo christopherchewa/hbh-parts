@@ -1,0 +1,439 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+{% include "includes/match-details-modal.html" %}
+{% include "includes/engage-modal.html" %}
+{% include "includes/decline-offer-modal.html" %}
+{% include "includes/close-request-modal.html" %}
+
+
+{% include "includes/messages.html" with messages=messages %}
+
+
+<style type="text/css">
+
+    .review-textarea {
+        padding: 5px 20px 20px 10px;
+        border: none;
+        border-bottom: 1px solid #DEDEDE;
+        width: 100%;
+        margin-left: 0px;
+        margin-bottom: 20px;
+        font-size: 13px;
+        resize: none;
+    }
+
+    .make-rates {
+        position: relative;
+        top: -3px;
+        display: inline;
+    }
+
+    {% if request.user.userprofile.user_type == "Seller" %}
+
+    .add-fave-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-areas: "a b c";
+
+    }
+
+    
+
+    .delete-property-btn{
+        grid-area: c;
+        justify-self: end;
+        color: #ff8d59;
+        /*text-align: left;*/
+        display: flex;
+
+    }
+    
+    .delete-property-btn i {
+        padding: 5px 1rem;
+    }
+
+    {% elif request.user.userprofile.user_type == "Buyer" %}
+
+    .add-fave-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "a b";
+
+    }
+
+    
+
+    {% endif %}
+
+    .add-fave-btn i {
+        padding: 5px 1rem;
+    }
+
+    .add-fave-btn {
+        grid-area: b;
+        justify-self: end;
+        color: #ff8d59 !important;
+        /*text-align: left;*/
+        display: flex;
+    }
+
+
+
+    .comments{
+        margin-top: 40px !important;
+    }
+    
+
+    .buttonsLine{
+        padding: 30px 30px 10px 30px !important;
+    }
+
+    .engagement-info{
+        padding-left: 36px;
+    }
+
+</style>
+<!-- listInside page start -->
+<div class="listInside ">
+    <div class="container listInsideWrapper">
+        <a class="btnBack" href="{% url 'mainapp:explore' %}">
+            <img src="{% static 'content/img/global/backArrowBlue.svg' %}" alt="backArrow"> Back to results
+        </a>
+
+        <div class="listInsideInner">
+            <div class="insideLeft">
+                <div class="headerLine">
+                    <div class="homeNameSec">
+                        <h5>{{property.property_title}}</h5>
+
+                        <span class="">{{property.property_type}}</span>
+                    </div>
+
+                    <div class="homePriceSec">
+                  
+
+                        <h3>{{property.kshs_price}}</h3>
+                    </div>
+                </div>
+
+                <div class="slider">
+                    <div id="sync1" class="owl-carousel owl-loaded owl-drag">
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 4830px;">
+                                <div class="owl-item active" style="width: 690px;">
+                                    <div class="item">
+                                         {% if property.propertyentryimage.image1 %}
+                                        <img src="{{property.propertyentryimage.image1.url}}" alt="Listing">
+                                        {% else %}
+                                        <img src="{% static 'img/empty-house.jpg' %}" alt="Listing">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="owl-item" style="width: 690px;">
+                                    <div class="item">
+                                         {% if property.propertyentryimage.image2 %}
+                                        <img src="{{property.propertyentryimage.image2.url}}" alt="Listing">
+                                        {% else %}
+                                        <img src="{% static 'img/empty-house.jpg' %}" alt="Listing">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="owl-item" style="width: 690px;">
+                                    <div class="item">
+                                        <img src="{% static 'content/img/sliderModal.png' %}" alt="Image">
+                                    </div>
+                                </div>
+                                <div class="owl-item" style="width: 690px;">
+                                    <div class="item">
+                                        <img src="{% static 'content/img/sliderModal.png' %}" alt="Image">
+                                    </div>
+                                </div>
+                                <div class="owl-item" style="width: 690px;">
+                                    <div class="item">
+                                        <img src="{% static 'content/img/sliderModal.png' %}" alt="Image">
+                                    </div>
+                                </div>
+                                <div class="owl-item" style="width: 690px;">
+                                    <div class="item">
+                                        <img src="{% static 'content/img/sliderModal.png' %}" alt="Image">
+                                    </div>
+                                </div>
+                                <div class="owl-item" style="width: 690px;">
+                                    <div class="item">
+                                        <img src="{% static 'content/img/sliderModal.png' %}" alt="Image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div>
+                        <div class="owl-dots disabled"></div>
+                    </div>
+
+                    <div id="sync2" class="owl-carousel owl-loaded owl-drag">
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1610px;">
+                                <div class="owl-item active" style="width: 230px;">
+                                    <div class="item">
+                                        {% if property.propertyentryimage.image1 %}
+                                        <img src="{{property.propertyentryimage.image1.url}}" alt="Listing">
+                                        {% else %}
+                                        <img src="{% static 'img/empty-house.jpg' %}" style="height:108px;" alt="Listing">
+                                        {% endif %}
+                                        
+                                    </div>
+                                </div>
+                                <div class="owl-item active" style="width: 230px;">
+                                    <div class="item">
+                                        {% if property.propertyentryimage.image2  %}
+                                        <img src="{{property.propertyentryimage.image2.url}}" alt="Listing">
+                                        {% else %}
+                                        <img src="{% static 'img/empty-house.jpg' %}" style="height:108px;" alt="Listing">
+                                        {% endif %}
+                                        
+                                    </div>
+                                </div>
+                                <div class="owl-item active" style="width: 230px;">
+                                    <div class="item">
+                                        {% if property.propertyentryimage.image3 %}
+                                        <img src="{{property.propertyentryimage.image3.url}}" alt="Listing">
+                                        {% else %}
+                                        <img src="{% static 'img/empty-house.jpg' %}" style="height:108px;" alt="Listing" class="img-responsive">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div>
+                        <div class="owl-dots disabled"></div>
+                    </div>
+                </div>
+
+                <!--Section: -->
+                <div class="reviews">
+
+                    <!--Title-->
+                    <h5 class="section-heading mb-2" style="display:inline;">
+                        Reviews for:
+                    </h5>
+
+                    <h5 class="review-link" style="display:inline;">
+                        <a href="{{property.get_seller_reviews_absolute_url}}">
+                            {{property.seller.get_full_names}}
+                        </a>
+                    </h5>
+
+
+
+                    <div class="mt-3">
+                        <h5 style="display:inline;">Rating: </h5>
+                        <div class="make-rates">
+                            <i class="fa-star star-view-1 {% if average_rating >= 1 %}fas{% else %}far{% endif %}"></i>
+                            <i class="fa-star star-view-2 {% if average_rating >= 2 %}fas{% else %}far{% endif %}"></i>
+                            <i class="fa-star star-view-3 {% if average_rating >= 3 %}fas{% else %}far{% endif %}"></i>
+                            <i class="fa-star star-view-4 {% if average_rating >= 4 %}fas{% else %}far{% endif %}"></i>
+                            <i class="fa-star star-view-5 {% if average_rating == 5 %}fas{% elif average_rating < 5 %}far{% endif %}"></i>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <!-- <p>User rating is based on other users reviews.</p> -->
+
+                    <!--Section: Live preview-->
+                    {% if request.user.userprofile.user_type == "Buyer" %}
+
+                    <div class="d-none reviewsInner d-md-block my-3 mt-5">
+
+                        <div class="container pl-0">
+
+    
+                            <b><span>Rate Seller: </span></b>
+
+                            <i data-sellerid={{property.seller.id}} class="fa-star star-form-1 {% if ratings >= 1 %}fas{% else %}far{% endif %}"></i>
+                            <i data-sellerid={{property.seller.id}} class="fa-star star-form-2 {% if ratings >= 2 %}fas{% else %}far{% endif %}"></i>
+                            <i data-sellerid={{property.seller.id}} class="fa-star star-form-3 {% if ratings >= 3  %}fas{% else %}far{% endif %}"></i>
+                            <i data-sellerid={{property.seller.id}} class="fa-star star-form-4 {% if ratings >= 4 %}fas{% else %}far{% endif %}"></i>
+                            <i data-sellerid={{property.seller.id}} class="fa-star star-form-5 {% if ratings == 5 %}fas{% elif ratings < 5 %}far{% endif %}"></i>
+                        </div>
+
+                        <br>
+
+                        
+                        <div class="addComment">
+                            <form method="POST" action="{% url 'mainapp:add-review' %}">
+                                <div class="commentItem">
+
+
+                                    {% csrf_token %}
+                                    <!-- <textarea placeholder="Add your comment"></textarea> -->
+                                    <input type="hidden" name="property_entry_id" value="{{property.id}}">
+                                    <input type="hidden" name="seller_id" value="{{property.seller.id}}">
+                                    <textarea placeholder="Leave a Review" name="review_content" class="review-textarea"></textarea>
+                                    <!-- <input type="hidden" name="ratings" value="3"> -->
+                                </div>
+
+                                <button class="btn waves-effect waves-light review-btn">Submit</button>
+                            </form>
+                        </div>
+
+                        <p class="review-error" style="color:red;display:none;">
+                            Review cannot be empty!
+                        </p>
+
+                    </div>
+                    {% elif request.user.userprofile.user_type == "Seller" %}
+
+                    <div class="d-none d-md-block my-3 mt-5">
+                        <div class="container pl-0">
+                            <h4>Matching Buyer Requests ({{property.property_valid_match_count}})</h3>
+                            {% for match in property.property_valid_matches %}
+                                Buyer: {{match.buyer_request.buyer.get_full_names}}
+                                <br>
+                                Buyer's Price: {{match.buyer_request.kshs_price}}
+                                <hr>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                    {% endif %}
+                    <!--Section: Live preview-->
+
+                </div>
+                <!--/Section: -->
+            </div>
+
+            <div class="insideRight">
+                <div class="homeDescription">
+                    <div class="add-fave-container">
+                        <p class="insideSecTitle">Description</p>
+                        {% if request.user.userprofile.user_type == "Buyer" %}
+                        <a class="add-fave-btn" data-faveid="{{property.id}}">{{add_or_remove}}<i class="{{css_class}} fa-heart inner-icon"></i></a>
+                        {% elif request.user.userprofile.user_type == "Seller" %}
+                        <a class="add-fave-btn" href="{% url 'mainapp:edit-listing' property.id %}">Edit Property<i class="fas fa-pen"></i></a>
+                        <a class="delete-property-btn" href="{% url 'mainapp:edit-listing' property.id %}">Delete Property<i class="fas fa-trash"></i></a>
+                        {% endif %}
+                    </div>
+                    <p class="homeDesc">{{property.other_details | linebreaks}}</p>
+
+                    <div class="homefeatures">
+                        <p><img src="{% static 'content/img/listInside/room.svg' %}"> Bedrooms {{property.no_of_bedrooms}}</p>
+                        <p><img src="{% static 'content/img/listInside/bathroom.svg' %}"> Bathrooms {{property.no_of_bathrooms}}</p>
+                        <!-- <p><img src="{% static 'content/img/listInside/guest.svg' %}"> Guests 4</p> -->
+                        <p><img src="{% static 'content/img/listInside/bed.svg' %}"> DSQ {% if property.dsq %} Available {% else %} Not Available {% endif %}</p>
+                    </div>
+
+                    <!-- <p class="homeAdress"><i class="fas fa-map-marker-alt"></i> {{property.location}}</p>
+                    <a class="showMap" href="#">Show on map</a> -->
+                </div>
+                {% if request.user.userprofile.user_type == "Buyer" %}
+                <div class="buttonsLine">
+                    {% if match.engagement_status == "Pending" %}
+                    <button class="btn btnCall waves-effect waves-light engage-btn" data-toggle="modal" href="#myEngageModal">
+                        <i class="fas fa-inbox"></i> Engage Seller
+                    </button>
+                    {% elif match.engagement_status == "Accepted" %}
+                    <button class="btn btnCall waves-effect waves-light engage-btn" disabled>
+                        <i class="fas fa-inbox"></i> Seller Notified
+                    </button>
+                    {% elif match.engagement_status == "Declined" %}
+                    <button class="btn btnCall waves-effect waves-light engage-btn" data-toggle="modal" href="#myEngageModal">
+                        <i class="fas fa-inbox"></i> Re-Engage Seller
+                    </button>
+                    <button class="btn btnCall waves-effect waves-light engage-btn" disabled>
+                        <i class="fas fa-trash"></i> Offer Declined
+                    </button>
+                    {% elif match.engagement_status == "Completed" %}
+                    <button class="btn btnCall waves-effect waves-light close-request-btn" data-toggle="modal" href="#myCloseRequestModal">
+                        <i class="fas fa-inbox"></i> Close Request
+                    </button>
+                    {% elif match.engagement_status == "Archived" %}
+                    <button class="btn btnCall waves-effect waves-light close-request-btn" disabled>
+                        <i class="fas fa-inbox"></i> Request Closed
+                    </button>
+                    {% endif %}
+                    <div class="othereButtons">
+                        <a href="#" class="btn d-none"><i class="fas fa-pen"></i> Edit</a>
+                        <a class="btn view-match" data-toggle="modal"><i class="fas fa-arrows-alt-h"></i> View Match Details</a>
+
+                        {% if match.engagement_status == "Accepted" %}
+                        <a class="btn decline-offer-btn" data-toggle="modal" href="#myDeclineOfferModal"><i class="fas fa-trash"></i> Decline Offer</a>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+                {% endif %}
+
+                {% if match.engagement_status == "Accepted" %}
+                <p class="engagement-info">The seller can now view your contact details.</p>
+                {% elif match.engagement_status == "Completed" %}
+                <p class="engagement-info">The seller has viewed your details and should make contact.</p>
+                <p class="engagement-info">You can close this request, or you can checkout <a href="{% url 'mainapp:explore' %}?q={{match.buyer_request.location}}">other similar matches.</a></p>
+                {% elif match.engagement_status == "Archived" %}
+                <p class="engagement-info">This request is no longer available for matching</p>
+                {% endif %}
+                <div class="comments">
+                    {% if form.errors %}
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <p class="insideSecTitle">Comments</p>
+
+
+                    <div class="commentBody">
+
+                        {% for comment in comments %}
+                        <div class="commentItem">
+                            <img src="{% static 'content/img/th-1.png' %}" alt="thumbnail">
+                            <div class="commentTxt">
+                                <b>{{comment.content}}</b>
+                                <br>
+                                <i>- {{comment.buyer.get_full_names}} {% if request.user == comment.buyer %}(Me){% endif %}</i>
+                            </div>
+
+                        </div>
+                        {% endfor %}
+
+                
+
+                        <a class="btnSeeMore" href="{{property.get_comments_absolute_url}}">See more</a>
+
+                    </div>
+                </div>
+                {% if request.user.userprofile.user_type == "Buyer" %}
+                <div class="addComment">
+                    <form method="POST">
+                        <div class="commentItem">
+                            <img src="{% static 'content/img/th-1.png' %}" alt="thumbnail">
+
+                            {% csrf_token %}
+                            <!-- <textarea placeholder="Add your comment"></textarea> -->
+                            {{comment_content_field}}
+
+                        </div>
+
+                        <button class="btn waves-effect waves-light">Submit</button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- listInside page end -->
+
+
+{% endblock content %}

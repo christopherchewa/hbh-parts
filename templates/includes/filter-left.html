@@ -1,0 +1,70 @@
+<div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="" role="tabpanel" aria-labelledby="filter-tab">
+
+                            <form action="." method="GET">
+                                <div class="select-wrapper md-form mt-4">
+                                    <select class="d-flex select-dropdown custom-select" id="inputGroupSelect01" aria-label="Property type" name="propertytype">
+                                        <option selected="{% if not propertytype %}selected{% endif %}"disabled>Property type</option>
+                                        <option {% if propertytype == 'Apartment' %}selected="selected"{% endif %} value="Apartment">Apartment</option>
+                                        <option {% if propertytype == 'Mansion' %}selected="selected"{% endif %} value="Mansion">Mansion</option>
+                                        <option {% if propertytype == 'Bungalow' %}selected="selected"{% endif %} value="Bungalow">Bungalow</option>
+                                        
+                                    </select>
+                                </div>
+
+                                <div class="select-wrapper d-md-flex d-xs-block">
+                                    <div class="col-xs-12 col-md-12 col-lg-12 md-form pl-1 pr-0 min-max-price-container">
+                                        <span>Min Kshs. </span>
+                                        <input type="text" name="minprice" class="search-fields" value="{{minprice}}">
+                                    </div>
+                                    
+                                </div>
+                                <div class="select-wrapper d-md-flex d-xs-block">
+                                    <div class="col-xs-12 col-md-12 col-lg-12 md-form pl-1 pr-0 min-max-price-container">
+                                        <span>Max Kshs. </span>
+                                        <input type="text" name="maxprice" class="search-fields" value="{{maxprice}}">
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="select-wrapper d-md-flex d-xs-block">
+                                    <div class="col-xs-12 col-md-12 col-lg-12 md-form pl-1 pr-0 location-container">
+                                        <span>Location</span>
+                                        <input type="text" name="location" class="search-fields" value="{{location}}">
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="select-wrapper d-md-flex d-xs-block">
+
+                                    <div class="col-xs-12 col-md-6 col-lg-7 md-form pl-0 pr-1 bed-bath-container" >
+                                        <span>Bedrooms</span>
+                                        <input type="text" name="bedrooms" class="search-fields" value="{{bedrooms}}">
+                                    </div>
+
+
+                                    <div class="col-xs-12 col-md-6 col-lg-5 md-form pl-1 pr-0 bed-bath-container">
+                                        <span>Bathrooms</span>
+                                        <input type="text" name="bathrooms" class="search-fields" value="{{bathrooms}}">
+                                    </div>
+
+                                </div>
+
+
+                                <div class="checkList" style="margin-top:10px !important;">
+                                    <div class="pt-3" style="padding-top:0px !important;">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="materialChecked8" name="dsq" {% if dsq %}checked{% endif %}>
+                                            <label class="form-check-label" for="materialChecked8">DSQ</label>
+                                        </div>
+                                        
+
+                                    </div>
+                                </div>
+
+                                <button class="btn btnExploreSearch waves-effect waves-light">Search</button>
+                            </form>
+                                <a class="btnReset" href="{% url 'mainapp:all-properties' %}"><i class="fas fa-redo-alt"></i> Reset filters</a>
+
+                            </div>
+                        </div>

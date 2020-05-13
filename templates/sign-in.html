@@ -1,0 +1,111 @@
+
+
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+    
+<!-- signinBody section start -->
+    <div class="container registration text-center">
+        <div class="signInWrapper">
+            <div class="signInForm">
+                <div class="tab-pane" id="detail-app" role="tabpanel" aria-labelledby="detail-tab">
+                    <div class="formTitle py-0">
+                        <h1 class="contactTitle mt-0">Sign In</h1>
+                        <p>Complete the form below.</p>
+                    </div>
+                    <div class="md-form">
+                        <div class="signInFormInner">
+                            <div class="box">
+                                <div class="content">
+                                    <div class="">
+                                        <h4>Login with</h4>
+                                    </div>
+                                    <div class="social">
+                                        <a id="facebook_login" class="circle facebook" href="#">
+                                            <i class="fab fa-facebook "></i>
+                                        </a>
+                                        <a id="google_login" class="circle google" href="#">
+                                            <i class="fab fa-google-plus fa-fw"></i>
+                                        </a>
+                                        <a id="twitter_login" class="circle twitter" href="#">
+                                            <i class="fab fa-twitter fa-fw"></i>
+                                        </a>
+                                    </div>
+                                    <div class="division">
+                                        <div class="line l"></div>
+                                        <span>or</span>
+                                        <div class="line r"></div>
+                                    </div>
+                                    <div class="error"></div>
+                                    <div class="form loginBox">
+                                        <form method="" action="" accept-charset="UTF-8">
+                                            <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                                            <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                            <input class="btn waves btn-login" type="button" value="Login" onclick="loginAjax()">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="content registerBox" style="display:none;">
+                                    <div class="form">
+                                        <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                                            <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                                            <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                            <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
+                                            <input class="btn btn-default btn-register" type="button" value="Create account" name="commit">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="forgot login-footer">
+                                <span>Can't sign in?
+                                    <a href="javascript: showRegisterForm();">Create an account</a>.</span>
+                            </div>
+                            <div class="forgot register-footer" style="display:none">
+                                <span>Already have an account?</span>
+                                <a href="javascript: showLoginForm();">Login</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="detailInner mb-2">
+                        <div class="inputGroup">
+                            <div class="md-form">
+                                <input type="text" id="email" class="form-control">
+                                <label for="email">Email address</label>
+                            </div>
+                        </div>
+
+                        <div class="inputGroup">
+                            <div class="md-form">
+                                <input type="password" id="Pass" class="form-control">
+                                <label for="newPass">Enter password </label>
+                            </div>
+                        </div>
+
+                        <div class="my-3 mb-5 form-check">
+                            <input type="checkbox" class="form-check-input" id="materialChecked2">
+                            <label class="form-check-label" for="materialChecked2">Keep me signed in.</label>
+                        </div>
+
+
+                        <div class="inputGroup">
+                            <div class="md-form">
+                                <button class="btn btn-md btnSave"><i class="fa fa-sign-in"></i> Sign In</button>
+                            </div>
+                        </div>
+                    </div> -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- signinBody section end -->
+    
+{% endblock content %}
