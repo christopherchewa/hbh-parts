@@ -1,0 +1,38 @@
+                      <div class="dropInner">
+                                <div class="dropItems">
+                              {% if request.user.is_authenticated %}
+
+                                   <a class=" waves-effect waves-light" href="{% url 'mainapp:account' %}">Hi, {{request.user.first_name}} <i class="fa fa-user"></i></a>
+                                   {% if request.user.userprofile.user_type == 'Buyer' or request.user.userprofile.user_type == 'Seller'%}
+                                    <a class=" waves-effect waves-light" href="{% url 'mainapp:add-listing' %}">Add {% if request.user.userprofile.user_type == "Buyer"%}New Listing{% elif request.user.userprofile.user_type == "Seller"%}Property <i class="fas fa-home"></i>{% endif %}</a>
+                                    
+                                    {% if request.user.userprofile.user_type == 'Seller'%}
+                                    <a class=" waves-effect waves-light" href="{% url 'mainapp:explore' %}">My Properties</a>
+                                    <a class=" waves-effect waves-light" href="{% url 'mainapp:unmatched-requests' %}">All Unmatched Requests</a>
+                                    {% endif %}
+
+                                    <a class=" waves-effect waves-light" href="{% if request.user.userprofile.user_type == 'Buyer'%}{% url 'mainapp:explore' %}{% elif request.user.userprofile.user_type == 'Seller'%}{% url 'mainapp:matches' %}{% endif %}">Matched requests</a>
+                                    {% endif %}
+
+                                    {% if request.user.userprofile.user_type == 'Buyer'%}
+                                    <a class=" waves-effect waves-light" href="{% url 'mainapp:all-requests' %}">All My Requests</a>
+                                    {% endif %}
+
+                                    
+                                    <a class=" waves-effect waves-light" href="{% url 'mainapp:sign-out' %}">Sign Out <i class="fa fa-sign-out-alt"></i></a>
+                                   
+                              {% else %}
+                                    <a class=" waves-effect waves-light" data-toggle="modal" href="#myModal">Sign In <i class="fa fa-sign-in-alt"></i></a>
+                                   
+                                    <a class="dropdown-toggle waves-effect waves-light"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create Account <i class="far fa-user-circle"></i></a>
+                                    
+                                    <ul class="dropdown-menu dropright p-0" aria-labelledby="navbarDropdown">
+                                        <li><a  class=" waves-effect waves-light" type="submit" href="{% url 'mainapp:select-type' 'buyer' %}" role="button">Register as a Buyer</a></li>
+                                        <li><a  class=" waves-effect waves-light" href="{% url 'mainapp:select-type' 'seller' %}" role="button">Register as a Seller</a></li>
+                                    </ul>
+                            
+                              {% endif %}
+
+                                   
+                                </div>
+                            </div>

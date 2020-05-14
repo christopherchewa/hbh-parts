@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load sorting_tags %}
+
+
+{% block content %}
+
+{% include "includes/activate-request-modal.html" %}
+
+
+{% include "includes/remove-request-modal.html" %}
+
+
+
+<div class="account">
+    <div class="container">
+
+        <a class="btnBack text-dark" href="{% url 'mainapp:account' %}">
+            <img src="{% static 'content/img/global/backArrowBlue.svg' %}" alt="backArrow"> Back
+        </a>
+
+        <div class="sectionTitle">
+            <center><h3>All Requests</h3></center>
+            <h5><span>User:</span> {{request.user.get_full_names}} ({{request.user.userprofile.user_type}})</h5>
+            <p>Here you can track all your active and inactive requests.</p>
+        </div>
+
+
+        {% if all_requests_count > 0 %}
+        <table class="table table-responsive-xs table-hover table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>Request Id</th>
+                    <th class="sortable-col">{% anchor location _("Location") %}</th>
+                    <th class="sortable-col">{% anchor property_type _("Property Type") %}</th>
+                    <th class="sortable-col">{% anchor no_of_bedrooms _("Bedrooms") %}</th>
+                    <th class="sortable-col">{% anchor no_of_bathrooms _("Bathrooms") %}</th>
+                    <th class="sortable-col">{% anchor price _("My Price") %}</th>
+                    <th>Matches</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            {% autosort all_requests %}
+
+            {% for r in all_requests %}
+
+            <tr>
+                <td>
+                    ##{{r.id}}
+                </td>
+                <td>
+                    {{r.location}}
+                </td>
+                <td>
+                    {{r.property_type}}
+                </td>
+                <td style="padding-left:2rem;">
+                    {{r.no_of_bedrooms}}
+                </td>
+                <td style="padding-left:2rem;">
+                    {{r.no_of_bathrooms}}
+                </td>
+                <td>
+                    {{r.kshs_price}}
+                </td>
+                <td style="padding-left:2rem;">
+                    {% if r.is_active %}
+                    {{r.buyer_valid_match_count}}
+                    {% else %}
+                    N/A
+                    {% endif %}
+                </td>
+                <td style="padding-left:2rem;">
+                    {% if r.is_active %}
+                    <a class="btn-md unmatched-request-delete" data-id="{{r.id}}" data-toggle="modal" href="#myDeleteModal"><i class="far fa-trash-alt"></i></a>
+                    {% else %}
+                    <a class="btn-md unmatched-request-activate" data-id="{{r.id}}" data-toggle="modal" href="#myActivateModal">Activate Request</a>
+                    {% endif %}
+                </td>
+            </tr>
+
+
+
+
+
+            {% endfor %}
+        </table>
+            <style type="text/css">
+            .pagination .page-item.active .page-link{
+                background-color: #ff8d59 !important;
+            }
+        </style>
+        <!--Pagination Start-->
+            {% include "includes/pagination.html" with items=all_requests %}
+        <!--Pagination End-->
+
+        {% else %}
+        <h1>You have no requests. <a href="{% url 'mainapp:add-listing' %}">Click here</a> to add new requests</h1>
+
+        {% endif %}
+
+    </div>
+</div>
+
+
+{% endblock content %}

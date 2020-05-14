@@ -1,0 +1,138 @@
+{% load staticfiles %}
+<html lang="en">
+
+{% include "includes/head-element.html" %}
+
+<link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/cover/">
+
+<!-- Bootstrap core CSS -->
+<link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/4.4/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon.ico">
+<meta name="msapplication-config" content="/docs/4.4/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#563d7c">
+
+
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+</style>
+
+<script>
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+<body aria-busy="true" style="overflow: visible;">
+    {% include "includes/home-navbar.html" %}
+
+    <div class="cover">
+        <main role="main" class="cover-container m-auto">
+            <div class="d-flex h-100">
+                <div class="coverTitle d-flex">
+                    <div class="">
+                        <h1 class="h1-responsive">The Home Buyers Haven</h1>
+                        <h4>My Home @ My Price</h4>
+                    </div>
+                </div>
+
+                <div class="col d-none d-md-block bg-3 cover-item ">
+                    <div class="content d-none d-md-block">
+                        <h3>Are you looking to BUY a Home?</h3>
+
+                        <p class="d-none d-lg-block">It's as easy as 1 -<span class="g-1"> 2</span> -<span class="g-2"> 3</span></p>
+
+                        <ol class="d-none d-lg-block">
+                            <li>State you price</li>
+                            <li>State you preference</li>
+                            <li>Let the sellers find you</li>
+                        </ol>
+                        <p class="lead">
+                            <a type="submit" class="btn btn-lg waves" href="{% url 'mainapp:select-type' 'buyer' %}" role="button">Click here...</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col d-none d-md-block bg-1 cover-item ">
+                    <div class="content d-none d-md-block">
+                        <h3>Are you looking to SELL a Home?</h3>
+                        <p class="d-none d-lg-block">It's as easy as A -<span class="g-1"> B</span> -<span class="g-2"> C</span></p>
+
+                        <ol class="d-none d-lg-block">
+                            <li>State you price</li>
+                            <li>State you property details</li>
+                            <li>Let the buyers find you</li>
+                        </ol>
+                        <p class="lead">
+                            <a class="btn btn-lg waves" href="{% url 'mainapp:select-type' 'seller' %}" role="button">Click here...</a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+
+    <!-- About-us begin -->
+    <div id ="About-us" class="About-us">
+        <div class="container">
+            <div class="sectionTitle">
+                <h1>About Us</h1>
+                <p>Our motto: My Home At My Price</p>
+            </div>
+            <div class="About-description">
+                <p>Owning a home is everyone’s dream and it is achievable. The Home Buyers Haven is an online platform that provides aspiring home owners an opportunity to  purchase homes at friendly prices. We are prioritiz buyers needs and preferences giving them a new home buying experience.</p>
+                <p>
+                    We believe that everyone should own a home at a location of their choice and at a reasonable price that matches their ability. Our platform is designed to facilitate this process by   providing prospective home owners an opportunity to list their requirements and receive offers that match their needs
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- About-us end -->
+
+
+    <!-- Footer section start -->
+    {% include 'includes/big-footer.html'  %}
+    <!-- Footer section end -->
+    {% include "includes/javascript.html" %}
+
+
+
+        
+
+
+    <script>
+        $(document).ready(function() {
+            var header = document.getElementsByClassName("container")[0];
+            $(header).unwrap();
+
+        });
+    </script>
+
+
+</body>
+
+
+
+</html>

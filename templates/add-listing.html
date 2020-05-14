@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+<style type="text/css">
+    .property-type select{
+        display: initial !important;
+    }
+    .property-type label{
+        top: -2.0rem !important;
+    }
+
+    .property-details-extra label.active{
+        /*transform: translateY(-15%) !important;*/
+
+    }
+    .property-details-extra label{
+        padding-bottom:10px;
+    }
+    .property-details-extra textarea{
+        padding:10px !important;
+    }
+
+    input[type="file"]{
+        position:relative !important;
+        left: 0px !important;
+        display: block;
+        padding: 10px;
+    }
+</style>
+<!-- addListingInner page start -->
+
+<div class="addListing">
+    <div class="addListingWrapper">
+        <div class="container" style="padding-left:100px !important;padding-right:100px !important;">
+            <div class="sectionTitle">
+                <h1>{{form_title}}</h1>
+                <h4>{{form_desc}}</h4>
+                <br>
+                <h5>Complete the information below.
+                </h5>
+            </div>
+
+            <div class="addListingInnerWrapper">
+                <div class="staticNav" style="margin-top: 0px;">
+                    <a class="c active" href="#">Contact Information</a>
+                    <a class="g" href="#">Property details</a>
+                    <a class="ph" href="#">Photos</a>
+                    <a class="d-none p" href="#">Pricing</a>
+                </div>
+
+
+                <div class="rightSection">
+                    {{form_errors}}
+
+                    <form method="POST" action="."  enctype='multipart/form-data'>
+                        {% csrf_token %}
+                    <div class=" addListingContact">
+                        <div class="sectionHeader">
+                            <p>General Details</p>
+                        </div>
+                        
+                            
+                        <div class="sectionBody">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="inputType md-form property-type">
+                                        <label for="property_number">Property Type</label>
+                                        {{property_type_field}}
+                                    </div>
+                                </div>
+                                
+                            
+                                <div class="col-lg-12">
+                                    <div class="inputType md-form">
+                                        
+                                        {{location_field}}
+                                        
+                                        <label for="location">Location</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-12">
+                                    <div class="inputType md-form">
+                                        {{price_field}}
+                                        <label for="price">Price</label>
+                                    </div>
+                                </div>
+                                 
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="addListingDetails">
+                        <div class="sectionHeader">
+                            <p>Other Details</p>
+                        </div>
+
+                        <div class="sectionBody">
+                         <div class="row">
+
+                               <div class="col-lg-4" style="margin-top: 20px;">
+                                    <div class="inputType md-form">
+                                        <label class="form-check-label" for="no_of_bedrooms">Number of Bedrooms</label>
+                                        
+                                        {{no_of_bedrooms_field}}
+                                    </div>
+                                </div>
+                                <div class="col-lg-4" style="margin-top: 20px;">
+                                    <div class="inputType md-form">
+                                        <label class="form-check-label" for="no_of_bathrooms">Number of Bathrooms</label>
+                                        
+                                        {{no_of_bathrooms_field}}
+                                    </div>
+                                </div>
+
+
+                          <div class="checkType col-lg-4" style="margin-top:40px;">
+                                   
+
+                                    <div class="form-check">
+                                        {{dsq_field}}
+                                        <label class="form-check-label" for="materialChecked6">DSQ</label>
+                                    </div>
+                                </div>
+                            
+                            {% if request.user.userprofile.user_type == "Seller" %}
+
+
+                            <div class="col-lg-12" style="margin-top:20px;">
+                                    <div class="inputType md-form property-details-extra">
+                                        <label for="other_details">Extra Information</label>
+                                        {{other_details_field}}
+                                        
+                                    </div>
+                                </div>
+
+                            {% endif %}
+
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {% if request.user.userprofile.user_type == "Seller" %}
+                    <div class="addListingPhotos">
+                        <div class="sectionHeader">
+                            <p>Photos</p>
+                        </div>
+
+                        <div class="sectionBody">
+                            <span class="photoInfo">Maximum file size - 2 MB</span>
+
+                            <div class="photoUpload">
+                                
+                                
+                                <div style="border:1px solid orange;padding:20px;margin-bottom:10px;">
+                                {{image1_field}}
+                                </div>
+                                <div style="border:1px solid orange;padding:20px;margin-bottom:10px;">
+                                {{image2_field}}
+                                </div>
+                                <div style="border:1px solid orange;padding:20px;margin-bottom:10px;">
+                                {{image3_field}}
+                                </div>
+                                <div style="border:1px solid orange;padding:20px;margin-bottom:10px;">
+                                {{image4_field}}
+                                </div>
+                                <div style="border:1px solid orange;padding:20px;margin-bottom:10px;">
+                                {{image5_field}}
+                                </div>
+
+                               
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    
+                    <button class="btn btnListingSend waves-effect waves-light z-depth-0" type="submit">Submit</button>
+
+                    <form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- addListingInner page end -->
+
+{% endblock content %}
