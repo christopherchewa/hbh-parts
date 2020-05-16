@@ -1,0 +1,23 @@
+<style type="text/css">
+	.hbh-messages{
+		/*width:500px;
+		margin-top:20px;*/
+		position: absolute;
+        width:450px;
+        right:10px;
+        top:60px;
+        text-align: start;
+	}
+
+
+</style>
+<center>
+{% for message in messages %}
+<div class="alert hbh-messages alert-{{ message.tags }} alert-dismissible {% if 'danger' in message.tags %}alert-danger{% endif %}" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+</div>
+{% endfor %}
+</center>

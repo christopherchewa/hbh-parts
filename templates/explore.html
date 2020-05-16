@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+
+{% include "includes/messages.html" with messages=messages %}
+
+
+<style type="text/css">
+      .itemCover img{
+        object-fit: unset !important;
+    }
+</style>
+<script type="text/javascript">
+    $("#materialChecked8").on('change', function(){
+  if ($(this).is(':checked')) {
+    $(this).attr('value', 'True');
+  } else {
+    $(this).attr('value', 'False');
+  }
+})
+</script>
+<!-- Explore page start -->
+<div class="explore">
+    <div class="exploreWrapper">
+        <div class="container py-1">
+
+            {% if request.user.userprofile.user_type == "Buyer" %}
+            <div class="sectionTitle text-center">
+                <h1>Available Matched Properties</h1>
+                <br>
+                <hr>
+            </div>
+            <div class="headerBar">
+                <p class="resultText">We found <span>{{entries_count}}</span> results that might be your next home.</p>
+                {% elif request.user.userprofile.user_type == "Seller" %}
+                <div class="sectionTitle text-center">
+                    <h1>My Properties</h1>
+                    <br>
+                    <hr>
+                </div>
+                <div class="headerBar">
+                    <p class="resultText">These are your properties. <span>({{entries_count}})</span> </p>
+
+                    {% endif %}
+
+                    <div class="d-none d-sm-flex select-wrapper md-form">
+                        <select class="d-flex select-dropdown custom-select" aria-label="SortBy type">
+                            <option selected="" value="1">Most relevant</option>
+                            <option value="2">Most recent</option>
+                            <option value="3">Top rated</option>
+                            <option value="3">By Price</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="explore">
+                    <div class="exploreSearch">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item waves-effect waves-light pr-1">
+                                <a class="nav-link active" id="filter-tab" data-toggle="tab" href="#filter" aria-controls="filter" aria-selected="true"> My Requirements</a>
+                            </li>
+                            <li class="nav-item waves-effect waves-light">
+                                <a class="nav-link" id="explore-tab" data-toggle="tab" href="#explore-tabore" role="tab" aria-controls="explore" aria-selected="false">Explore</a>
+                            </li>
+                        </ul>
+                        
+                        {% include "includes/filter-left.html" with propertytype=propertytype minprice=minprice maxprice=maxprice location=location bedrooms=bedrooms bathrooms=bathrooms dsq=dsq %}
+                        
+                    </div>
+
+                    <div class="exploreResult">
+                        <div class="listings">
+
+                            {% if request.user.userprofile.user_type == "Buyer" %}
+                                {% if entries_count > 0%}
+                                    {% for entry in entries %}
+
+                            <a href="{{entry.property_entry.get_absolute_url}}?mid={{entry.id}}" data-id={{entry.id}} class="match-link">
+
+                                <div class="listingItem">
+                                    <div class="itemCover">
+
+                                        <div class="like explore-like {% if request.user in entry.property_entry.favourites.all %}is-favourite{% endif %}" data-faveid="{{entry.property_entry.id}}">
+                                            <i class="fas {% if request.user in entry.property_entry.favourites.all %}is-favourite-inner{% endif %} fa-heart"></i>
+                                        </div>
+
+                                        {% if entry.property_entry.propertyentryimage.image1 %}
+                                        <img src="{{entry.property_entry.propertyentryimage.image1.url}}" alt="Listing">
+                                        {% else %}
+                                        <img src="{% static 'img/empty-house.jpg' %}" alt="Listing">
+                                        {% endif %}
+
+                                        <div class="price">
+                                            {{entry.property_entry.kshs_price}}
+                                        </div>
+
+                                        <div class="quickView">
+                                            <i class="fas fa-search-plus" data-toggle="modal" data-target="#basicExampleModal"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="itemDesc">
+                                        
+                                         <p class="itemName">{{entry.property_entry.location}}
+                                            <br><span>{{entry.property_entry.property_type}}</span>
+                                        </p>
+
+                                        <div class="e-i">
+                                            <p class="extraItem">
+                                                <span>Bedrooms</span> <br>
+                                                {{entry.property_entry.no_of_bedrooms}}
+                                            </p>
+
+                                            <p class="extraItem">
+                                                <span>Bathooms</span> <br>
+                                                {{entry.property_entry.no_of_bathrooms}}
+                                            </p>
+                                        </div>
+
+                                        <div class="e-i">
+                                            <p class="extraItem">
+                                                <span>DSQ</span> <br>
+                                                {% if entry.property_entry.dsq %}
+                                                    Available
+                                                {% else %}
+                                                N/A
+                                                {% endif %}
+                                            </p>
+
+                                            <p class="extraItem">
+                                                <span>Added on:</span> <br>
+                                                {{entry.created_at | date:'D, d M, Y'}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                                    {% endfor %}
+                                {% else %}
+                                <br>
+                                <br>
+                                
+                                <h4 class="empty-title">You have NO matches. <a href="{% url 'mainapp:add-listing' %}">Click here</a> to add a property request to be matched with a property</h4>
+                                
+                                {% endif %}
+
+                            {% elif request.user.userprofile.user_type == "Seller" %}
+                                {% if entries_count > 0%}
+                                    {% for entry in entries %}
+
+                            <a href="{{entry.get_absolute_url}}">
+                                <div class="listingItem">
+                                    <div class="itemCover">
+
+                                    
+                                        {% if entry.propertyentryimage.image1 %}
+                                        <img src="{{entry.propertyentryimage.image1.url}}" alt="Listing">
+                                        {% else %}
+                                        <img src="{% static 'img/empty-house.jpg' %}" alt="Listing">
+                                        {% endif %}
+
+                                        <div class="price">
+                                            {{entry.kshs_price}}
+                                        </div>
+
+                                        <div class="quickView" data-toggle="modal" data-target="#basicExampleModal">
+                                            <i class="fas fa-search-plus"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="itemDesc">
+                                        <p class="itemName">{{entry.location}}
+                                            <br><span>{{entry.property_type}}</span>
+                                        </p>
+
+                                        <div class="e-i">
+                                            <p class="extraItem">
+                                                <span>Bedrooms</span> <br>
+                                                {{entry.no_of_bedrooms}}
+                                            </p>
+
+                                            <p class="extraItem">
+                                                <span>Bathooms</span> <br>
+                                                {{entry.no_of_bathrooms}}
+                                            </p>
+                                        </div>
+
+                                       <div class="e-i">
+                                            <p class="extraItem">
+                                                <span>DSQ</span> <br>
+                                                {% if entry.dsq %}
+                                                    Available
+                                                {% else %}
+                                                N/A
+                                                {% endif %}
+                                            </p>
+
+                                            <p class="extraItem">
+                                                <span>Added on:</span> <br>
+                                                {{entry.created_at | date:'D, d M, Y'}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                                    {% endfor %}
+                                {% else %}
+                                <br>
+                                <br>
+                                
+                                <h4 class="empty-title">You have NO properties. <a href="{% url 'mainapp:add-listing' %}">Click here</a> to add a property to your inventory</h4>
+                                
+
+                                {% endif %}
+
+
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+
+                {% include "includes/pagination.html" with items=entries filter_params=filter_params %}
+                {% include "includes/explore-pics-modal.html" %}
+            </div>
+        </div>
+    </div>
+    <!-- Explore page end -->
+
+    {% endblock content %}

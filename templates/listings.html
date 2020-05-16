@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+    <!-- listingBody section start -->
+    <div class="listing">
+        <div class="listingWrapper">
+        <div class="container">
+            <div class="sectionTitle">
+                <h1>My Favourite listings</h1>
+            </div>
+          <div class="headerBar">
+                <!-- <p class="resultText">We found <span>60</span> results that might be your next home.</p> -->
+
+                <div class="d-none d-sm-flex select-wrapper">
+                    <select class=" mdb-select md-form initialized">
+                        <option selected="" value="1">Latest</option>
+                        <option value="2">Best selling</option>
+                        <option value="3">Top rated</option>
+                        <option value="3">Top relevant</option>
+                    </select>
+                </div>
+            </div>
+            <div class="listings">
+                {% for property in favourites %}
+                <a href="#">
+                    <div class="listingItem">
+                        <div class="itemCover">
+
+                            <div class="like">
+                                <i class="fas fa-heart"></i>
+                            </div>
+
+                            <img src="{% static 'content/img/listing-1.png' %}" alt="Listing">
+
+                            <div class="price">
+                                {{property.kshs_price}}
+                            </div>
+
+                            <div class="quickView" data-toggle="modal" data-target="#basicExampleModal">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+
+                        <div class="itemDesc">
+                            <p class="itemName">{{property.location}}
+                                <br><span>{{property.property_type}}</span>
+                            </p>
+
+                            <div class="e-i">
+                                <p class="extraItem">
+                                    <span>Bedroom</span> <br>
+                                    {{property.no_of_bedrooms}}
+                                </p>
+
+                                <p class="extraItem">
+                                    <span>Bathroom</span> <br>
+                                    {{property.no_of_bathrooms}}
+                                </p>
+                            </div>
+
+                            <div class="e-i">
+                                <p class="extraItem">
+                                    <span>Bed</span> <br>
+                                    2
+                                </p>
+
+                                <p class="extraItem">
+                                    <span>Floor space</span> <br>
+                                    780 sq ft
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+    <!-- listingBody section end -->
+
+{% endblock content %}

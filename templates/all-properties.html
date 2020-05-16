@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+
+<style type="text/css">
+
+     .itemCover img{
+        object-fit: unset !important;
+    }
+    
+        .empty-title{
+        margin:auto;
+    }
+
+    .is-favourite{
+        background: rgba(255, 255, 255, 1) !important;
+    }
+
+    .is-favourite-inner{
+        color:#FBA172 !important;
+    }
+
+    .min-max-price-container, .location-container{
+        display:grid;
+        grid-template-columns:auto 1fr;
+    }
+
+    .min-max-price-container span, .location-container span, .bed-bath-container span{
+        padding-right:20px;
+    }
+
+    .bed-bath-container{
+        display:grid;
+        grid-template-columns:auto 1fr;
+    }
+    
+    .bed-bath-container input{
+        width: 50px !important;
+    }
+
+    
+</style>
+
+
+<!-- Explore page start -->
+<div class="explore">
+    <div class="exploreWrapper">
+        <div class="container py-1">
+
+            
+                <div class="sectionTitle text-center">
+                <h1>All Properties</h1>
+                <br>
+                <hr>
+            </div>
+            <div class="headerBar">
+                <p class="resultText">Results <span>({{entries_count}})</span></p>
+                
+                
+
+                    <div class="d-none d-sm-flex select-wrapper md-form">
+                        <select class="d-flex select-dropdown custom-select" aria-label="SortBy type">
+                            <option selected="" value="1">Most relevant</option>
+                            <option value="2">Most recent</option>
+                            <option value="3">Top rated</option>
+                            <option value="3">By Price</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="explore">
+                    <div class="exploreSearch">
+                        <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item waves-effect waves-light">
+                                <a class="nav-link " id="filter-tab" data-toggle="tab" href="#" aria-controls="filter" aria-selected="true"><i class="fa fa-search"></i> My Buy Requirements</a>
+                            </li>
+                        </ul> -->
+                        
+                        {% include "includes/filter-left.html" with propertytype=propertytype minprice=minprice maxprice=maxprice location=location bedrooms=bedrooms bathrooms=bathrooms dsq=dsq %}
+                        
+                    </div>
+
+                    <div class="exploreResult">
+                        <div class="listings">
+
+                           
+                            
+                                {% if entries_count > 0%}
+                                    {% for entry in entries %}
+
+                            <a href="{% if entry.seller == request.user %}{{entry.get_absolute_url}}{% else %}{{entry.get_absolute_url_allprops}}{% endif %}">
+                                <div class="listingItem">
+                                    <div class="itemCover">
+
+                                        {% if entry.propertyentryimage.image1 %}
+                                        <img src="{{entry.propertyentryimage.image1.url}}" alt="Listing">
+                                        {% else %}
+                                        <img src="{% static 'img/empty-house.jpg' %}" alt="Listing">
+                                        {% endif %}
+                                        
+
+                                        <div class="price">
+                                            {{entry.kshs_price}}
+                                        </div>
+
+                                        <div class="quickView" data-toggle="modal" data-target="#basicExampleModal">
+                                            <i class="fas fa-search-plus"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="itemDesc">
+                                        <p class="itemName">{{entry.location}}
+                                            <br><span>{{entry.property_type}}</span>
+                                        </p>
+
+                                        <div class="e-i">
+                                            <p class="extraItem">
+                                                <span>Bedrooms</span> <br>
+                                                {{entry.no_of_bedrooms}}
+                                            </p>
+
+                                            <p class="extraItem">
+                                                <span>Bathooms</span> <br>
+                                                {{entry.no_of_bathrooms}}
+                                            </p>
+                                        </div>
+
+                                         <div class="e-i">
+                                            <p class="extraItem">
+                                                <span>DSQ</span> <br>
+                                                {% if entry.dsq %}
+                                                    Available
+                                                {% else %}
+                                                N/A
+                                                {% endif %}
+                                            </p>
+
+                                            <p class="extraItem">
+                                                <span>Added on:</span> <br>
+                                                {{entry.created_at | date:'D, d M, Y'}}
+                                            </p>
+                                        </div>
+                                        {% if entry.seller == request.user %}
+                                        
+                                           <div class="e-i" style="margin-right:0px !important;margin-left:10px !important;">
+                                            <br>
+                                           
+                                            <p class="extraItem ">
+                                                
+                                                <i class="fas fa-home"></i>
+                                                <i class="fas fa-user"></i>
+                                                <i style="display:block;">Yours</i>
+                                                
+                                            </p>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </a>
+                                    {% endfor %}
+                                {% else %}
+                                <br>
+                                <br>
+                                
+                                <h4 class="empty-title">NO PROPERTIES.</h4>
+                                
+
+                                {% endif %}
+
+
+                            
+
+                        </div>
+                    </div>
+                </div>
+
+                {% include "includes/pagination.html" with items=entries filter_params=filter_params %}
+                {% include "includes/explore-pics-modal.html" %}
+            </div>
+        </div>
+    </div>
+    <!-- Explore page end -->
+
+    <!-- Footer section start -->
+
+
+    <!-- Modal start -->
+  
+    <!-- Modal end -->
+    {% endblock content %}

@@ -1,0 +1,170 @@
+.comments-main {
+	/*display: block;*/
+	/*grid-template-columns:100px 1fr;*/
+	padding: 1rem;
+	
+    background: #f9f9f9;
+    
+    background-image: url('../content/img/global/textured-bg.png');
+    background-position: center;
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+.comment-inner {
+    position: relative;
+	display: flex;
+	border: 1px solid #ececec;
+    padding: 0 1rem;
+    background: #fff;
+}
+
+.comment-inner .comment-image img {
+    height: 50px;
+    width: 50px;
+    margin-top: 35%;
+    border-radius: 100%;
+}
+
+.comment-inner-details {
+    margin: .5rem 1rem;
+}
+
+.comment-inner-details a {
+    color: #ff8452;
+    font-weight: 450;
+}
+
+.comment-inner-details p {
+    margin-bottom: 0px;
+    font-size: 15px;
+}
+
+.comment-inner-details p span {
+	font-size: 13px;
+    font-weight: 500;
+    color: #8C8C8C;
+   /* position: absolute;
+    content: '';
+    right: 1rem;*/
+}
+
+.reviews-none,
+.comments-none {
+    height: 100%;
+    margin: auto;
+    width: 100%;
+    background: #fff;
+    position: relative;
+}
+
+.reviews-none h5,
+.comments-none h5 {
+    content: '';
+    position: absolute;
+    top: 43%;
+    left: 17%;
+}
+
+
+
+
+
+.empty-title{
+    margin:auto;
+}
+
+.is-favourite{
+    background: rgba(255, 255, 255, 1) !important;
+}
+
+.is-favourite-inner{
+    color:#FBA172 !important;
+}
+
+.min-max-price-container, .location-container{
+    display:grid;
+    grid-template-columns:auto 1fr;
+}
+
+.min-max-price-container span, .location-container span, .bed-bath-container span{
+    padding-right:20px;
+}
+
+.bed-bath-container{
+    display:grid;
+    grid-template-columns:auto 1fr;
+}
+
+.bed-bath-container input{
+    width: 50px !important;
+}
+
+.review-textarea {
+    padding: 5px 20px 20px 10px;
+    border: none;
+    border-bottom: 1px solid #DEDEDE;
+    width: 100%;
+    margin-left: 0px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    resize: none;
+    }
+
+.make-rates {
+    position: relative;
+    top: -3px;
+    display: inline;
+}
+
+
+
+.hbh-messages .flash-message .account-hbh-message{
+    position: absolute;
+    top: 60px;
+    z-index: 1;
+    width: 30%;
+    right: 10px;
+  
+
+}
+.flash-message{
+      display: none;
+}
+
+
+
+ .add-fave-btn i {
+    padding: 5px 1rem;
+}
+
+.add-fave-btn {
+    grid-area: b;
+    justify-self: end;
+    color: #ff8d59 !important;
+    /*text-align: left;*/
+    display: flex;
+}
+
+
+.fa-star {
+    color: #ff8d59;
+}
+
+.comments{
+    margin-top: 40px !important;
+}
+
+
+.buttonsLine{
+    padding: 30px 30px 10px 30px !important;
+}
+
+.engagement-info{
+    padding-left: 36px;
+}
+
+
+.pagination .page-item.active .page-link{
+    background-color: #ff8d59 !important;
+}
